@@ -21,17 +21,15 @@ const Home = () => {
   };
 
   const nextProductSlide = () => {
-    setCurrentProductSlide((prev) => (prev + 1) % Math.ceil(products.filter(p => p.featured).length / 4));
+    setCurrentProductSlide((prev) => (prev + 1) % Math.ceil(products.length / 3));
   };
 
   const prevProductSlide = () => {
-    setCurrentProductSlide((prev) => (prev - 1 + Math.ceil(products.filter(p => p.featured).length / 4)) % Math.ceil(products.filter(p => p.featured).length / 4));
+    setCurrentProductSlide((prev) => (prev - 1 + Math.ceil(products.length / 3)) % Math.ceil(products.length / 3));
   };
 
-  const featuredProducts = products.filter(p => p.featured);
-
   return (
-    <div>
+    <div className="font-jost">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-slate-800 to-slate-900 text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -151,14 +149,13 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            {/* Center Image */}
+            {/* Center Image Placeholder */}
             <div className="flex items-center justify-center">
-              <div className="w-full max-w-sm">
-                <img
-                  src="/lovable-uploads/f200d119-9b30-4df2-8ce6-522ac2a42293.png"
-                  alt="Profissional Lanza Medical"
-                  className="w-full h-auto rounded-lg"
-                />
+              <div className="w-full max-w-sm h-80 bg-gray-200 rounded-lg flex items-center justify-center">
+                <p className="text-gray-500 text-center">
+                  Espaço para<br />
+                  adicionar foto
+                </p>
               </div>
             </div>
 
@@ -207,11 +204,11 @@ const Home = () => {
                 className="flex transition-transform duration-300 ease-in-out"
                 style={{ transform: `translateX(-${currentProductSlide * 100}%)` }}
               >
-                {Array.from({ length: Math.ceil(featuredProducts.length / 4) }, (_, slideIndex) => (
+                {Array.from({ length: Math.ceil(products.length / 3) }, (_, slideIndex) => (
                   <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                      {featuredProducts
-                        .slice(slideIndex * 4, (slideIndex + 1) * 4)
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {products
+                        .slice(slideIndex * 3, (slideIndex + 1) * 3)
                         .map((product) => (
                           <Card key={product.id} className="group hover:shadow-lg transition-shadow bg-white rounded-2xl overflow-hidden">
                             <CardContent className="p-0">
@@ -222,16 +219,18 @@ const Home = () => {
                                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
                               </div>
-                              <div className="p-6 text-center">
-                                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                              <div className="p-6">
+                                <h3 className="text-lg font-bold text-gray-900 mb-3 text-left">
                                   {product.name}
                                 </h3>
-                                <p className="text-gray-600 text-sm mb-6 leading-relaxed line-clamp-3">
+                                <p className="text-gray-600 text-sm mb-6 leading-relaxed text-left text-justify">
                                   {product.description}
                                 </p>
-                                <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2">
-                                  Saiba mais
-                                </Button>
+                                <div className="text-center">
+                                  <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2">
+                                    Saiba mais
+                                  </Button>
+                                </div>
                               </div>
                             </CardContent>
                           </Card>
@@ -262,11 +261,11 @@ const Home = () => {
 
             {/* Dots Indicator */}
             <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: Math.ceil(featuredProducts.length / 4) }, (_, index) => (
+              {Array.from({ length: Math.ceil(products.length / 3) }, (_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentProductSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
+                  className={`w-2 h-2 rounded-full transition-colors ${
                     index === currentProductSlide ? 'bg-cyan-500' : 'bg-gray-300'
                   }`}
                 />
@@ -276,29 +275,69 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-16 bg-slate-800 text-white">
+      {/* About Section - Updated with highlighted statistics */}
+      <section className="py-16 bg-slate-800 text-white relative">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-sm text-cyan-400 uppercase tracking-wide mb-4">
-              QUEM É A LANZA
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
-              Transformamos consultórios com{' '}
-              <span className="text-cyan-400">segurança, tecnologia e excelência.</span>
-            </h2>
-            <div className="text-lg leading-relaxed mb-8 text-gray-300">
-              <p className="mb-4">
-                Com mais de 7 anos no mercado e 45 anos de experiência acumulada, a{' '}
-                <span className="text-white font-semibold">Lanza Medical</span> desenvolve e fabrica mesas e cadeiras médicas que unem design, 
-                segurança, ergonomia e qualidade. Nossos produtos são 100% certificados pela{' '}
-                <span className="text-cyan-400 font-semibold">ANVISA e INMETRO</span>, levando mais conforto e profissionalismo para clínicas em 
-                todo o Brasil.
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-8">
+              <p className="text-sm text-cyan-400 uppercase tracking-wide mb-4">
+                QUEM É A LANZA
               </p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
+                Transformamos consultórios com{' '}
+                <span className="text-cyan-400">segurança, tecnologia e excelência.</span>
+              </h2>
             </div>
-            <Button variant="outline" className="text-white border-white hover:bg-white hover:text-slate-800 rounded-full px-8 py-3">
-              Conheça nossa história
-            </Button>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="text-lg leading-relaxed text-gray-300">
+                <p className="mb-6">
+                  Com mais de{' '}
+                  <span className="bg-cyan-500 text-white px-2 py-1 rounded font-bold">+7 anos</span>{' '}
+                  no mercado e{' '}
+                  <span className="bg-cyan-500 text-white px-2 py-1 rounded font-bold">45 anos</span>{' '}
+                  de experiência acumulada, a{' '}
+                  <span className="text-white font-semibold">Lanza Medical</span>{' '}
+                  desenvolve e fabrica mesas e cadeiras médicas que unem design, segurança, ergonomia e qualidade.
+                </p>
+                <p className="mb-8">
+                  Nossos produtos são{' '}
+                  <span className="bg-cyan-500 text-white px-2 py-1 rounded font-bold">100%</span>{' '}
+                  certificados pela{' '}
+                  <span className="text-cyan-400 font-semibold">ANVISA e INMETRO</span>, levando mais conforto e profissionalismo para clínicas em todo o Brasil.
+                </p>
+                <Button variant="outline" className="text-white border-white hover:bg-white hover:text-slate-800 rounded-full px-8 py-3">
+                  Conheça nossa história
+                </Button>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-100 rounded-lg p-4 text-center">
+                  <div className="text-3xl font-bold text-slate-800 mb-2">600+</div>
+                  <div className="text-xs text-gray-600 uppercase tracking-wide">
+                    CONSULTÓRIOS EQUIPADOS EM TODO O BRASIL.
+                  </div>
+                </div>
+                <div className="bg-gray-100 rounded-lg p-4 text-center">
+                  <div className="text-3xl font-bold text-slate-800 mb-2">+7 anos</div>
+                  <div className="text-xs text-gray-600 uppercase tracking-wide">
+                    DE MERCADO.
+                  </div>
+                </div>
+                <div className="bg-gray-100 rounded-lg p-4 text-center">
+                  <div className="text-3xl font-bold text-slate-800 mb-2">+ 3.000</div>
+                  <div className="text-xs text-gray-600 uppercase tracking-wide">
+                    UNIDADES ENTREGUES.
+                  </div>
+                </div>
+                <div className="bg-gray-100 rounded-lg p-4 text-center">
+                  <div className="text-3xl font-bold text-slate-800 mb-2">100%</div>
+                  <div className="text-xs text-gray-600 uppercase tracking-wide">
+                    DOS PRODUTOS CERTIFICADOS.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
