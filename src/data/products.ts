@@ -1,4 +1,3 @@
-
 import { Product, ProductCategory, Testimonial, Statistic } from '@/types/product';
 
 export const productCategories: ProductCategory[] = [
@@ -40,15 +39,36 @@ export const productCategories: ProductCategory[] = [
 ];
 
 export const products: Product[] = [
+  // Mesas Ginecológicas
   {
     id: '1',
-    name: 'RT2500 Ginecológica',
+    name: 'Mesa Ginecológica RT 2000',
     category: 'ginecologia',
     price: 25000,
     images: [
       'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop'
     ],
-    description: 'Projetada para atender com excelência a uma ampla gama de procedimentos clínicos e exames, como ginecológicos, obstétricos, coleta de materiais, exames de ultrassonografia, procedimentos vasculares e estéticos.',
+    description: 'A Mesa Ginecológica RT2000 foi desenvolvida para oferecer máxima eficiência em exames ginecológicos, obstétricos, procedimentos clínicos diversos e pequenas cirurgias.',
+    specifications: {
+      'Modelo': 'RT2000',
+      'Categoria': 'Ginecológica',
+      'Certificação': 'ANVISA e INMETRO',
+      'Código INMETRO': '19.06010',
+      'Registro ANVISA/MS': '81890340001'
+    },
+    featured: true,
+    inStock: true,
+    model: 'RT2000'
+  },
+  {
+    id: '2',
+    name: 'Mesa Ginecológica RT2500',
+    category: 'ginecologia',
+    price: 28000,
+    images: [
+      'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop'
+    ],
+    description: 'Projetada para atender com excelência a uma ampla gama de procedimentos clínicos e exames, como ginecológicos, obstétricos, coleta de materiais.',
     specifications: {
       'Modelo': 'RT2500',
       'Categoria': 'Ginecológica',
@@ -59,35 +79,36 @@ export const products: Product[] = [
     model: 'RT2500'
   },
   {
-    id: '2',
-    name: 'RT4000 Ginecológica',
+    id: '3',
+    name: 'Mesa Ginecológica RT4000 Histeroscopia',
     category: 'ginecologia',
-    price: 35000,
+    price: 45000,
     images: [
       'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop'
     ],
-    description: 'A Mesa Ginecológica RT4000 é a opção ideal para histeroscopia, ultrassonografia, exames ginecológicos e obstétricos e outros.',
+    description: 'A Mesa Ginecológica RT4000 é a opção ideal para histeroscopia, ultrassonografia, exames ginecológicos e obstétricos.',
     specifications: {
       'Modelo': 'RT4000',
-      'Categoria': 'Ginecológica',
+      'Categoria': 'Ginecológica Histeroscopia',
       'Certificação': 'ANVISA e INMETRO'
     },
     featured: true,
     inStock: true,
     model: 'RT4000'
   },
+  // Mesas Clínicas
   {
-    id: '3',
-    name: 'RT3000 Trendelnburg',
+    id: '4',
+    name: 'Mesa Clínica Elétrica com Trendlemburg RT3000',
     category: 'clinica',
-    price: 28000,
+    price: 35000,
     images: [
       'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop'
     ],
-    description: 'Foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, como exames de ultrassonografia, procedimentos plásticos, implantes capilares, procedimentos vasculares e outros pequenos procedimentos clínicos.',
+    description: 'Foi desenvolvida para atender com excelência procedimentos clínicos, exames de ultrassonografia, procedimentos plásticos, implantes capilares.',
     specifications: {
       'Modelo': 'RT3000',
-      'Categoria': 'Trendelnburg',
+      'Categoria': 'Clínica Elétrica Trendlemburg',
       'Certificação': 'ANVISA e INMETRO'
     },
     featured: true,
@@ -95,14 +116,14 @@ export const products: Product[] = [
     model: 'RT3000'
   },
   {
-    id: '4',
-    name: 'RT5000 Clínica',
+    id: '5',
+    name: 'Mesa Clínica RT5000',
     category: 'clinica',
     price: 32000,
     images: [
       'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop'
     ],
-    description: 'Projetada para oferecer funcionalidade e conforto em diversas especialidades, como dermatologia, estética, ultrassonografia, acupuntura, massagens, tatuagens, piercings e outras aplicações clínicas.',
+    description: 'Projetada para oferecer funcionalidade e conforto em diversas especialidades, como dermatologia, estética, ultrassonografia.',
     specifications: {
       'Modelo': 'RT5000',
       'Categoria': 'Clínica',
@@ -111,6 +132,60 @@ export const products: Product[] = [
     featured: true,
     inStock: true,
     model: 'RT5000'
+  },
+  {
+    id: '6',
+    name: 'Mesa Clínica RT5000 Estetic',
+    category: 'estetica',
+    price: 34000,
+    images: [
+      'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop'
+    ],
+    description: 'Versão estética da RT5000, ideal para procedimentos de beleza e estética médica.',
+    specifications: {
+      'Modelo': 'RT5000 Estetic',
+      'Categoria': 'Estética',
+      'Certificação': 'ANVISA e INMETRO'
+    },
+    featured: false,
+    inStock: true,
+    model: 'RT5000'
+  },
+  {
+    id: '7',
+    name: 'Mesa Clínica RT5000 E-IC',
+    category: 'clinica',
+    price: 36000,
+    images: [
+      'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop'
+    ],
+    description: 'Mesa clínica avançada com recursos especializados para procedimentos complexos.',
+    specifications: {
+      'Modelo': 'RT5000 E-IC',
+      'Categoria': 'Clínica Avançada',
+      'Certificação': 'ANVISA e INMETRO'
+    },
+    featured: false,
+    inStock: true,
+    model: 'RT5000'
+  },
+  {
+    id: '8',
+    name: 'Mesa Clínica RT2500 ES',
+    category: 'estetica',
+    price: 29000,
+    images: [
+      'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=600&fit=crop'
+    ],
+    description: 'Mesa clínica especializada para procedimentos estéticos e de bem-estar.',
+    specifications: {
+      'Modelo': 'RT2500 ES',
+      'Categoria': 'Estética Especializada',
+      'Certificação': 'ANVISA e INMETRO'
+    },
+    featured: false,
+    inStock: true,
+    model: 'RT2500'
   }
 ];
 
@@ -144,8 +219,8 @@ export const statistics: Statistic[] = [
   },
   {
     id: '2',
-    value: '+7 anos',
-    label: 'DE MERCADO.',
+    value: '+45 anos',
+    label: 'DE EXPERIÊNCIA NA FABRICAÇÃO DE EQUIPAMENTOS MÉDICOS CERTIFICADOS.',
     description: 'De experiência na fabricação de equipamentos médicos certificados'
   },
   {

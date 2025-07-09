@@ -14,11 +14,15 @@ const Header = () => {
       name: 'Produtos', 
       href: '/produtos',
       submenu: [
-        { name: 'Clínicas de Ginecologia', href: '/produtos/ginecologia' },
-        { name: 'Clínicas de Estética', href: '/produtos/estetica' },
-        { name: 'Consultórios Médicos', href: '/produtos/clinica' },
-        { name: 'Consultórios de Dermatologia', href: '/produtos/dermatologia' },
-        { name: 'Clínicas de Transplante Capilar', href: '/produtos/transplante' }
+        { name: 'Mesa Ginecológica RT 2000', href: '/produto/mesa-ginecologica-rt-2000' },
+        { name: 'Mesa Ginecológica RT2500', href: '/produto/mesa-ginecologica-rt2500' },
+        { name: 'Mesa Ginecológica RT4000 Histeroscopia', href: '/produto/mesa-ginecologica-rt4000-histeroscopia' },
+        { name: 'Mesa Clínica Elétrica com Trendlemburg RT3000', href: '/produto/mesa-clinica-eletrica-trendlemburg-rt3000' },
+        { name: 'Mesa Clínica RT5000', href: '/produto/mesa-clinica-rt5000' },
+        { name: 'Mesa Clínica RT5000 Estetic', href: '/produto/mesa-clinica-rt5000-estetic' },
+        { name: 'Mesa Clínica RT5000 E-IC', href: '/produto/mesa-clinica-rt5000-e-ic' },
+        { name: 'Mesa Clínica RT2500 ES', href: '/produto/mesa-clinica-rt2500-es' },
+        { name: 'Todos os Produtos', href: '/produtos' }
       ]
     },
     { name: 'Sobre nós', href: '/sobre' },
@@ -50,7 +54,7 @@ const Header = () => {
                 </Link>
                 
                 {item.submenu && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="absolute top-full left-0 mt-2 w-80 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="py-2">
                       {item.submenu.map((subItem) => (
                         <Link
@@ -98,7 +102,7 @@ const Header = () => {
                             <Link
                               key={subItem.name}
                               to={subItem.href}
-                              className="block text-gray-600 hover:text-cyan-500 py-1"
+                              className="block text-gray-600 hover:text-cyan-500 py-1 text-sm"
                               onClick={() => setIsOpen(false)}
                             >
                               {subItem.name}

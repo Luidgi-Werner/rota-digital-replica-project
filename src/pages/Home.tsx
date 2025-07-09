@@ -4,12 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Star, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { products, productCategories, testimonials, statistics } from '@/data/products';
 import { useState } from 'react';
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentProductSlide, setCurrentProductSlide] = useState(0);
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -18,6 +19,16 @@ const Home = () => {
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
+
+  const nextProductSlide = () => {
+    setCurrentProductSlide((prev) => (prev + 1) % Math.ceil(products.filter(p => p.featured).length / 4));
+  };
+
+  const prevProductSlide = () => {
+    setCurrentProductSlide((prev) => (prev - 1 + Math.ceil(products.filter(p => p.featured).length / 4)) % Math.ceil(products.filter(p => p.featured).length / 4));
+  };
+
+  const featuredProducts = products.filter(p => p.featured);
 
   return (
     <div>
@@ -92,7 +103,7 @@ const Home = () => {
                   to={`/produtos/${category.slug}`}
                   className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="w-3 h-3 bg-slate-800 rounded-full"></div>
+                  <Check className="w-4 h-4 text-cyan-500" />
                   <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
                     {category.name}
                   </span>
@@ -103,8 +114,83 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Products Section */}
+      {/* New Second Section - Three Column Layout */}
       <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left Card - Diferencial */}
+            <Card className="bg-cyan-500 text-white p-8 rounded-2xl">
+              <CardContent className="p-0">
+                <div className="mb-6">
+                  <Badge variant="secondary" className="bg-cyan-400 text-white mb-4 text-xs px-3 py-1">
+                    DIFERENCIAIS
+                  </Badge>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Alta performance,<br />
+                    segurança e personalização.
+                  </h3>
+                </div>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">600+</h4>
+                    <p className="text-cyan-100">
+                      Consultórios equipados com mesas e cadeiras personalizadas.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">+45 Anos</h4>
+                    <p className="text-cyan-100">
+                      De experiência na fabricação de equipamentos médicos certificados.
+                    </p>
+                  </div>
+                </div>
+                <Button className="mt-6 bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-3">
+                  Fale agora com a Lanza
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Center Image */}
+            <div className="flex items-center justify-center">
+              <div className="w-full max-w-sm">
+                <img
+                  src="/lovable-uploads/f200d119-9b30-4df2-8ce6-522ac2a42293.png"
+                  alt="Profissional Lanza Medical"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Right Card - Certificação */}
+            <Card className="bg-slate-800 text-white p-8 rounded-2xl">
+              <CardContent className="p-0">
+                <div className="mb-6">
+                  <Badge variant="secondary" className="bg-slate-700 text-white mb-4 text-xs px-3 py-1">
+                    CERTIFICAÇÃO
+                  </Badge>
+                  <h3 className="text-2xl font-bold mb-4">
+                    Todos os produtos certificados pela{' '}
+                    <span className="text-cyan-400">ANVISA</span> e{' '}
+                    <span className="text-cyan-400">INMETRO</span>.
+                  </h3>
+                </div>
+                <p className="text-gray-300 mb-6">
+                  Garantia de segurança, qualidade e conformidade. 
+                  Todos os nossos produtos são desenvolvidos e 
+                  fabricados seguindo rigorosos padrões técnicos.
+                </p>
+                <Button className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-6 py-3">
+                  Solicitar meu orçamento
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Carousel Section */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <p className="text-sm text-gray-600 uppercase tracking-wide mb-2">
@@ -115,31 +201,77 @@ const Home = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product) => (
-              <Card key={product.id} className="group hover:shadow-lg transition-shadow bg-white rounded-2xl overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="aspect-square bg-gray-100 rounded-t-2xl overflow-hidden">
-                    <img
-                      src={product.images[0]}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentProductSlide * 100}%)` }}
+              >
+                {Array.from({ length: Math.ceil(featuredProducts.length / 4) }, (_, slideIndex) => (
+                  <div key={slideIndex} className="w-full flex-shrink-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                      {featuredProducts
+                        .slice(slideIndex * 4, (slideIndex + 1) * 4)
+                        .map((product) => (
+                          <Card key={product.id} className="group hover:shadow-lg transition-shadow bg-white rounded-2xl overflow-hidden">
+                            <CardContent className="p-0">
+                              <div className="aspect-square bg-gray-100 rounded-t-2xl overflow-hidden">
+                                <img
+                                  src={product.images[0]}
+                                  alt={product.name}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                              </div>
+                              <div className="p-6 text-center">
+                                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                                  {product.name}
+                                </h3>
+                                <p className="text-gray-600 text-sm mb-6 leading-relaxed line-clamp-3">
+                                  {product.description}
+                                </p>
+                                <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2">
+                                  Saiba mais
+                                </Button>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                    </div>
                   </div>
-                  <div className="p-6 text-center">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      {product.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                      {product.description}
-                    </p>
-                    <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2">
-                      Saiba mais
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={prevProductSlide}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={nextProductSlide}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </Button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {Array.from({ length: Math.ceil(featuredProducts.length / 4) }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentProductSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentProductSlide ? 'bg-cyan-500' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
