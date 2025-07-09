@@ -8,11 +8,12 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo and Address */}
           <div className="flex items-center space-x-4 mb-4 md:mb-0">
-            <div className="w-8 h-8 bg-cyan-500 rounded transform rotate-45 flex items-center justify-center">
-              <div className="w-4 h-4 bg-white rounded transform -rotate-45"></div>
-            </div>
+            <img 
+              src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" 
+              alt="Lanza Medical Logo" 
+              className="h-8"
+            />
             <div>
-              <span className="font-bold text-xl">Lanza medical</span>
               <p className="text-sm text-gray-400">
                 R. Barreiros, 2524 — Vila Elisa, Ribeirão Preto — SP, 14075-000
               </p>

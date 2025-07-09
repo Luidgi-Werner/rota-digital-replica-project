@@ -34,13 +34,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" 
               alt="Lanza Medical Logo" 
-              className="w-8 h-8"
+              className="h-8"
             />
-            <span className="font-bold text-xl text-white">Lanza medical</span>
           </Link>
 
           {/* Desktop Navigation */}
