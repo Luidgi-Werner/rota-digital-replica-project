@@ -30,15 +30,17 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-slate-800 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-cyan-500 rounded transform rotate-45 flex items-center justify-center">
-              <div className="w-4 h-4 bg-white rounded transform -rotate-45"></div>
-            </div>
-            <span className="font-bold text-xl text-gray-800">Lanza medical</span>
+          <Link to="/" className="flex items-center space-x-3">
+            <img 
+              src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" 
+              alt="Lanza Medical Logo" 
+              className="w-8 h-8"
+            />
+            <span className="font-bold text-xl text-white">Lanza medical</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -47,7 +49,7 @@ const Header = () => {
               <div key={item.name} className="relative group">
                 <Link
                   to={item.href}
-                  className="flex items-center space-x-1 text-gray-700 hover:text-cyan-500 transition-colors font-medium"
+                  className="flex items-center space-x-1 text-white hover:text-cyan-400 transition-colors font-medium"
                 >
                   <span>{item.name}</span>
                   {item.submenu && <ChevronDown className="w-4 h-4" />}
@@ -74,14 +76,14 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="flex items-center space-x-4">
-            <Button className="hidden md:flex bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-6">
+            <Button className="hidden md:flex bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-6 transition-colors">
               Fale Conosco
             </Button>
             
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="text-white hover:text-cyan-400">
                   <Menu className="w-6 h-6" />
                 </Button>
               </SheetTrigger>

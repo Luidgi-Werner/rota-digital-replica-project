@@ -21,11 +21,20 @@ const Home = () => {
   };
 
   const nextProductSlide = () => {
-    setCurrentProductSlide((prev) => (prev + 1) % Math.ceil(products.length / 3));
+    setCurrentProductSlide((prev) => (prev + 1) % products.length);
   };
 
   const prevProductSlide = () => {
-    setCurrentProductSlide((prev) => (prev - 1 + Math.ceil(products.length / 3)) % Math.ceil(products.length / 3));
+    setCurrentProductSlide((prev) => (prev - 1 + products.length) % products.length);
+  };
+
+  const getVisibleProducts = () => {
+    const visibleProducts = [];
+    for (let i = 0; i < 4; i++) {
+      const index = (currentProductSlide + i) % products.length;
+      visibleProducts.push(products[index]);
+    }
+    return visibleProducts;
   };
 
   return (
@@ -200,43 +209,32 @@ const Home = () => {
 
           <div className="relative">
             <div className="overflow-hidden">
-              <div 
-                className="flex transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentProductSlide * 100}%)` }}
-              >
-                {Array.from({ length: Math.ceil(products.length / 3) }, (_, slideIndex) => (
-                  <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {products
-                        .slice(slideIndex * 3, (slideIndex + 1) * 3)
-                        .map((product) => (
-                          <Card key={product.id} className="group hover:shadow-lg transition-shadow bg-white rounded-2xl overflow-hidden">
-                            <CardContent className="p-0">
-                              <div className="aspect-square bg-gray-100 rounded-t-2xl overflow-hidden">
-                                <img
-                                  src={product.images[0]}
-                                  alt={product.name}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                />
-                              </div>
-                              <div className="p-6">
-                                <h3 className="text-lg font-bold text-gray-900 mb-3 text-left">
-                                  {product.name}
-                                </h3>
-                                <p className="text-gray-600 text-sm mb-6 leading-relaxed text-left text-justify">
-                                  {product.description}
-                                </p>
-                                <div className="text-center">
-                                  <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2">
-                                    Saiba mais
-                                  </Button>
-                                </div>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        ))}
-                    </div>
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {getVisibleProducts().map((product) => (
+                  <Card key={product.id} className="group hover:shadow-lg transition-shadow bg-white rounded-2xl overflow-hidden">
+                    <CardContent className="p-0">
+                      <div className="aspect-square bg-gray-100 rounded-t-2xl overflow-hidden">
+                        <img
+                          src={product.images[0]}
+                          alt={product.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-lg font-bold text-gray-900 mb-3 text-left">
+                          {product.name}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-4 leading-relaxed text-left">
+                          {product.description}
+                        </p>
+                        <div className="text-center">
+                          <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2 text-sm">
+                            Saiba mais
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
@@ -246,7 +244,7 @@ const Home = () => {
               variant="ghost"
               size="icon"
               onClick={prevProductSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full"
             >
               <ChevronLeft className="w-6 h-6" />
             </Button>
@@ -254,19 +252,19 @@ const Home = () => {
               variant="ghost"
               size="icon"
               onClick={nextProductSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full"
             >
               <ChevronRight className="w-6 h-6" />
             </Button>
 
             {/* Dots Indicator */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: Math.ceil(products.length / 3) }, (_, index) => (
+            <div className="flex justify-center mt-6 space-x-1">
+              {products.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentProductSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentProductSlide ? 'bg-cyan-500' : 'bg-gray-300'
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                    index === currentProductSlide ? 'bg-slate-800' : 'bg-gray-300'
                   }`}
                 />
               ))}
@@ -275,66 +273,49 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section - Updated with highlighted statistics */}
+      {/* About Section - Quem é Lanza */}
       <section className="py-16 bg-slate-800 text-white relative">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
-              <p className="text-sm text-cyan-400 uppercase tracking-wide mb-4">
+        <div className="absolute inset-0 opacity-10">
+          <div className="w-full h-full bg-gradient-to-r from-slate-800 to-slate-700"></div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-8 text-center">
+              <Badge variant="secondary" className="bg-slate-700 text-white mb-4 text-xs px-3 py-1 uppercase tracking-wide">
                 QUEM É A LANZA
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
-                Transformamos consultórios com{' '}
-                <span className="text-cyan-400">segurança, tecnologia e excelência.</span>
-              </h2>
+              </Badge>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-lg leading-relaxed text-gray-300">
-                <p className="mb-6">
-                  Com mais de{' '}
-                  <span className="bg-cyan-500 text-white px-2 py-1 rounded font-bold">+7 anos</span>{' '}
-                  no mercado e{' '}
-                  <span className="bg-cyan-500 text-white px-2 py-1 rounded font-bold">45 anos</span>{' '}
-                  de experiência acumulada, a{' '}
-                  <span className="text-white font-semibold">Lanza Medical</span>{' '}
-                  desenvolve e fabrica mesas e cadeiras médicas que unem design, segurança, ergonomia e qualidade.
-                </p>
-                <p className="mb-8">
-                  Nossos produtos são{' '}
-                  <span className="bg-cyan-500 text-white px-2 py-1 rounded font-bold">100%</span>{' '}
-                  certificados pela{' '}
-                  <span className="text-cyan-400 font-semibold">ANVISA e INMETRO</span>, levando mais conforto e profissionalismo para clínicas em todo o Brasil.
-                </p>
-                <Button variant="outline" className="text-white border-white hover:bg-white hover:text-slate-800 rounded-full px-8 py-3">
-                  Conheça nossa história
-                </Button>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-100 rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-slate-800 mb-2">600+</div>
-                  <div className="text-xs text-gray-600 uppercase tracking-wide">
-                    CONSULTÓRIOS EQUIPADOS EM TODO O BRASIL.
-                  </div>
+            <div className="bg-slate-700 rounded-3xl p-12 relative overflow-hidden">
+              <div className="relative z-10">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight text-center">
+                  Transformamos consultórios com{' '}
+                  <span className="text-cyan-400">segurança, tecnologia</span> e{' '}
+                  <span className="text-cyan-400">excelência.</span>
+                </h2>
+                
+                <div className="text-lg leading-relaxed text-gray-300 text-center max-w-4xl mx-auto mb-8">
+                  <p className="mb-6">
+                    Com mais de{' '}
+                    <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">+7 anos</span>{' '}
+                    no mercado e{' '}
+                    <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">45 anos</span>{' '}
+                    de experiência acumulada, a{' '}
+                    <span className="text-white font-semibold">Lanza Medical</span>{' '}
+                    desenvolve e fabrica mesas e cadeiras médicas que unem design, segurança, ergonomia e qualidade.
+                  </p>
+                  <p>
+                    Nossos produtos são{' '}
+                    <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">100%</span>{' '}
+                    certificados pela{' '}
+                    <span className="text-cyan-400 font-semibold">ANVISA e INMETRO</span>, levando mais conforto e profissionalismo para clínicas em todo o Brasil.
+                  </p>
                 </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-slate-800 mb-2">+7 anos</div>
-                  <div className="text-xs text-gray-600 uppercase tracking-wide">
-                    DE MERCADO.
-                  </div>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-slate-800 mb-2">+ 3.000</div>
-                  <div className="text-xs text-gray-600 uppercase tracking-wide">
-                    UNIDADES ENTREGUES.
-                  </div>
-                </div>
-                <div className="bg-gray-100 rounded-lg p-4 text-center">
-                  <div className="text-3xl font-bold text-slate-800 mb-2">100%</div>
-                  <div className="text-xs text-gray-600 uppercase tracking-wide">
-                    DOS PRODUTOS CERTIFICADOS.
-                  </div>
+                
+                <div className="text-center">
+                  <Button className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-8 py-3 font-semibold">
+                    Conheça nossa história
+                  </Button>
                 </div>
               </div>
             </div>
@@ -345,20 +326,47 @@ const Home = () => {
       {/* Statistics Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {statistics.map((stat) => (
-              <div key={stat.id} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-cyan-500 mb-2">
-                  {stat.value}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
+                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
+                  600+
                 </div>
-                <div className="text-sm text-gray-600 uppercase tracking-wide mb-2">
-                  {stat.label}
+                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                  CONSULTÓRIOS EQUIPADOS EM TODO O BRASIL.
                 </div>
-                <p className="text-gray-500 text-sm">
-                  {stat.description}
-                </p>
               </div>
-            ))}
+            </div>
+            <div className="text-center">
+              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
+                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
+                  +7 anos
+                </div>
+                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                  DE MERCADO.
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
+                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
+                  + 3.000
+                </div>
+                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                  UNIDADES ENTREGUES.
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
+                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
+                  100%
+                </div>
+                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                  DOS PRODUTOS CERTIFICADOS.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
