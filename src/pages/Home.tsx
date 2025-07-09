@@ -37,6 +37,42 @@ const Home = () => {
     return visibleProducts;
   };
 
+  // Custom texts for each product
+  const productTexts = {
+    '1': {
+      title: 'RT2000 Ginecológica',
+      description: 'A Mesa Ginecológica RT2000 foi desenvolvida para oferecer máxima eficiência em exames ginecológicos, obstétricos, procedimentos clíni..'
+    },
+    '2': {
+      title: 'RT2500 Ginecológica',
+      description: 'Projetada para atender com excelência a uma ampla gama de procedimentos clínicos e exames, como ginecológicos, obstétricos, coleta de materiais, exames de ultrassonografia, procedimentos vasculares e estéticos.'
+    },
+    '3': {
+      title: 'RT4000 Ginecológica',
+      description: 'A Mesa Ginecológica RT4000 é a opção ideal para histeroscopia, ultrassonografia, exames ginecológicos e obstétricos e outros..'
+    },
+    '4': {
+      title: 'RT3000 Trendelenburg',
+      description: 'Foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, como exames de ultrassonografia, procedimentos plásticos, implantes capilares, procedimentos vasculares e outros pequenos procedimentos clínicos.'
+    },
+    '5': {
+      title: 'RT5000 Clínica',
+      description: 'Projetada para oferecer funcionalidade e conforto em diversas especialidades, como dermatologia, estética, ultrassonografia, acupuntura, massagens, tatuagens, piercings e outras aplicações clínicas.'
+    },
+    '6': {
+      title: 'RT5000 Estetic',
+      description: 'A Mesa Clínica RT5000 Estetic foi desenvolvida para proporcionar máxima eficiência em procedimentos estéticos, orofaciais, de pigmentação e diversas intervenções clínicas.'
+    },
+    '7': {
+      title: 'RT5000 Estetic – IC',
+      description: 'A Mesa Clínica RT5000 Estetic Desenvolvida especialmente para atender às necessidades dos mais exigentes procedimentos de transplante capilar.'
+    },
+    '8': {
+      title: 'RT2500 ES',
+      description: 'A Mesa Clínica RT2500 ES foi projetada para atender com excelência as exigências dos profissionais da saúde e estética, especialmente em dermatologia, medicina estética e procedimentos clínicos diversos.'
+    }
+  };
+
   return (
     <div className="font-jost">
       {/* Hero Section */}
@@ -209,33 +245,44 @@ const Home = () => {
 
           <div className="relative">
             <div className="overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                {getVisibleProducts().map((product) => (
-                  <Card key={product.id} className="group hover:shadow-lg transition-shadow bg-white rounded-2xl overflow-hidden">
-                    <CardContent className="p-0">
-                      <div className="aspect-square bg-gray-100 rounded-t-2xl overflow-hidden">
-                        <img
-                          src={product.images[0]}
-                          alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 text-left">
-                          {product.name}
-                        </h3>
-                        <p className="text-gray-600 text-sm mb-4 leading-relaxed text-left">
-                          {product.description}
-                        </p>
-                        <div className="text-center">
-                          <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2 text-sm">
-                            Saiba mais
-                          </Button>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 transition-all duration-500 ease-in-out">
+                {getVisibleProducts().map((product, index) => {
+                  const productText = productTexts[product.id] || {
+                    title: product.name,
+                    description: product.description
+                  };
+                  
+                  return (
+                    <Card 
+                      key={`${product.id}-${currentProductSlide}-${index}`} 
+                      className="group hover:shadow-lg transition-all duration-300 bg-white rounded-2xl overflow-hidden h-full flex flex-col animate-fade-in"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <CardContent className="p-0 flex flex-col h-full">
+                        <div className="aspect-square bg-gray-100 rounded-t-2xl overflow-hidden">
+                          <img
+                            src={product.images[0]}
+                            alt={productText.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                        <div className="p-6 flex flex-col flex-grow">
+                          <h3 className="text-lg font-bold text-gray-900 mb-3 text-left">
+                            {productText.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm mb-6 leading-relaxed text-left flex-grow">
+                            {productText.description}
+                          </p>
+                          <div className="text-center mt-auto">
+                            <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2 text-sm">
+                              Saiba mais
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
 
@@ -244,7 +291,7 @@ const Home = () => {
               variant="ghost"
               size="icon"
               onClick={prevProductSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full transition-all duration-200"
             >
               <ChevronLeft className="w-6 h-6" />
             </Button>
@@ -252,19 +299,19 @@ const Home = () => {
               variant="ghost"
               size="icon"
               onClick={nextProductSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full transition-all duration-200"
             >
               <ChevronRight className="w-6 h-6" />
             </Button>
 
             {/* Dots Indicator */}
-            <div className="flex justify-center mt-6 space-x-1">
+            <div className="flex justify-center mt-6 space-x-2">
               {products.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentProductSlide(index)}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                    index === currentProductSlide ? 'bg-slate-800' : 'bg-gray-300'
+                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                    index === currentProductSlide ? 'bg-slate-800 scale-125' : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                 />
               ))}
@@ -280,15 +327,12 @@ const Home = () => {
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-8 text-center">
-              <Badge variant="secondary" className="bg-slate-700 text-white mb-4 text-xs px-3 py-1 uppercase tracking-wide">
-                QUEM É A LANZA
-              </Badge>
-            </div>
-            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               {/* Left Column - Title */}
               <div>
+                <Badge variant="secondary" className="bg-slate-700 text-white mb-6 text-xs px-3 py-1 uppercase tracking-wide">
+                  QUEM É A LANZA
+                </Badge>
                 <h2 className="text-4xl md:text-5xl font-bold leading-tight">
                   Transformamos consultórios com{' '}
                   <span className="text-cyan-400">segurança, tecnologia</span> e{' '}
