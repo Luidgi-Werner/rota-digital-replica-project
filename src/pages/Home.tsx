@@ -279,22 +279,26 @@ const Home = () => {
           <div className="w-full h-full bg-gradient-to-r from-slate-800 to-slate-700"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="mb-8 text-center">
               <Badge variant="secondary" className="bg-slate-700 text-white mb-4 text-xs px-3 py-1 uppercase tracking-wide">
                 QUEM É A LANZA
               </Badge>
             </div>
             
-            <div className="bg-slate-700 rounded-3xl p-12 relative overflow-hidden">
-              <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight text-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+              {/* Left Column - Title */}
+              <div>
+                <h2 className="text-4xl md:text-5xl font-bold leading-tight">
                   Transformamos consultórios com{' '}
                   <span className="text-cyan-400">segurança, tecnologia</span> e{' '}
                   <span className="text-cyan-400">excelência.</span>
                 </h2>
-                
-                <div className="text-lg leading-relaxed text-gray-300 text-center max-w-4xl mx-auto mb-8">
+              </div>
+              
+              {/* Right Column - Content */}
+              <div className="space-y-8">
+                <div className="text-lg leading-relaxed text-gray-300">
                   <p className="mb-6">
                     Com mais de{' '}
                     <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">+7 anos</span>{' '}
@@ -312,7 +316,7 @@ const Home = () => {
                   </p>
                 </div>
                 
-                <div className="text-center">
+                <div>
                   <Button className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-8 py-3 font-semibold">
                     Conheça nossa história
                   </Button>
