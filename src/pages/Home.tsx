@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Star, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Gallery6 } from '@/components/ui/gallery6';
 import { products, productCategories, testimonials, statistics } from '@/data/products';
 import { useState } from 'react';
 
@@ -232,93 +233,23 @@ const Home = () => {
       </section>
 
       {/* Products Carousel Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <p className="text-sm text-gray-600 uppercase tracking-wide mb-2">
-              MESAS CLÍNICAS E GINECOLÓGICAS
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-cyan-500 mb-8">
-              Soluções para cada especialidade.
-            </h2>
-          </div>
-
-          <div className="relative">
-            <div className="overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 transition-all duration-500 ease-in-out">
-                {getVisibleProducts().map((product, index) => {
-                  const productText = productTexts[product.id] || {
-                    title: product.name,
-                    description: product.description
-                  };
-                  
-                  return (
-                    <Card 
-                      key={`${product.id}-${currentProductSlide}-${index}`} 
-                      className="group hover:shadow-lg transition-all duration-300 bg-white rounded-2xl overflow-hidden h-full flex flex-col animate-fade-in"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <CardContent className="p-0 flex flex-col h-full">
-                        <div className="aspect-square bg-gray-100 rounded-t-2xl overflow-hidden">
-                          <img
-                            src={product.images[0]}
-                            alt={productText.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                        <div className="p-6 flex flex-col flex-grow">
-                          <h3 className="text-lg font-bold text-gray-900 mb-3 text-left">
-                            {productText.title}
-                          </h3>
-                          <p className="text-gray-600 text-sm mb-6 leading-relaxed text-left flex-grow">
-                            {productText.description}
-                          </p>
-                          <div className="text-center mt-auto">
-                            <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2 text-sm">
-                              Saiba mais
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={prevProductSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full transition-all duration-200"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={nextProductSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white shadow-md hover:shadow-lg rounded-full transition-all duration-200"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </Button>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-6 space-x-2">
-              {products.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentProductSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                    index === currentProductSlide ? 'bg-slate-800 scale-125' : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <Gallery6 
+        heading="Soluções para cada especialidade."
+        subheading="MESAS CLÍNICAS E GINECOLÓGICAS"
+        items={products.map(product => {
+          const productText = productTexts[product.id] || {
+            title: product.name,
+            description: product.description
+          };
+          return {
+            id: product.id,
+            title: productText.title,
+            summary: productText.description,
+            url: "#",
+            image: product.images[0]
+          };
+        })}
+      />
 
       {/* About Section - Quem é Lanza */}
       <section className="py-16 bg-slate-800 text-white relative">
