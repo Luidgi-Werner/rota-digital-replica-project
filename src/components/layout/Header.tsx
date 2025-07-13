@@ -3,37 +3,107 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, ChevronDown } from 'lucide-react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
+import { Menu, MoveRight, X } from 'lucide-react';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigation = [
-    { name: 'Início', href: '/' },
-    { 
-      name: 'Produtos', 
-      href: '/produtos',
-      submenu: [
-        { name: 'Mesa Ginecológica RT 2000', href: '/produto/mesa-ginecologica-rt-2000' },
-        { name: 'Mesa Ginecológica RT2500', href: '/produto/mesa-ginecologica-rt2500' },
-        { name: 'Mesa Ginecológica RT4000 Histeroscopia', href: '/produto/mesa-ginecologica-rt4000-histeroscopia' },
-        { name: 'Mesa Clínica Elétrica com Trendlemburg RT3000', href: '/produto/mesa-clinica-eletrica-trendlemburg-rt3000' },
-        { name: 'Mesa Clínica RT5000', href: '/produto/mesa-clinica-rt5000' },
-        { name: 'Mesa Clínica RT5000 Estetic', href: '/produto/mesa-clinica-rt5000-estetic' },
-        { name: 'Mesa Clínica RT5000 E-IC', href: '/produto/mesa-clinica-rt5000-e-ic' },
-        { name: 'Mesa Clínica RT2500 ES', href: '/produto/mesa-clinica-rt2500-es' },
-        { name: 'Todos os Produtos', href: '/produtos' }
-      ]
+  const navigationItems = [
+    {
+      title: "Início",
+      href: "/",
     },
-    { name: 'Sobre nós', href: '/sobre' },
-    { name: 'Contato', href: '/contato' }
+    {
+      title: "Produtos",
+      description: "Conheça nossa linha completa de mesas clínicas e ginecológicas.",
+      items: [
+        { title: "Mesa Ginecológica RT 2000", href: "/produto/mesa-ginecologica-rt-2000" },
+        { title: "Mesa Ginecológica RT2500", href: "/produto/mesa-ginecologica-rt2500" },
+        { title: "Mesa Ginecológica RT4000 Histeroscopia", href: "/produto/mesa-ginecologica-rt4000-histeroscopia" },
+        { title: "Mesa Clínica Elétrica com Trendlemburg RT3000", href: "/produto/mesa-clinica-eletrica-trendlemburg-rt3000" },
+        { title: "Mesa Clínica RT5000", href: "/produto/mesa-clinica-rt5000" },
+        { title: "Mesa Clínica RT5000 Estetic", href: "/produto/mesa-clinica-rt5000-estetic" },
+        { title: "Mesa Clínica RT5000 E-IC", href: "/produto/mesa-clinica-rt5000-e-ic" },
+        { title: "Mesa Clínica RT2500 ES", href: "/produto/mesa-clinica-rt2500-es" },
+      ],
+    },
+    {
+      title: "Empresa",
+      description: "Saiba mais sobre a Lanza Medical e nossa trajetória.",
+      items: [
+        { title: "Sobre nós", href: "/sobre" },
+        { title: "Contato", href: "/contato" },
+      ],
+    },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-slate-800 shadow-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+    <header className="w-full z-40 fixed top-0 left-0 bg-background border-b">
+      <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center">
+        {/* Desktop Navigation */}
+        <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
+          <NavigationMenu className="flex justify-start items-start">
+            <NavigationMenuList className="flex justify-start gap-4 flex-row">
+              {navigationItems.map((item) => (
+                <NavigationMenuItem key={item.title}>
+                  {item.href ? (
+                    <NavigationMenuLink asChild>
+                      <Link to={item.href}>
+                        <Button variant="ghost">{item.title}</Button>
+                      </Link>
+                    </NavigationMenuLink>
+                  ) : (
+                    <>
+                      <NavigationMenuTrigger className="font-medium text-sm">
+                        {item.title}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="!w-[450px] p-4">
+                        <div className="flex flex-col lg:grid grid-cols-2 gap-4">
+                          <div className="flex flex-col h-full justify-between">
+                            <div className="flex flex-col">
+                              <p className="text-base">{item.title}</p>
+                              <p className="text-muted-foreground text-sm">
+                                {item.description}
+                              </p>
+                            </div>
+                            <Button size="sm" className="mt-10" asChild>
+                              <Link to="/contato">Fale Conosco</Link>
+                            </Button>
+                          </div>
+                          <div className="flex flex-col text-sm h-full justify-end">
+                            {item.items?.map((subItem) => (
+                              <NavigationMenuLink
+                                key={subItem.title}
+                                asChild
+                                className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded"
+                              >
+                                <Link to={subItem.href} className="flex flex-row justify-between items-center w-full">
+                                  <span>{subItem.title}</span>
+                                  <MoveRight className="w-4 h-4 text-muted-foreground" />
+                                </Link>
+                              </NavigationMenuLink>
+                            ))}
+                          </div>
+                        </div>
+                      </NavigationMenuContent>
+                    </>
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+
+        {/* Logo */}
+        <div className="flex lg:justify-center">
           <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" 
@@ -41,82 +111,56 @@ const Header = () => {
               className="h-8"
             />
           </Link>
+        </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <div key={item.name} className="relative group">
-                <Link
-                  to={item.href}
-                  className="flex items-center space-x-1 text-white hover:text-cyan-400 transition-colors font-medium"
-                >
-                  <span>{item.name}</span>
-                  {item.submenu && <ChevronDown className="w-4 h-4" />}
-                </Link>
-                
-                {item.submenu && (
-                  <div className="absolute top-full left-0 mt-2 w-80 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="py-2">
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-500"
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
+        {/* CTA Button */}
+        <div className="flex justify-end w-full gap-4">
+          <Button className="hidden md:inline" asChild>
+            <Link to="/contato">Fale Conosco</Link>
+          </Button>
+        </div>
 
-          {/* CTA Button */}
-          <div className="flex items-center space-x-4">
-            <Button className="hidden md:flex bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-6 transition-colors">
-              Fale Conosco
-            </Button>
-            
-            {/* Mobile Menu */}
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon" className="text-white hover:text-cyan-400">
-                  <Menu className="w-6 h-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right">
-                <nav className="flex flex-col space-y-4 mt-8">
-                  {navigation.map((item) => (
-                    <div key={item.name}>
+        {/* Mobile Menu */}
+        <div className="flex w-12 shrink lg:hidden items-end justify-end">
+          <Button variant="ghost" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </Button>
+          {isOpen && (
+            <div className="absolute top-20 border-t flex flex-col w-full right-0 bg-background shadow-lg py-4 container gap-8">
+              {navigationItems.map((item) => (
+                <div key={item.title}>
+                  <div className="flex flex-col gap-2">
+                    {item.href ? (
                       <Link
                         to={item.href}
-                        className="block text-lg font-medium text-gray-700 hover:text-cyan-500 py-2"
+                        className="flex justify-between items-center"
                         onClick={() => setIsOpen(false)}
                       >
-                        {item.name}
+                        <span className="text-lg">{item.title}</span>
+                        <MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
                       </Link>
-                      {item.submenu && (
-                        <div className="ml-4 space-y-2">
-                          {item.submenu.map((subItem) => (
-                            <Link
-                              key={subItem.name}
-                              to={subItem.href}
-                              className="block text-gray-600 hover:text-cyan-500 py-1 text-sm"
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </nav>
-              </SheetContent>
-            </Sheet>
-          </div>
+                    ) : (
+                      <p className="text-lg">{item.title}</p>
+                    )}
+                    {item.items &&
+                      item.items.map((subItem) => (
+                        <Link
+                          key={subItem.title}
+                          to={subItem.href}
+                          className="flex justify-between items-center"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <span className="text-muted-foreground">
+                            {subItem.title}
+                          </span>
+                          <MoveRight className="w-4 h-4 stroke-1" />
+                        </Link>
+                      ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </header>
