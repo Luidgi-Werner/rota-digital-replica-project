@@ -3,22 +3,36 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { FadeText } from '@/components/ui/fade-text';
 
 const Contact = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-16 px-4 text-center">
+      <section className="py-24 px-4 text-center">
         <div className="container mx-auto max-w-4xl">
-          <div className="inline-block bg-gray-100 rounded-full px-6 py-2 text-sm font-medium text-gray-700 mb-6">
+          <motion.div 
+            className="inline-block bg-gray-100 rounded-full px-6 py-2 text-sm font-medium text-gray-700 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             FALE COM A LANZA
-          </div>
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">
-            Atendimento humano, técnico e rápido.
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          </motion.div>
+          <FadeText
+            className="text-4xl font-bold text-gray-800 mb-4"
+            direction="up"
+            text="Atendimento humano, técnico e rápido."
+          />
+          <motion.p 
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             Estamos prontos para esclarecer suas dúvidas, oferecer suporte e ajudar você a escolher o equipamento ideal para sua clínica ou consultório.
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -27,7 +41,13 @@ const Contact = () => {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Form */}
-            <div className="bg-gray-50 rounded-lg p-8">
+            <motion.div 
+              className="bg-gray-50 rounded-lg p-8"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="inline-block bg-gray-200 rounded-full px-4 py-2 text-sm font-medium text-gray-700 mb-6">
                 ENTRE EM CONTATO
               </div>
@@ -79,16 +99,22 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button className="w-full bg-slate-800 hover:bg-slate-700 text-white rounded-full py-3">
+                <Button className="w-full bg-[#003250] hover:bg-[#003250]/90 text-white rounded-full py-3">
                   Enviar mensagem
                 </Button>
               </form>
-            </div>
+            </motion.div>
 
             {/* Image and Contact Info */}
-            <div className="relative">
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <img 
-                src="/lovable-uploads/7ad3eac7-71ea-4cc8-b72a-f69992bbf194.png" 
+                src="/lovable-uploads/a5073c76-a239-4d98-b687-9b0c568dd488.png" 
                 alt="Atendente Lanza Medical" 
                 className="w-full rounded-lg shadow-lg"
               />
@@ -104,7 +130,7 @@ const Contact = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -112,37 +138,61 @@ const Contact = () => {
       {/* Contact Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-center space-x-4">
-              <div className="bg-slate-800 rounded-full p-3">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, staggerChildren: 0.1 }}
+          >
+            <motion.div 
+              className="flex items-center space-x-4"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
+              <div className="bg-[#003250] rounded-full p-3">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div>
                 <p className="font-medium text-gray-800">Rua Barreiros, 2524,</p>
                 <p className="text-gray-600">Ribeirão Preto - SP, 14075-000.</p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center space-x-4">
-              <div className="bg-slate-800 rounded-full p-3">
+            <motion.div 
+              className="flex items-center space-x-4"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
+              <div className="bg-[#003250] rounded-full p-3">
                 <Phone className="w-6 h-6 text-white" />
               </div>
               <div>
                 <p className="font-medium text-gray-800">Nosso WhatsApp</p>
                 <p className="text-gray-600">(16) 99447-2195</p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center space-x-4">
-              <div className="bg-slate-800 rounded-full p-3">
+            <motion.div 
+              className="flex items-center space-x-4"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
+              <div className="bg-[#003250] rounded-full p-3">
                 <Mail className="w-6 h-6 text-white" />
               </div>
               <div>
                 <p className="font-medium text-gray-800">Nosso E-mail</p>
                 <p className="text-gray-600">vendas@lanzamedical.com.br</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>
