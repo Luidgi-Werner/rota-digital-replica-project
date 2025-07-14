@@ -25,6 +25,18 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/produtos" element={<Products />} />
             <Route path="/produtos/:category" element={<Products />} />
+            
+            {/* Individual Product Routes */}
+            <Route path="/produto/mesa-ginecologica-rt-2000" element={<ProductDetail />} />
+            <Route path="/produto/mesa-ginecologica-rt2500" element={<ProductDetail />} />
+            <Route path="/produto/mesa-ginecologica-rt4000-histeroscopia" element={<ProductDetail />} />
+            <Route path="/produto/mesa-clinica-eletrica-trendlemburg-rt3000" element={<ProductDetail />} />
+            <Route path="/produto/mesa-clinica-rt5000" element={<ProductDetail />} />
+            <Route path="/produto/mesa-clinica-rt5000-estetic" element={<ProductDetail />} />
+            <Route path="/produto/mesa-clinica-rt5000-e-ic" element={<ProductDetail />} />
+            <Route path="/produto/mesa-clinica-rt2500-es" element={<ProductDetail />} />
+            
+            {/* Generic fallback route for products */}
             <Route path="/produto/:id" element={<ProductDetail />} />
             <Route path="/sobre" element={<About />} />
             <Route path="/contato" element={<Contact />} />

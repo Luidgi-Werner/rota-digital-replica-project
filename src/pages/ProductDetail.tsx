@@ -11,12 +11,19 @@ import { FadeText } from '@/components/ui/fade-text';
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   
-  // Convert URL slug to product ID for lookup
-  const productSlug = id?.replace(/-/g, ' ').toLowerCase();
-  const product = products.find(p => 
-    p.name.toLowerCase().includes(productSlug?.split('-')[0] || '') ||
-    p.model?.toLowerCase() === productSlug?.split('-')[1]
-  ) || products[0]; // Fallback to first product
+  // Function to generate product slug from name
+  const generateSlug = (name: string): string => {
+    return name
+      .toLowerCase()
+      .replace(/®/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  };
+
+  // Find product by matching URL slug with generated slug
+  const product = products.find(p => generateSlug(p.name) === id) || products[0];
 
   // Group specifications by category for better organization
   const groupedSpecs = {
@@ -112,22 +119,22 @@ const ProductDetail = () => {
 
         {/* Technical Specifications */}
         <motion.div 
-          className="mb-16"
+          className="mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <FadeText
-              className="text-3xl font-bold text-[#003250] mb-4"
+              className="text-3xl font-bold text-[#003250] mb-6"
               direction="up"
               text="Especificações Técnicas Detalhadas"
             />
             <div className="h-1 w-24 bg-[#003250] mx-auto"></div>
           </div>
           
-          <div className="space-y-12">
+          <div className="space-y-16">
             {Object.entries(groupedSpecs).map(([category, keys], categoryIndex) => {
               const categorySpecs = keys.reduce((acc, key) => {
                 if (product.specifications[key]) {
@@ -145,21 +152,21 @@ const ProductDetail = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
-                  className="bg-white rounded-xl shadow-lg border-2 border-[#003250]/10 overflow-hidden"
+                  className="bg-white rounded-2xl shadow-xl border-2 border-[#003250]/10 overflow-hidden"
                 >
-                  <div className="bg-[#003250] text-white p-6">
-                    <div className="flex items-center space-x-3">
+                  <div className="bg-[#003250] text-white p-8">
+                    <div className="flex items-center space-x-4">
                       <div className="text-white">
                         {getIconForCategory(category)}
                       </div>
-                      <h3 className="text-xl font-semibold">
+                      <h3 className="text-2xl font-semibold">
                         {category}
                       </h3>
                     </div>
                   </div>
                   
-                  <div className="p-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  <div className="p-8">
+                    <div className="grid md:grid-cols-2 gap-8">
                       {Object.entries(categorySpecs).map(([key, value], index) => (
                         <motion.div
                           key={key}
@@ -167,12 +174,12 @@ const ProductDetail = () => {
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.3, delay: categoryIndex * 0.1 + index * 0.05 }}
-                          className="border-l-4 border-[#003250] pl-4 py-2"
+                          className="border-l-4 border-[#003250] pl-6 py-3"
                         >
-                          <dt className="font-semibold text-[#003250] text-sm uppercase tracking-wide mb-1">
+                          <dt className="font-semibold text-[#003250] text-base uppercase tracking-wide mb-2">
                             {key}
                           </dt>
-                          <dd className="text-gray-700 text-sm leading-relaxed">
+                          <dd className="text-gray-700 text-base leading-relaxed">
                             {value}
                           </dd>
                         </motion.div>

@@ -128,7 +128,7 @@ const Gallery6 = ({
                     <div className="flex justify-start mt-auto">
                       <Button 
                         className="bg-[#003250] text-white hover:bg-[#003250]/90 rounded-md px-6 py-2 text-sm flex items-center gap-2"
-                        onClick={() => window.location.href = '/products'}
+                        onClick={() => window.location.href = item.url}
                       >
                         <ArrowRight className="size-4" />
                         Saiba mais

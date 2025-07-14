@@ -14,6 +14,17 @@ const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
 
+  // Function to generate product slug from name
+  const generateSlug = (name: string): string => {
+    return name
+      .toLowerCase()
+      .replace(/®/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  };
+
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
@@ -257,7 +268,7 @@ const Home = () => {
             id: product.id,
             title: productText.title,
             summary: productText.description,
-            url: "#",
+            url: `/produto/${generateSlug(product.name)}`,
             image: product.images[0]
           };
         })}
