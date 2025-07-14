@@ -18,67 +18,27 @@ const ProductDetail = () => {
     p.model?.toLowerCase() === productSlug?.split('-')[1]
   ) || products[0]; // Fallback to first product
 
-  const technicalFeatures = [
-    {
-      title: "Automação Completa",
-      description: "Elevação, inclinação do encosto e movimentação da perneira com acionamento elétrico."
-    },
-    {
-      title: "Voltagem Inteligente",
-      description: "Placa eletrônica com comutação automática entre 127V e 220V."
-    },
-    {
-      title: "Sistema de comando",
-      description: "Opcional entre controle por pedal com 8 funções (posição memorizável de trabalho, retorno automático à posição zero e acionamento para assepsia) ou comando manual."
-    },
-    {
-      title: "Sistema de Retorno à Posição Inicial",
-      description: "Praticidade no reposicionamento com um único comando."
-    },
-    {
-      title: "Estrutura Robusta e Higiênica",
-      description: "Base tubular com pintura epóxi de alta resistência, com opções com ou sem rodízios, que facilitam o deslocamento e a assepsia do equipamento."
-    },
-    {
-      title: "Motores",
-      description: "Três moto-redutores elétricos isentos de óleo, garantindo precisão e durabilidade."
-    },
-    {
-      title: "Suporte para Lençol de Papel",
-      description: "Tubular em aço com mola para troca fácil do rolo."
-    }
-  ];
+  // Group specifications by category for better organization
+  const groupedSpecs = {
+    'Automação e Controle': ['Automação Completa', 'Voltagem Inteligente', 'Sistema de comando', 'Sistema de Retorno', 'Motores'],
+    'Características Especiais': ['Inclinação Especial', 'Trendlemburg', 'Prolongador Recolhível', 'Apoio Facial Exclusivo'],
+    'Ergonomia e Conforto': ['Apoios de Coxas', 'Apoios de Pés', 'Perneira', 'Gaveta Auxiliar', 'Estofamento', 'Braços Laterais'],
+    'Estrutura e Segurança': ['Estrutura'],
+    'Dimensões e Capacidade': ['Altura Regulável', 'Largura útil', 'Comprimento Total', 'Peso suportado', 'Peso Líquido'],
+    'Informações de Embalagem': ['Peso Bruto (embalada)', 'Dimensões da Embalagem'],
+    'Certificações': ['Código INMETRO', 'Registro ANVISA/MS']
+  };
 
-  const comfortFeatures = [
-    {
-      title: "Apoios de Coxas",
-      description: "Reguláveis horizontalmente (até 320 mm), verticalmente (até 420 mm), em PVC cristal, removíveis."
-    },
-    {
-      title: "Apoios de Pés",
-      description: "Ajustes longitudinais de até 320 mm, com estofamento no mesmo padrão, removíveis."
-    },
-    {
-      title: "Braços Laterais",
-      description: "Com abertura lateral e longitudinal, estrutura em alumínio fundido e réguas em aço cromado."
-    },
-    {
-      title: "Encosto e Assento",
-      description: "Estrutura em alma de aço, com carenagem em PSAI na cor gelo padrão e acabamento em pintura epóxi."
-    },
-    {
-      title: "Perneira Rebatível Motorizada",
-      description: "Facilita a conversão entre as posições de cadeira e maca."
-    },
-    {
-      title: "Apoio de Cabeça Anatômico",
-      description: "Estofado e revestido com PVC cristal, com ajustes personalizados."
-    },
-    {
-      title: "Gaveta Auxiliar em Inox",
-      description: "Facilita a coleta de amostras e organização de instrumentos durante os exames."
+  const getIconForCategory = (category: string) => {
+    switch (category) {
+      case 'Automação e Controle': return <Wrench className="h-5 w-5" />;
+      case 'Características Especiais': return <Star className="h-5 w-5" />;
+      case 'Ergonomia e Conforto': return <Heart className="h-5 w-5" />;
+      case 'Estrutura e Segurança': return <Shield className="h-5 w-5" />;
+      case 'Certificações': return <Award className="h-5 w-5" />;
+      default: return <Check className="h-5 w-5" />;
     }
-  ];
+  };
 
   return (
     <div className="py-24">
@@ -150,74 +110,78 @@ const ProductDetail = () => {
           </motion.div>
         </motion.div>
 
-        {/* Technical Features */}
+        {/* Technical Specifications */}
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"
+          className="mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <Wrench className="w-8 h-8 text-[#003250]" />
-              <h2 className="text-2xl font-bold text-gray-900">
-                Destaques Técnicos da {product.model}
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {technicalFeatures.map((feature, index) => (
-                <motion.div 
-                  key={index} 
-                  className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg border-l-4 border-[#003250]"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <div className="w-3 h-3 bg-[#003250] rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <div className="text-center mb-12">
+            <FadeText
+              className="text-3xl font-bold text-[#003250] mb-4"
+              direction="up"
+              text="Especificações Técnicas Detalhadas"
+            />
+            <div className="h-1 w-24 bg-[#003250] mx-auto"></div>
           </div>
+          
+          <div className="space-y-12">
+            {Object.entries(groupedSpecs).map(([category, keys], categoryIndex) => {
+              const categorySpecs = keys.reduce((acc, key) => {
+                if (product.specifications[key]) {
+                  acc[key] = product.specifications[key];
+                }
+                return acc;
+              }, {} as Record<string, string>);
 
-          <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <Heart className="w-8 h-8 text-[#003250]" />
-              <h2 className="text-2xl font-bold text-gray-900">
-                Conforto e Ergonomia Ajustáveis
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {comfortFeatures.map((feature, index) => (
-                <motion.div 
-                  key={index} 
-                  className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg border-l-4 border-[#003250]"
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+              if (Object.keys(categorySpecs).length === 0) return null;
+
+              return (
+                <motion.div
+                  key={category}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
+                  className="bg-white rounded-xl shadow-lg border-2 border-[#003250]/10 overflow-hidden"
                 >
-                  <div className="w-3 h-3 bg-[#003250] rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
+                  <div className="bg-[#003250] text-white p-6">
+                    <div className="flex items-center space-x-3">
+                      <div className="text-white">
+                        {getIconForCategory(category)}
+                      </div>
+                      <h3 className="text-xl font-semibold">
+                        {category}
+                      </h3>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {Object.entries(categorySpecs).map(([key, value], index) => (
+                        <motion.div
+                          key={key}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: categoryIndex * 0.1 + index * 0.05 }}
+                          className="border-l-4 border-[#003250] pl-4 py-2"
+                        >
+                          <dt className="font-semibold text-[#003250] text-sm uppercase tracking-wide mb-1">
+                            {key}
+                          </dt>
+                          <dd className="text-gray-700 text-sm leading-relaxed">
+                            {value}
+                          </dd>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </motion.div>
 
