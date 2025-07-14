@@ -46,7 +46,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="w-full z-40 fixed top-0 left-0 bg-background border-b">
+    <header className="w-full z-40 fixed top-0 left-0" style={{ backgroundColor: '#003250' }}>
       <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center">
         {/* Desktop Navigation */}
         <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
@@ -57,12 +57,12 @@ const Header = () => {
                   {item.href ? (
                     <NavigationMenuLink asChild>
                       <Link to={item.href}>
-                        <Button variant="ghost">{item.title}</Button>
+                        <Button variant="ghost" className="text-white hover:bg-white/10">{item.title}</Button>
                       </Link>
                     </NavigationMenuLink>
                   ) : (
                     <>
-                      <NavigationMenuTrigger className="font-medium text-sm">
+                      <NavigationMenuTrigger className="font-medium text-sm text-white hover:bg-white/10">
                         {item.title}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="!w-[450px] p-4">
@@ -115,18 +115,18 @@ const Header = () => {
 
         {/* CTA Button */}
         <div className="flex justify-end w-full gap-4">
-          <Button className="hidden md:inline" asChild>
+          <Button className="hidden md:inline bg-cyan-500 hover:bg-cyan-600 text-white" asChild>
             <Link to="/contato">Fale Conosco</Link>
           </Button>
         </div>
 
         {/* Mobile Menu */}
         <div className="flex w-12 shrink lg:hidden items-end justify-end">
-          <Button variant="ghost" onClick={() => setIsOpen(!isOpen)}>
+          <Button variant="ghost" onClick={() => setIsOpen(!isOpen)} className="text-white hover:bg-white/10">
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
-          {isOpen && (
-            <div className="absolute top-20 border-t flex flex-col w-full right-0 bg-background shadow-lg py-4 container gap-8">
+                    {isOpen && (
+                        <div className="absolute top-20 border-t flex flex-col w-full right-0 shadow-lg py-4 container gap-8" style={{ backgroundColor: '#003250', borderColor: 'rgba(255,255,255,0.2)' }}>
               {navigationItems.map((item) => (
                 <div key={item.title}>
                   <div className="flex flex-col gap-2">
@@ -136,11 +136,11 @@ const Header = () => {
                         className="flex justify-between items-center"
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="text-lg">{item.title}</span>
-                        <MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
+                        <span className="text-lg text-white">{item.title}</span>
+                        <MoveRight className="w-4 h-4 stroke-1 text-white/60" />
                       </Link>
                     ) : (
-                      <p className="text-lg">{item.title}</p>
+                      <p className="text-lg text-white">{item.title}</p>
                     )}
                     {item.items &&
                       item.items.map((subItem) => (
@@ -150,10 +150,10 @@ const Header = () => {
                           className="flex justify-between items-center"
                           onClick={() => setIsOpen(false)}
                         >
-                          <span className="text-muted-foreground">
+                          <span className="text-white/80">
                             {subItem.title}
                           </span>
-                          <MoveRight className="w-4 h-4 stroke-1" />
+                          <MoveRight className="w-4 h-4 stroke-1 text-white" />
                         </Link>
                       ))}
                   </div>

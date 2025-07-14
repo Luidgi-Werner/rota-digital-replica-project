@@ -8,6 +8,7 @@ import { Star, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react
 import { Gallery6 } from '@/components/ui/gallery6';
 import { products, productCategories, testimonials, statistics } from '@/data/products';
 import { useState } from 'react';
+import { AnimatedNumber } from '@/components/ui/number-flow';
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -78,7 +79,15 @@ const Home = () => {
     <div className="font-jost">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-slate-800 to-slate-900 text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div 
+          className="absolute inset-0 bg-black/35"
+          style={{
+            backgroundImage: `url('/lovable-uploads/2c149fee-e0b7-4b2d-8618-e0f52e59297b.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.65
+          }}
+        ></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -137,9 +146,9 @@ const Home = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center mb-12">
+          <div className="flex justify-center">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               {productCategories.map((category) => (
                 <Link
@@ -147,7 +156,9 @@ const Home = () => {
                   to={`/produtos/${category.slug}`}
                   className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <Check className="w-4 h-4 text-cyan-500" />
+                  <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+                    <Check className="w-3 h-3 text-white" />
+                  </div>
                   <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
                     {category.name}
                   </span>
@@ -195,13 +206,14 @@ const Home = () => {
               </CardContent>
             </Card>
 
-            {/* Center Image Placeholder */}
+            {/* Center Image */}
             <div className="flex items-center justify-center">
-              <div className="w-full max-w-sm h-80 bg-gray-200 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500 text-center">
-                  Espaço para<br />
-                  adicionar foto
-                </p>
+              <div className="w-full max-w-sm h-80 rounded-lg overflow-hidden">
+                <img 
+                  src="/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png" 
+                  alt="Lanza Medical" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 
@@ -252,7 +264,7 @@ const Home = () => {
       />
 
       {/* About Section - Quem é Lanza */}
-      <section className="py-16 bg-slate-800 text-white relative">
+      <section className="py-16 text-white relative" style={{ backgroundColor: '#003250' }}>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-gradient-to-r from-slate-800 to-slate-700"></div>
         </div>
@@ -309,7 +321,7 @@ const Home = () => {
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
                 <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
-                  600+
+                  <AnimatedNumber value={600} className="inline" />+
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   CONSULTÓRIOS EQUIPADOS EM TODO O BRASIL.
@@ -319,7 +331,7 @@ const Home = () => {
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
                 <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
-                  +7 anos
+                  +<AnimatedNumber value={7} className="inline" /> anos
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   DE MERCADO.
@@ -329,7 +341,7 @@ const Home = () => {
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
                 <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
-                  + 3.000
+                  + <AnimatedNumber value={3000} className="inline" />
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   UNIDADES ENTREGUES.
@@ -339,7 +351,7 @@ const Home = () => {
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
                 <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
-                  100%
+                  <AnimatedNumber value={100} className="inline" />%
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   DOS PRODUTOS CERTIFICADOS.

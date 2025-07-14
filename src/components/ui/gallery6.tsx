@@ -125,9 +125,10 @@ const Gallery6 = ({
                     <div className="mb-6 line-clamp-2 text-sm text-gray-600 leading-relaxed flex-grow">
                       {item.summary}
                     </div>
-                    <div className="text-center mt-auto">
-                      <Button className="bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-2 text-sm">
+                    <div className="flex justify-start mt-auto">
+                      <Button className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 py-2 text-sm">
                         Saiba mais
+                        <ArrowRight className="ml-2 size-4" />
                       </Button>
                     </div>
                   </div>
