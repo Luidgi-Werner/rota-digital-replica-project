@@ -78,12 +78,12 @@ const Header = () => {
                             </Button>
                           </div>
                           <div className="flex flex-col text-sm h-full justify-end">
-                            {item.items?.map(subItem => <NavigationMenuLink key={subItem.title} asChild className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded">
-                                <Link to={subItem.href} className="flex flex-row justify-between items-center w-full">
-                                  <span>{subItem.title}</span>
-                                  <MoveRight className="w-4 h-4 text-muted-foreground" />
-                                </Link>
-                              </NavigationMenuLink>)}
+                            {item.items?.map(subItem => 
+                              <Link key={subItem.title} to={subItem.href} className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded w-full">
+                                <span>{subItem.title}</span>
+                                <MoveRight className="w-4 h-4 text-muted-foreground" />
+                              </Link>
+                            )}
                           </div>
                         </div>
                       </NavigationMenuContent>
