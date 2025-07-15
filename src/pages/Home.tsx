@@ -160,7 +160,7 @@ const Home = () => {
       <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 w-full max-w-sm lg:max-w-none">
               {productCategories.map((category) => (
                 <Link
                   key={category.id}
