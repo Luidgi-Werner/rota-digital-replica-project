@@ -219,10 +219,10 @@ const Home = () => {
 
             {/* Center Image */}
             <div className="flex items-center justify-center">
-              <div className="w-full max-w-sm h-80 rounded-lg overflow-hidden">
+              <div className="w-full max-w-sm h-80 rounded-lg overflow-hidden shadow-lg">
                 <img 
-                  src="/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png" 
-                  alt="Lanza Medical" 
+                  src="/lovable-uploads/903104ea-f548-4211-b20a-dd4f31ead431.png" 
+                  alt="Mesa Ginecológica RT2000 - Equipamento Médico Lanza" 
                   className="w-full h-full object-cover"
                 />
               </div>
