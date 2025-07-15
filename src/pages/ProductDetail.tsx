@@ -13,13 +13,21 @@ const ProductDetail = () => {
     id: string;
   }>();
 
-  // Function to generate product slug from name
-  const generateSlug = (name: string): string => {
-    return name.toLowerCase().replace(/®/g, '').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  // Direct mapping between URL slugs and product IDs
+  const urlToProductMapping: Record<string, string> = {
+    'mesa-ginecologica-rt-2000': '1',
+    'mesa-ginecologica-rt2500': '2', 
+    'mesa-ginecologica-rt4000-histeroscopia': '3',
+    'mesa-clinica-eletrica-trendlemburg-rt3000': '4',
+    'mesa-clinica-rt5000': '5',
+    'mesa-clinica-rt5000-estetic': '6',
+    'mesa-clinica-rt5000-e-ic': '7',
+    'mesa-clinica-rt2500-es': '8'
   };
 
-  // Find product by matching URL slug with generated slug
-  const product = products.find(p => generateSlug(p.name) === id) || products[0];
+  // Find product by URL mapping or fallback to first product
+  const productId = urlToProductMapping[id || ''] || '1';
+  const product = products.find(p => p.id === productId) || products[0];
 
   // Group specifications by category for better organization
   const groupedSpecs = {
@@ -73,7 +81,7 @@ const ProductDetail = () => {
               <div className="absolute -top-4 -right-4 bg-[#003250] text-white p-3 rounded-full z-10">
                 <Star className="w-6 h-6" />
               </div>
-              <img src="/lovable-uploads/903104ea-f548-4211-b20a-dd4f31ead431.png" alt="Mesa Ginecológica" className="w-full h-auto rounded-lg shadow-lg" />
+              <img src={product.images[0]} alt={product.name} className="w-full h-auto rounded-lg shadow-lg" />
             </div>
           </motion.div>
 
