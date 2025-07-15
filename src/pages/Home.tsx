@@ -393,12 +393,12 @@ const Home = () => {
                 <ChevronLeft className="w-6 h-6" />
               </Button>
 
-              <div className="flex space-x-8">
+              <div className="flex space-x-8 overflow-hidden">
                 {testimonials.map((testimonial, index) => (
                   <Card
                     key={testimonial.id}
-                    className={`w-80 transition-all duration-300 ${
-                      index === currentTestimonial ? 'opacity-100 scale-100' : 'opacity-50 scale-95'
+                    className={`w-80 flex-shrink-0 transition-all duration-300 ${
+                      index === currentTestimonial ? 'opacity-100 scale-100' : 'opacity-50 scale-95 hidden md:block'
                     }`}
                   >
                     <CardContent className="p-6">
