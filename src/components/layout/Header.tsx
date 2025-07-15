@@ -97,7 +97,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex lg:justify-center">
           <Link to="/" className="flex items-center">
-            <img src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" alt="Lanza Medical Logo" className="h-8" />
+            <img src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" alt="Lanza Medical Logo" className="h-8 object-contain" />
           </Link>
         </div>
 
