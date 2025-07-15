@@ -29,21 +29,25 @@ interface Footer7Props {
 
 const defaultSections = [
   {
-    title: "Produtos",
+    title: "Páginas",
     links: [
-      { name: "Mesas Ginecológicas", href: "/produtos" },
-      { name: "Mesas de Exame", href: "/produtos" },
-      { name: "Acessórios", href: "/produtos" },
-      { name: "Todos os Produtos", href: "/produtos" },
+      { name: "Início", href: "/" },
+      { name: "Produtos", href: "/produtos" },
+      { name: "Sobre Nós", href: "/sobre" },
+      { name: "Contato", href: "/contato" },
     ],
   },
   {
-    title: "Empresa",
+    title: "Produtos",
     links: [
-      { name: "Sobre Nós", href: "/sobre" },
-      { name: "Contato", href: "/contato" },
-      { name: "Nossa História", href: "/sobre" },
-      { name: "Certificações", href: "/sobre" },
+      { name: "Mesa Ginecológica RT2000", href: "/produto/mesa-ginecologica-rt-2000" },
+      { name: "Mesa Ginecológica RT2500", href: "/produto/mesa-ginecologica-rt-2500" },
+      { name: "Mesa Ginecológica RT4000", href: "/produto/mesa-ginecologica-rt-4000-histeroscopia" },
+      { name: "Mesa Clínica RT3000", href: "/produto/mesa-clinica-eletrica-trendlemburg-rt-3000" },
+      { name: "Mesa Clínica RT5000", href: "/produto/mesa-clinica-rt-5000" },
+      { name: "Mesa Clínica RT5000 Estetic", href: "/produto/mesa-clinica-rt-5000-estetic" },
+      { name: "Mesa Clínica RT5000 E-IC", href: "/produto/mesa-clinica-rt-5000-e-ic" },
+      { name: "Mesa Clínica RT2500 ES", href: "/produto/mesa-clinica-rt-2500-es" },
     ],
   },
   {

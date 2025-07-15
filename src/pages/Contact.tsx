@@ -107,7 +107,7 @@ const Contact = () => {
 
             {/* Image and Contact Info */}
             <motion.div 
-              className="relative"
+              className="relative h-full flex flex-col"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -116,7 +116,8 @@ const Contact = () => {
               <img 
                 src="/lovable-uploads/a5073c76-a239-4d98-b687-9b0c568dd488.png" 
                 alt="Atendente Lanza Medical" 
-                className="w-full rounded-lg shadow-lg"
+                className="w-full h-full object-cover rounded-lg shadow-lg"
+                style={{ minHeight: '100%' }}
               />
               
               {/* Contact notification overlay */}

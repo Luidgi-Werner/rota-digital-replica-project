@@ -13,40 +13,39 @@ const Header = () => {
     title: "Produtos",
     description: "Conheça nossa linha completa de mesas clínicas e ginecológicas.",
     items: [{
+      title: "Todos os Produtos",
+      href: "/produtos"
+    }, {
       title: "Mesa Ginecológica RT 2000",
       href: "/produto/mesa-ginecologica-rt-2000"
     }, {
       title: "Mesa Ginecológica RT2500",
-      href: "/produto/mesa-ginecologica-rt2500"
+      href: "/produto/mesa-ginecologica-rt-2500"
     }, {
       title: "Mesa Ginecológica RT4000 Histeroscopia",
-      href: "/produto/mesa-ginecologica-rt4000-histeroscopia"
+      href: "/produto/mesa-ginecologica-rt-4000-histeroscopia"
     }, {
       title: "Mesa Clínica Elétrica com Trendlemburg RT3000",
-      href: "/produto/mesa-clinica-eletrica-trendlemburg-rt3000"
+      href: "/produto/mesa-clinica-eletrica-trendlemburg-rt-3000"
     }, {
       title: "Mesa Clínica RT5000",
-      href: "/produto/mesa-clinica-rt5000"
+      href: "/produto/mesa-clinica-rt-5000"
     }, {
       title: "Mesa Clínica RT5000 Estetic",
-      href: "/produto/mesa-clinica-rt5000-estetic"
+      href: "/produto/mesa-clinica-rt-5000-estetic"
     }, {
       title: "Mesa Clínica RT5000 E-IC",
-      href: "/produto/mesa-clinica-rt5000-e-ic"
+      href: "/produto/mesa-clinica-rt-5000-e-ic"
     }, {
       title: "Mesa Clínica RT2500 ES",
-      href: "/produto/mesa-clinica-rt2500-es"
+      href: "/produto/mesa-clinica-rt-2500-es"
     }]
   }, {
-    title: "Empresa",
-    description: "Saiba mais sobre a Lanza Medical e nossa trajetória.",
-    items: [{
-      title: "Sobre nós",
-      href: "/sobre"
-    }, {
-      title: "Contato",
-      href: "/contato"
-    }]
+    title: "Sobre nós",
+    href: "/sobre"
+  }, {
+    title: "Contato",
+    href: "/contato"
   }];
   return <header className="w-full z-40 fixed top-0 left-0" style={{
     backgroundColor: '#003250'
