@@ -73,7 +73,7 @@ const ProductDetail = () => {
               <div className="absolute -top-4 -right-4 bg-[#003250] text-white p-3 rounded-full z-10">
                 <Star className="w-6 h-6" />
               </div>
-              <img src={product.images[0]} alt={product.name} className="w-full h-auto rounded-lg shadow-lg" />
+              <img src="/lovable-uploads/903104ea-f548-4211-b20a-dd4f31ead431.png" alt="Mesa Ginecológica" className="w-full h-auto rounded-lg shadow-lg" />
             </div>
           </motion.div>
 
