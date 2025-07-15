@@ -90,7 +90,7 @@ const ProductDetail = () => {
         }}>
             <div>
               <FadeText className="text-3xl font-bold text-[#003250] mb-4" direction="up" text={`${product.name} ®`} />
-              <div className="border-l-4 border-[#003250] pl-4 mb-6">
+              <div className="border-l-4 border-[#003250] pl-4 mb-6 my-[24px] py-0">
                 <p className="text-gray-700 text-lg leading-relaxed">
                   {product.description}
                 </p>
