@@ -59,7 +59,7 @@ const Header = () => {
               {navigationItems.map(item => <NavigationMenuItem key={item.title}>
                   {item.href ? <NavigationMenuLink asChild>
                       <Link to={item.href}>
-                        <Button variant="ghost" className="text-white hover:bg-white/10">{item.title}</Button>
+                        <Button variant="ghost" className="text-white bg-transparent">{item.title}</Button>
                       </Link>
                     </NavigationMenuLink> : <>
                       <NavigationMenuTrigger className="font-medium text-sm text-slate-50 bg-transparent">
