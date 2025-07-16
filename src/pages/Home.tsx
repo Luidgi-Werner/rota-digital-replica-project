@@ -86,7 +86,7 @@ const Home = () => {
         backgroundImage: `url('/lovable-uploads/2c149fee-e0b7-4b2d-8618-e0f52e59297b.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        opacity: 0.65
+        opacity: 0.5
       }}></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -252,9 +252,8 @@ const Home = () => {
                   QUEM É A LANZA
                 </Badge>
                 <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                  Transformamos consultórios com{' '}
-                  <span className="text-cyan-400">segurança, tecnologia</span> e{' '}
-                  <span className="text-cyan-400">excelência.</span>
+                  Transformamos consultórios com segurança,{' '}
+                  <span className="text-cyan-500">tecnologia e excelência.</span>
                 </h2>
               </div>
               
@@ -272,7 +271,7 @@ const Home = () => {
                   </p>
                   <p>
                     Nossos produtos são{' '}
-                    <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">100%</span>{' '}
+                    <span className="font-bold">100%</span>{' '}
                     certificados pela{' '}
                     <span className="text-cyan-400 font-semibold">ANVISA e INMETRO</span>, levando mais conforto e profissionalismo para clínicas em todo o Brasil.
                   </p>
@@ -295,7 +294,7 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
                   <AnimatedNumber value={600} className="inline" />+
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
@@ -305,8 +304,8 @@ const Home = () => {
             </div>
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
-                  +<AnimatedNumber value={7} className="inline" /> anos
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
+                  +<AnimatedNumber value={7} className="inline" />&nbsp;anos
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   DE MERCADO.
@@ -315,8 +314,8 @@ const Home = () => {
             </div>
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
-                  + <AnimatedNumber value={3000} className="inline" />
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
+                  +<AnimatedNumber value={3000} className="inline" />
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   UNIDADES ENTREGUES.
@@ -325,7 +324,7 @@ const Home = () => {
             </div>
             <div className="text-center">
               <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-4xl md:text-5xl font-bold text-slate-800 mb-2">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
                   <AnimatedNumber value={100} className="inline" />%
                 </div>
                 <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">

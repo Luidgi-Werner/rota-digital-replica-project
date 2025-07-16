@@ -96,7 +96,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex lg:justify-center">
           <Link to="/" className="flex items-center">
-            <img src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" alt="Lanza Medical Logo" className="h-8 object-contain" />
+            <img src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" alt="Lanza Medical Logo" className="h-8 lg:h-8 md:h-10 object-contain" />
           </Link>
         </div>
 
@@ -122,11 +122,10 @@ const Header = () => {
                         <span className="text-lg text-white">{item.title}</span>
                         <MoveRight className="w-4 h-4 stroke-1 text-white/60" />
                       </Link> : <p className="text-lg text-white">{item.title}</p>}
-                    {item.items && item.items.map(subItem => <Link key={subItem.title} to={subItem.href} className="flex justify-between items-center" onClick={() => setIsOpen(false)}>
+                    {item.items && item.items.map(subItem => <Link key={subItem.title} to={subItem.href} className="flex justify-start items-center" onClick={() => setIsOpen(false)}>
                           <span className="text-white/80">
                             {subItem.title}
                           </span>
-                          <MoveRight className="w-4 h-4 stroke-1 text-white" />
                         </Link>)}
                   </div>
                 </div>)}
