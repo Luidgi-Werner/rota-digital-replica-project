@@ -265,7 +265,7 @@ const Home = () => {
                     Com mais de{' '}
                     <span className="font-bold">+7 anos</span>{' '}
                     no mercado e{' '}
-                    <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">45 anos</span>{' '}
+                    <span className="font-bold">45 anos</span>{' '}
                     de experiência acumulada, a{' '}
                     <span className="text-white font-semibold">Lanza Medical</span>{' '}
                     desenvolve e fabrica mesas e cadeiras médicas que unem design, segurança, ergonomia e qualidade.
