@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,7 +8,6 @@ import { Gallery6 } from '@/components/ui/gallery6';
 import { products, productCategories, testimonials, statistics } from '@/data/products';
 import { useState } from 'react';
 import { AnimatedNumber } from '@/components/ui/number-flow';
-
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
@@ -25,23 +23,18 @@ const Home = () => {
     '7': 'mesa-clinica-rt5000-e-ic',
     '8': 'mesa-clinica-rt2500-es'
   };
-
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
   };
-
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentTestimonial(prev => (prev - 1 + testimonials.length) % testimonials.length);
   };
-
   const nextProductSlide = () => {
-    setCurrentProductSlide((prev) => (prev + 1) % products.length);
+    setCurrentProductSlide(prev => (prev + 1) % products.length);
   };
-
   const prevProductSlide = () => {
-    setCurrentProductSlide((prev) => (prev - 1 + products.length) % products.length);
+    setCurrentProductSlide(prev => (prev - 1 + products.length) % products.length);
   };
-
   const getVisibleProducts = () => {
     const visibleProducts = [];
     for (let i = 0; i < 4; i++) {
@@ -86,20 +79,15 @@ const Home = () => {
       description: 'A Mesa Clínica RT2500 ES foi projetada para atender com excelência as exigências dos profissionais da saúde e estética, especialmente em dermatologia, medicina estética e procedimentos clínicos diversos.'
     }
   };
-
-  return (
-    <div className="font-jost">
+  return <div className="font-jost">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-slate-800 to-slate-900 text-white py-20 relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-black/35"
-          style={{
-            backgroundImage: `url('/lovable-uploads/2c149fee-e0b7-4b2d-8618-e0f52e59297b.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.65
-          }}
-        ></div>
+        <div className="absolute inset-0 bg-black/35" style={{
+        backgroundImage: `url('/lovable-uploads/2c149fee-e0b7-4b2d-8618-e0f52e59297b.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        opacity: 0.65
+      }}></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -131,23 +119,10 @@ const Home = () => {
               </div>
               
               <form className="space-y-4">
-                <Input
-                  placeholder="Nome"
-                  className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg"
-                />
-                <Input
-                  type="email"
-                  placeholder="E-mail"
-                  className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg"
-                />
-                <Input
-                  placeholder="WhatsApp"
-                  className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg"
-                />
-                <Input
-                  placeholder="Especialidade"
-                  className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg"
-                />
+                <Input placeholder="Nome" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
+                <Input type="email" placeholder="E-mail" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
+                <Input placeholder="WhatsApp" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
+                <Input placeholder="Especialidade" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
                 <Button className="w-full bg-slate-800 hover:bg-slate-900 text-white h-12 rounded-lg font-semibold text-lg">
                   Quero meu presente exclusivo
                 </Button>
@@ -162,20 +137,14 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 w-full max-w-sm lg:max-w-none">
-              {productCategories.map((category) => (
-                <Link
-                  key={category.id}
-                  to={`/produtos/${category.slug}`}
-                  className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow"
-                >
+              {productCategories.map(category => <Link key={category.id} to={`/produtos/${category.slug}`} className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow">
                   <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
                     <Check className="w-3 h-3 text-white" />
                   </div>
                   <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
                     {category.name}
                   </span>
-                </Link>
-              ))}
+                </Link>)}
             </div>
           </div>
         </div>
@@ -221,11 +190,7 @@ const Home = () => {
             {/* Center Image */}
             <div className="flex items-center justify-center">
               <div className="w-full max-w-sm h-80 rounded-lg overflow-hidden">
-                <img 
-                  src="/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png" 
-                  alt="Lanza Medical" 
-                  className="w-full h-full object-cover"
-                />
+                <img src="/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png" alt="Lanza Medical" className="w-full h-full object-cover" />
               </div>
             </div>
 
@@ -257,26 +222,24 @@ const Home = () => {
       </section>
 
       {/* Products Carousel Section */}
-      <Gallery6 
-        heading="Soluções para cada especialidade."
-        subheading="MESAS CLÍNICAS E GINECOLÓGICAS"
-        items={products.map(product => {
-          const productText = productTexts[product.id] || {
-            title: product.name,
-            description: product.description
-          };
-          return {
-            id: product.id,
-            title: productText.title,
-            summary: productText.description,
-            url: `/produto/${productIdToSlugMapping[product.id]}`,
-            image: product.images[0]
-          };
-        })}
-      />
+      <Gallery6 heading="Soluções para cada especialidade." subheading="MESAS CLÍNICAS E GINECOLÓGICAS" items={products.map(product => {
+      const productText = productTexts[product.id] || {
+        title: product.name,
+        description: product.description
+      };
+      return {
+        id: product.id,
+        title: productText.title,
+        summary: productText.description,
+        url: `/produto/${productIdToSlugMapping[product.id]}`,
+        image: product.images[0]
+      };
+    })} />
 
       {/* About Section - Quem é Lanza */}
-      <section className="py-16 text-white relative" style={{ backgroundColor: '#003250' }}>
+      <section className="py-16 text-white relative" style={{
+      backgroundColor: '#003250'
+    }}>
         <div className="absolute inset-0 opacity-10">
           <div className="w-full h-full bg-gradient-to-r from-slate-800 to-slate-700"></div>
         </div>
@@ -300,7 +263,7 @@ const Home = () => {
                 <div className="text-lg leading-relaxed text-gray-300">
                   <p className="mb-6">
                     Com mais de{' '}
-                    <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">+7 anos</span>{' '}
+                    <span className="font-bold">+7 anos</span>{' '}
                     no mercado e{' '}
                     <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">45 anos</span>{' '}
                     de experiência acumulada, a{' '}
@@ -385,30 +348,15 @@ const Home = () => {
 
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-center space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={prevTestimonial}
-                className="text-gray-400 hover:text-gray-600"
-              >
+              <Button variant="ghost" size="icon" onClick={prevTestimonial} className="text-gray-400 hover:text-gray-600">
                 <ChevronLeft className="w-6 h-6" />
               </Button>
 
               <div className="flex space-x-8 overflow-hidden">
-                {testimonials.map((testimonial, index) => (
-                  <Card
-                    key={testimonial.id}
-                    className={`w-80 flex-shrink-0 transition-all duration-300 ${
-                      index === currentTestimonial ? 'opacity-100 scale-100' : 'opacity-50 scale-95 hidden md:block'
-                    }`}
-                  >
+                {testimonials.map((testimonial, index) => <Card key={testimonial.id} className={`w-80 flex-shrink-0 transition-all duration-300 ${index === currentTestimonial ? 'opacity-100 scale-100' : 'opacity-50 scale-95 hidden md:block'}`}>
                     <CardContent className="p-6">
                       <div className="flex items-center space-x-3 mb-4">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full"
-                        />
+                        <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full" />
                         <div>
                           <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
                           <p className="text-sm text-gray-500">{testimonial.date}</p>
@@ -420,40 +368,23 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="flex space-x-1 mb-3">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-4 h-4 ${
-                              i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-                            }`}
-                          />
-                        ))}
-                        {testimonial.verified && (
-                          <Badge variant="secondary" className="ml-2 text-xs bg-blue-500 text-white">
+                        {[...Array(5)].map((_, i) => <Star key={i} className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />)}
+                        {testimonial.verified && <Badge variant="secondary" className="ml-2 text-xs bg-blue-500 text-white">
                             ✓
-                          </Badge>
-                        )}
+                          </Badge>}
                       </div>
                       <p className="text-gray-700">{testimonial.comment}</p>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
 
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={nextTestimonial}
-                className="text-gray-400 hover:text-gray-600"
-              >
+              <Button variant="ghost" size="icon" onClick={nextTestimonial} className="text-gray-400 hover:text-gray-600">
                 <ChevronRight className="w-6 h-6" />
               </Button>
             </div>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
