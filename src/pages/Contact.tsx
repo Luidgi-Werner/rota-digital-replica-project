@@ -1,11 +1,112 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, Shield, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FadeText } from '@/components/ui/fade-text';
+import { useToast } from '@/hooks/use-toast';
+import { sanitizeInput, validateEmail, validatePhone, formRateLimiter } from '@/utils/security';
+import MetaTags from '@/components/seo/MetaTags';
 const Contact = () => {
-  return <div className="min-h-screen bg-white">
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: sanitizeInput(value)
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Rate limiting check
+    const userIP = 'user-ip'; // In production, get actual IP
+    if (!formRateLimiter.isAllowed(userIP)) {
+      const remainingTime = Math.ceil(formRateLimiter.getRemainingTime(userIP) / 60000);
+      toast({
+        title: "Muitas tentativas",
+        description: `Aguarde ${remainingTime} minutos antes de enviar novamente.`,
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Nome, e-mail e mensagem são obrigatórios.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      toast({
+        title: "E-mail inválido",
+        description: "Por favor, insira um e-mail válido.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (formData.phone && !validatePhone(formData.phone)) {
+      toast({
+        title: "Telefone inválido",
+        description: "Por favor, insira um telefone válido.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: "Mensagem enviada!",
+        description: "Retornaremos em breve. Obrigado pelo contato!"
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar",
+        description: "Tente novamente ou entre em contato por telefone.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <MetaTags 
+        title="Contato | Lanza Medical - Equipamentos Médicos"
+        description="Entre em contato com a Lanza Medical. Atendimento técnico especializado em equipamentos médicos. Telefone: (16) 99447-2195"
+        keywords="contato lanza medical, suporte técnico, equipamentos médicos contato"
+      />
+      <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="px-4 text-center py-[65px]">
         <div className="container mx-auto max-w-4xl">
@@ -62,19 +163,30 @@ const Contact = () => {
                 Preencha o formulário que nossa equipe retornará em breve.
               </p>
 
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Nome
+                      Nome *
                     </label>
-                    <Input placeholder="ex: Julia Santos" />
+                    <Input 
+                      placeholder="ex: Julia Santos" 
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      required
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Seu e-mail
+                      Seu e-mail *
                     </label>
-                    <Input placeholder="ex: vendas@lanzamedical.com" />
+                    <Input 
+                      type="email"
+                      placeholder="ex: contato@empresa.com" 
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      required
+                    />
                   </div>
                 </div>
 
@@ -83,25 +195,55 @@ const Contact = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Seu WhatsApp
                     </label>
-                    <Input placeholder="Ex: (99) 99999-9999" />
+                    <Input 
+                      placeholder="Ex: (16) 99999-9999" 
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Sua Empresa
                     </label>
-                    <Input placeholder="Ex: Lanza Medical" />
+                    <Input 
+                      placeholder="Ex: Clínica Médica" 
+                      value={formData.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
+                    />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Sua mensagem
+                    Sua mensagem *
                   </label>
-                  <Textarea placeholder="Escreva aqui..." rows={6} />
+                  <Textarea 
+                    placeholder="Descreva sua necessidade, dúvidas ou interesse em nossos produtos..." 
+                    rows={6} 
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    required
+                  />
                 </div>
 
-                <Button className="w-full bg-[#003250] hover:bg-[#003250]/90 text-white rounded-full py-3">
-                  Enviar mensagem
+                {/* Privacy Notice */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+                  <Shield className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm text-blue-800">
+                    <p className="font-medium mb-1">Proteção de Dados</p>
+                    <p>
+                      Seus dados são protegidos conforme a LGPD. Utilizamos apenas para responder sua solicitação. 
+                      Consulte nossa <a href="/legal/politica-privacidade" className="underline hover:no-underline">Política de Privacidade</a>.
+                    </p>
+                  </div>
+                </div>
+
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-[#003250] hover:bg-[#003250]/90 text-white rounded-full py-3 disabled:opacity-50"
+                >
+                  {isSubmitting ? "Enviando..." : "Enviar mensagem"}
                 </Button>
               </form>
             </motion.div>
@@ -210,6 +352,8 @@ const Contact = () => {
           </motion.div>
         </div>
       </section>
-    </div>;
+    </div>
+    </>
+  );
 };
 export default Contact;
