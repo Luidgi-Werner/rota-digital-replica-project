@@ -272,7 +272,7 @@ const Home = () => {
                   </p>
                   <p>
                     Nossos produtos são{' '}
-                    <span className="font-bold ">100%</span>{' '}
+                    <span className="bg-cyan-500 text-white px-3 py-1 rounded-full font-bold">100%</span>{' '}
                     certificados pela{' '}
                     <span className="text-cyan-400 font-semibold">ANVISA e INMETRO</span>, levando mais conforto e profissionalismo para clínicas em todo o Brasil.
                   </p>
