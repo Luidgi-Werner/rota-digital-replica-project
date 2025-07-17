@@ -9,14 +9,10 @@ import { FadeText } from '@/components/ui/fade-text';
 import { urlToProductMapping } from '@/utils/productRoutes';
 import MetaTags from '@/components/seo/MetaTags';
 const ProductDetail = () => {
-  const {
-    id
-  } = useParams<{
-    id: string;
-  }>();
+  const { id: slug } = useParams<{ id: string }>();
 
   // Find product by URL mapping or fallback to first product
-  const productId = urlToProductMapping[id || ''] || '1';
+  const productId = urlToProductMapping[slug || ''] || '1';
   const product = products.find(p => p.id === productId) || products[0];
 
   // Product-specific content and features
