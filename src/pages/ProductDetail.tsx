@@ -3,10 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { products } from '@/data/products';
-import { Check, Shield, Award, Users, Phone, Star, Wrench, Heart } from 'lucide-react';
+import { Check, Shield, Award, Users, Phone, Star, Wrench, Heart, Camera, ArrowRight, Zap, Target, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FadeText } from '@/components/ui/fade-text';
 import { urlToProductMapping } from '@/utils/productRoutes';
+import MetaTags from '@/components/seo/MetaTags';
 const ProductDetail = () => {
   const {
     id
@@ -17,6 +18,11 @@ const ProductDetail = () => {
   // Find product by URL mapping or fallback to first product
   const productId = urlToProductMapping[id || ''] || '1';
   const product = products.find(p => p.id === productId) || products[0];
+
+  // Product-specific content and features
+  const productFeatures = getProductSpecificFeatures(productId);
+  const productHighlights = getProductHighlights(productId);
+  const productApplications = getProductApplications(productId);
 
   // Group specifications by category for better organization
   const groupedSpecs = {
@@ -44,7 +50,13 @@ const ProductDetail = () => {
         return <Check className="h-5 w-5" />;
     }
   };
-  return <div className="py-24">
+  return <>
+    <MetaTags 
+      title={`${product.name} - Lanza Medical`}
+      description={product.description}
+      keywords={`${product.name}, mesa médica, equipamentos médicos, ${product.category}`}
+    />
+    <div className="py-24">
       <div className="container mx-auto px-4">
         <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16" initial={{
         opacity: 0,
@@ -114,6 +126,128 @@ const ProductDetail = () => {
               </Button>
             </div>
           </motion.div>
+        </motion.div>
+
+        {/* Product Highlights */}
+        <motion.div className="mb-20" initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.6
+        }}>
+          <div className="text-center mb-12">
+            <FadeText className="text-3xl font-bold text-[#003250] mb-6" direction="up" text="Principais Diferenciais" />
+            <div className="h-1 w-24 bg-[#003250] mx-auto"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {productHighlights.map((highlight, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 text-center hover:shadow-xl transition-shadow"
+              >
+                <div className="bg-[#003250] rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  {highlight.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-[#003250] mb-3">{highlight.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{highlight.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Applications */}
+        <motion.div className="mb-20" initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.6
+        }}>
+          <div className="text-center mb-12">
+            <FadeText className="text-3xl font-bold text-[#003250] mb-6" direction="up" text="Aplicações Recomendadas" />
+            <div className="h-1 w-24 bg-[#003250] mx-auto"></div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {productApplications.map((application, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-gradient-to-br from-[#003250] to-[#004a75] text-white rounded-lg p-4 text-center"
+              >
+                <div className="text-cyan-400 mb-2">{application.icon}</div>
+                <p className="text-sm font-medium">{application.name}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Product Features */}
+        <motion.div className="mb-20" initial={{
+          opacity: 0,
+          y: 30
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.6
+        }}>
+          <div className="text-center mb-12">
+            <FadeText className="text-3xl font-bold text-[#003250] mb-6" direction="up" text="Recursos Exclusivos" />
+            <div className="h-1 w-24 bg-[#003250] mx-auto"></div>
+          </div>
+          
+          <div className="space-y-6">
+            {productFeatures.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="bg-[#003250] rounded-lg p-3 text-white flex-shrink-0">
+                    {feature.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-[#003250] mb-2">{feature.title}</h3>
+                    <p className="text-gray-600 leading-relaxed mb-3">{feature.description}</p>
+                    {feature.benefits && (
+                      <ul className="space-y-1">
+                        {feature.benefits.map((benefit, benefitIndex) => (
+                          <li key={benefitIndex} className="flex items-center text-sm text-gray-500">
+                            <Check className="w-4 h-4 text-[#003250] mr-2 flex-shrink-0" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Technical Specifications */}
@@ -390,6 +524,270 @@ const ProductDetail = () => {
           </Button>
         </motion.div>
       </div>
-    </div>;
+    </div>
+  </>;
 };
+
+// Product-specific features
+function getProductSpecificFeatures(productId: string) {
+  const features = {
+    '1': [ // RT2000
+      {
+        icon: <Zap className="w-6 h-6" />,
+        title: 'Sistema de Voltagem Inteligente',
+        description: 'Comutação automática entre 127V e 220V sem necessidade de ajustes manuais.',
+        benefits: ['Adaptação automática à rede elétrica', 'Proteção contra variações de tensão', 'Maior durabilidade dos componentes']
+      },
+      {
+        icon: <Settings className="w-6 h-6" />,
+        title: 'Comando Duplo Opcional',
+        description: 'Flexibilidade de controle através de pedal com 8 funções ou comando manual.',
+        benefits: ['Controle preciso dos movimentos', 'Facilita procedimentos complexos', 'Ergonomia para o profissional']
+      },
+      {
+        icon: <Target className="w-6 h-6" />,
+        title: 'Apoios Reguláveis de Precisão',
+        description: 'Apoios de coxas e pés com ajustes milimétricos para perfeito posicionamento.',
+        benefits: ['Ajuste horizontal até 320mm', 'Ajuste vertical até 420mm', 'Conforto personalizado para cada paciente']
+      }
+    ],
+    '2': [ // RT2500
+      {
+        icon: <Star className="w-6 h-6" />,
+        title: 'Design Slim Compacto',
+        description: 'Estrutura otimizada para consultórios com espaço reduzido sem perder funcionalidade.',
+        benefits: ['Ideal para espaços menores', 'Mantém todas as funcionalidades', 'Design moderno e elegante']
+      },
+      {
+        icon: <Shield className="w-6 h-6" />,
+        title: 'Base Versátil',
+        description: 'Opções com ou sem rodízios para diferentes necessidades de instalação.',
+        benefits: ['Adaptabilidade ao ambiente', 'Mobilidade quando necessário', 'Estabilidade garantida']
+      }
+    ],
+    '3': [ // RT4000 Histeroscopia
+      {
+        icon: <Target className="w-6 h-6" />,
+        title: 'Inclinação Especial para Histeroscopia',
+        description: 'Inclinação motorizada do assento em até 25° específica para procedimentos de histeroscopia.',
+        benefits: ['Posicionamento ideal para histeroscopia', 'Melhor visualização do campo cirúrgico', 'Maior precisão nos procedimentos']
+      },
+      {
+        icon: <Star className="w-6 h-6" />,
+        title: 'Estrutura Robusta Premium',
+        description: 'Construção reforçada para suportar procedimentos mais complexos e especializados.',
+        benefits: ['Durabilidade superior', 'Estabilidade em procedimentos longos', 'Maior capacidade de carga']
+      }
+    ],
+    '4': [ // RT3000 Trendlemburg
+      {
+        icon: <ArrowRight className="w-6 h-6" />,
+        title: 'Sistema Trendlemburg Motorizado',
+        description: 'Inclinação do equipamento em até 17° acionada por botões laterais para procedimentos específicos.',
+        benefits: ['Melhor acesso vascular', 'Facilita procedimentos plásticos', 'Posicionamento cirúrgico ideal']
+      },
+      {
+        icon: <Wrench className="w-6 h-6" />,
+        title: 'Quatro Motores Independentes',
+        description: 'Sistema de motorização com quatro moto-redutores para máxima precisão de movimento.',
+        benefits: ['Movimentos mais suaves', 'Maior durabilidade', 'Controle independente de cada função']
+      }
+    ],
+    '5': [ // RT5000
+      {
+        icon: <Heart className="w-6 h-6" />,
+        title: 'Versatilidade Clínica',
+        description: 'Projetada para múltiplas especialidades: dermatologia, estética, ultrassonografia e mais.',
+        benefits: ['Adaptável a diversos procedimentos', 'Investimento versátil', 'Máximo aproveitamento']
+      },
+      {
+        icon: <Shield className="w-6 h-6" />,
+        title: 'Braços Laterais em Alumínio',
+        description: 'Estrutura em alumínio fundido com abertura lateral e longitudinal.',
+        benefits: ['Material durável e leve', 'Facilita acesso ao paciente', 'Design ergonômico']
+      }
+    ],
+    '6': [ // RT5000 Estetic
+      {
+        icon: <ArrowRight className="w-6 h-6" />,
+        title: 'Prolongador Recolhível Automático',
+        description: 'Extensão automática que amplia o comprimento da maca para até 1,98m.',
+        benefits: ['Acomoda pacientes de qualquer altura', 'Acionamento automático', 'Otimização do espaço']
+      },
+      {
+        icon: <Star className="w-6 h-6" />,
+        title: 'Estofamento Duplo Conforto',
+        description: 'Revestimento em PVC cristal com dupla densidade para máximo conforto.',
+        benefits: ['Conforto superior para o paciente', 'Fácil higienização', 'Durabilidade aumentada']
+      }
+    ],
+    '7': [ // RT5000 E-IC
+      {
+        icon: <Target className="w-6 h-6" />,
+        title: 'Apoio Facial Exclusivo',
+        description: 'Apoio anatômico com descanso para braços, ideal para procedimentos em decúbito ventral.',
+        benefits: ['Especializado em transplante capilar', 'Conforto em procedimentos longos', 'Acesso facilitado à área doadora']
+      },
+      {
+        icon: <Star className="w-6 h-6" />,
+        title: 'Acabamento Premium',
+        description: 'Design ergonômico com acabamento de alta qualidade para clínicas especializadas.',
+        benefits: ['Visual profissional', 'Materiais de primeira qualidade', 'Durabilidade superior']
+      }
+    ],
+    '8': [ // RT2500 ES
+      {
+        icon: <Heart className="w-6 h-6" />,
+        title: 'Braços Biarticulados Removíveis',
+        description: 'Braços laterais com sistema biarticulado, removíveis e estofados na cor.',
+        benefits: ['Máxima flexibilidade de posicionamento', 'Fácil remoção quando necessário', 'Acabamento harmonioso']
+      },
+      {
+        icon: <Star className="w-6 h-6" />,
+        title: 'Design Compacto Dermatológico',
+        description: 'Projetada especificamente para as exigências da dermatologia e medicina estética.',
+        benefits: ['Otimizada para dermatologia', 'Acesso facilitado ao paciente', 'Ergonomia específica']
+      }
+    ]
+  };
+  
+  return features[productId] || features['1'];
+}
+
+// Product highlights
+function getProductHighlights(productId: string) {
+  const highlights = {
+    '1': [
+      { icon: <Zap className="w-8 h-8 text-white" />, title: 'Automação Completa', description: 'Elevação, inclinação e perneira totalmente motorizadas' },
+      { icon: <Shield className="w-8 h-8 text-white" />, title: 'Certificação Total', description: 'ANVISA e INMETRO para máxima segurança' },
+      { icon: <Star className="w-8 h-8 text-white" />, title: 'Rodízios com Trava', description: 'Mobilidade e estabilidade em um só sistema' }
+    ],
+    '2': [
+      { icon: <Star className="w-8 h-8 text-white" />, title: 'Design Slim', description: 'Ideal para consultórios com espaço otimizado' },
+      { icon: <Settings className="w-8 h-8 text-white" />, title: 'Base Versátil', description: 'Opções com ou sem rodízios' },
+      { icon: <Zap className="w-8 h-8 text-white" />, title: 'Voltagem Automática', description: 'Comutação inteligente 127V/220V' }
+    ],
+    '3': [
+      { icon: <Target className="w-8 h-8 text-white" />, title: 'Histeroscopia', description: 'Inclinação especial até 25° para procedimentos' },
+      { icon: <Shield className="w-8 h-8 text-white" />, title: 'Estrutura Robusta', description: 'Suporte reforçado para procedimentos complexos' },
+      { icon: <Star className="w-8 h-8 text-white" />, title: 'Precisão Milimétrica', description: 'Ajustes precisos para cada procedimento' }
+    ],
+    '4': [
+      { icon: <ArrowRight className="w-8 h-8 text-white" />, title: 'Trendlemburg 17°', description: 'Inclinação motorizada para procedimentos vasculares' },
+      { icon: <Wrench className="w-8 h-8 text-white" />, title: '4 Motores', description: 'Sistema motorizado independente' },
+      { icon: <Heart className="w-8 h-8 text-white" />, title: 'Braços Alumínio', description: 'Estrutura leve e resistente' }
+    ],
+    '5': [
+      { icon: <Heart className="w-8 h-8 text-white" />, title: 'Multi-Especialidade', description: 'Ideal para diversas áreas médicas' },
+      { icon: <Shield className="w-8 h-8 text-white" />, title: 'Braços Fundidos', description: 'Alumínio fundido de alta qualidade' },
+      { icon: <Zap className="w-8 h-8 text-white" />, title: '3 Motores', description: 'Sistema de automação completa' }
+    ],
+    '6': [
+      { icon: <ArrowRight className="w-8 h-8 text-white" />, title: 'Prolongador 1,98m', description: 'Extensão automática para qualquer altura' },
+      { icon: <Star className="w-8 h-8 text-white" />, title: 'Duplo Conforto', description: 'Estofamento premium em PVC cristal' },
+      { icon: <Heart className="w-8 h-8 text-white" />, title: 'Estética Total', description: 'Especializada em procedimentos estéticos' }
+    ],
+    '7': [
+      { icon: <Target className="w-8 h-8 text-white" />, title: 'Apoio Facial', description: 'Exclusivo para transplante capilar' },
+      { icon: <Star className="w-8 h-8 text-white" />, title: 'Premium Quality', description: 'Acabamento de alta qualidade' },
+      { icon: <ArrowRight className="w-8 h-8 text-white" />, title: 'Decúbito Ventral', description: 'Posicionamento ideal para IC' }
+    ],
+    '8': [
+      { icon: <Heart className="w-8 h-8 text-white" />, title: 'Braços Removíveis', description: 'Sistema biarticulado flexível' },
+      { icon: <Star className="w-8 h-8 text-white" />, title: 'Dermatologia', description: 'Especializada para pele' },
+      { icon: <Settings className="w-8 h-8 text-white" />, title: 'Compacta', description: 'Design otimizado para espaços menores' }
+    ]
+  };
+  
+  return highlights[productId] || highlights['1'];
+}
+
+// Product applications
+function getProductApplications(productId: string) {
+  const applications = {
+    '1': [
+      { icon: <Heart className="w-6 h-6" />, name: 'Ginecologia' },
+      { icon: <Camera className="w-6 h-6" />, name: 'Ultrassonografia' },
+      { icon: <Star className="w-6 h-6" />, name: 'Pequenas Cirurgias' },
+      { icon: <Shield className="w-6 h-6" />, name: 'Coleta de Materiais' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Obstetrícia' },
+      { icon: <Star className="w-6 h-6" />, name: 'Procedimentos Estéticos' },
+      { icon: <Target className="w-6 h-6" />, name: 'Exames Clínicos' },
+      { icon: <Wrench className="w-6 h-6" />, name: 'Procedimentos Vasculares' }
+    ],
+    '2': [
+      { icon: <Heart className="w-6 h-6" />, name: 'Ginecologia' },
+      { icon: <Camera className="w-6 h-6" />, name: 'Ultrassonografia' },
+      { icon: <Shield className="w-6 h-6" />, name: 'Coleta de Materiais' },
+      { icon: <Star className="w-6 h-6" />, name: 'Estética' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Obstetrícia' },
+      { icon: <Target className="w-6 h-6" />, name: 'Clínica Geral' },
+      { icon: <Wrench className="w-6 h-6" />, name: 'Procedimentos Vasculares' },
+      { icon: <Star className="w-6 h-6" />, name: 'Consultórios Compactos' }
+    ],
+    '3': [
+      { icon: <Target className="w-6 h-6" />, name: 'Histeroscopia' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Ginecologia' },
+      { icon: <Camera className="w-6 h-6" />, name: 'Ultrassonografia' },
+      { icon: <Shield className="w-6 h-6" />, name: 'Procedimentos Complexos' },
+      { icon: <Star className="w-6 h-6" />, name: 'Cirurgias Ginecológicas' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Obstetrícia' },
+      { icon: <Wrench className="w-6 h-6" />, name: 'Endoscopia' },
+      { icon: <Target className="w-6 h-6" />, name: 'Procedimentos Especiais' }
+    ],
+    '4': [
+      { icon: <Wrench className="w-6 h-6" />, name: 'Cirurgia Plástica' },
+      { icon: <Target className="w-6 h-6" />, name: 'Procedimentos Vasculares' },
+      { icon: <Star className="w-6 h-6" />, name: 'Implantes Capilares' },
+      { icon: <Camera className="w-6 h-6" />, name: 'Ultrassonografia' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Clínica Geral' },
+      { icon: <Shield className="w-6 h-6" />, name: 'Pequenas Cirurgias' },
+      { icon: <Star className="w-6 h-6" />, name: 'Trendlemburg' },
+      { icon: <Target className="w-6 h-6" />, name: 'Medicina Estética' }
+    ],
+    '5': [
+      { icon: <Heart className="w-6 h-6" />, name: 'Dermatologia' },
+      { icon: <Star className="w-6 h-6" />, name: 'Estética' },
+      { icon: <Camera className="w-6 h-6" />, name: 'Ultrassonografia' },
+      { icon: <Target className="w-6 h-6" />, name: 'Acupuntura' },
+      { icon: <Wrench className="w-6 h-6" />, name: 'Massagens' },
+      { icon: <Shield className="w-6 h-6" />, name: 'Tatuagens' },
+      { icon: <Star className="w-6 h-6" />, name: 'Piercings' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Clínica Geral' }
+    ],
+    '6': [
+      { icon: <Star className="w-6 h-6" />, name: 'Procedimentos Estéticos' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Harmonização Facial' },
+      { icon: <Target className="w-6 h-6" />, name: 'Pigmentação' },
+      { icon: <Shield className="w-6 h-6" />, name: 'Dermatologia' },
+      { icon: <Wrench className="w-6 h-6" />, name: 'Massagens' },
+      { icon: <Star className="w-6 h-6" />, name: 'Tratamentos Faciais' },
+      { icon: <Camera className="w-6 h-6" />, name: 'Ultrassonografia' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Medicina Estética' }
+    ],
+    '7': [
+      { icon: <Target className="w-6 h-6" />, name: 'Transplante Capilar' },
+      { icon: <Star className="w-6 h-6" />, name: 'Implante Capilar' },
+      { icon: <Heart className="w-6 h-6" />, name: 'FUE' },
+      { icon: <Shield className="w-6 h-6" />, name: 'FUT' },
+      { icon: <Wrench className="w-6 h-6" />, name: 'Tricologia' },
+      { icon: <Target className="w-6 h-6" />, name: 'Micropigmentação' },
+      { icon: <Star className="w-6 h-6" />, name: 'Densidade Capilar' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Restauração Capilar' }
+    ],
+    '8': [
+      { icon: <Heart className="w-6 h-6" />, name: 'Dermatologia' },
+      { icon: <Star className="w-6 h-6" />, name: 'Medicina Estética' },
+      { icon: <Shield className="w-6 h-6" />, name: 'Procedimentos Faciais' },
+      { icon: <Target className="w-6 h-6" />, name: 'Tratamentos de Pele' },
+      { icon: <Wrench className="w-6 h-6" />, name: 'Laser Dermatológico' },
+      { icon: <Star className="w-6 h-6" />, name: 'Peeling' },
+      { icon: <Heart className="w-6 h-6" />, name: 'Botox' },
+      { icon: <Camera className="w-6 h-6" />, name: 'Diagnóstico Dermatológico' }
+    ]
+  };
+  
+  return applications[productId] || applications['1'];
+}
+
 export default ProductDetail;
