@@ -8,6 +8,7 @@ import { products, productCategories } from '@/data/products';
 import { Search, Star, Award, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FadeText } from '@/components/ui/fade-text';
+import { getProductUrl } from '@/utils/productRoutes';
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -137,7 +138,7 @@ const Products = () => {
                     
                     <div className="pt-4 border-t border-gray-100">
                       <Button asChild className="w-full bg-[#003250] hover:bg-[#003250]/90">
-                        <Link to={`/produto/${product.id}`}>
+                        <Link to={getProductUrl(product.id)}>
                           <span>Ver Detalhes</span>
                           <Star className="w-4 h-4 ml-2" />
                         </Link>

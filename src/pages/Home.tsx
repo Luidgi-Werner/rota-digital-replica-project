@@ -8,21 +8,11 @@ import { Gallery6 } from '@/components/ui/gallery6';
 import { products, productCategories, testimonials, statistics } from '@/data/products';
 import { useState } from 'react';
 import { AnimatedNumber } from '@/components/ui/number-flow';
+import { productIdToSlugMapping } from '@/utils/productRoutes';
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
 
-  // Direct mapping between product IDs and URL slugs (same as ProductDetail)
-  const productIdToSlugMapping: Record<string, string> = {
-    '1': 'mesa-ginecologica-rt-2000',
-    '2': 'mesa-ginecologica-rt2500',
-    '3': 'mesa-ginecologica-rt4000-histeroscopia',
-    '4': 'mesa-clinica-eletrica-trendlemburg-rt3000',
-    '5': 'mesa-clinica-rt5000',
-    '6': 'mesa-clinica-rt5000-estetic',
-    '7': 'mesa-clinica-rt5000-e-ic',
-    '8': 'mesa-clinica-rt2500-es'
-  };
   const nextTestimonial = () => {
     setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
   };

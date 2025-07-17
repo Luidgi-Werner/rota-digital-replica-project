@@ -6,24 +6,13 @@ import { products } from '@/data/products';
 import { Check, Shield, Award, Users, Phone, Star, Wrench, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FadeText } from '@/components/ui/fade-text';
+import { urlToProductMapping } from '@/utils/productRoutes';
 const ProductDetail = () => {
   const {
     id
   } = useParams<{
     id: string;
   }>();
-
-  // Direct mapping between URL slugs and product IDs
-  const urlToProductMapping: Record<string, string> = {
-    'mesa-ginecologica-rt-2000': '1',
-    'mesa-ginecologica-rt2500': '2', 
-    'mesa-ginecologica-rt4000-histeroscopia': '3',
-    'mesa-clinica-eletrica-trendlemburg-rt3000': '4',
-    'mesa-clinica-rt5000': '5',
-    'mesa-clinica-rt5000-estetic': '6',
-    'mesa-clinica-rt5000-e-ic': '7',
-    'mesa-clinica-rt2500-es': '8'
-  };
 
   // Find product by URL mapping or fallback to first product
   const productId = urlToProductMapping[id || ''] || '1';
