@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -261,7 +262,7 @@ const Contact = () => {
           }} transition={{
             duration: 0.6
           }}>
-              <img src="/lovable-uploads/c84848a0-f642-492d-8f1e-83c1c9da721d.png" alt="Atendente Lanza Medical" className="w-full rounded-lg shadow-lg object-fill" />
+              <img src="/lovable-uploads/7224090e-9f26-4035-b16b-0d3382359b52.png" alt="Atendente Lanza Medical" className="w-full rounded-lg shadow-lg object-fill" />
               
               {/* Contact notification overlay */}
               <div className="absolute bottom-6 left-6 right-6 bg-white rounded-lg p-4 shadow-lg flex items-center space-x-3">
