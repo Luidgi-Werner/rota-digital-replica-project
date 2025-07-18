@@ -18,9 +18,6 @@ const Footer = () => {
               <Link to="/legal/termos-uso" className="hover:text-primary">
                 Termos de Uso
               </Link>
-              <Link to="/faq" className="hover:text-primary">
-                FAQ
-              </Link>
             </div>
           </div>
         </div>

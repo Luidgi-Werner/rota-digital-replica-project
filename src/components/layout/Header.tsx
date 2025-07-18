@@ -44,9 +44,6 @@ const Header = () => {
     title: "Sobre nós",
     href: "/sobre"
   }, {
-    title: "FAQ",
-    href: "/faq"
-  }, {
     title: "Contato",
     href: "/contato"
   }];

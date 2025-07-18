@@ -82,7 +82,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="space-y-8">
-              <div>
+              <div className="text-left">
                 <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                   Sua clínica merece uma estrutura que reflita seu nível profissional.
                 </h1>

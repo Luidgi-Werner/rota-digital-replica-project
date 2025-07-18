@@ -11,7 +11,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import FAQ from "./pages/FAQ";
+
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsOfService from "./pages/legal/TermsOfService";
 import NotFound from "./pages/NotFound";
@@ -46,7 +46,7 @@ const App = () => (
               <Route path="/produto/:id" element={<ProductDetail />} />
               <Route path="/sobre" element={<About />} />
               <Route path="/contato" element={<Contact />} />
-              <Route path="/faq" element={<FAQ />} />
+              
               
               {/* Legal Pages */}
               <Route path="/legal/politica-privacidade" element={<PrivacyPolicy />} />
