@@ -64,27 +64,17 @@ const Header = () => {
                       <NavigationMenuTrigger className="font-medium text-sm text-slate-50 bg-transparent">
                         {item.title}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent className="!w-[450px] p-4">
-                        <div className="flex flex-col lg:grid grid-cols-2 gap-4">
-                          <div className="flex flex-col h-full justify-between">
-                            <div className="flex flex-col">
-                              <p className="text-base">{item.title}</p>
-                              <p className="text-muted-foreground text-sm">
-                                {item.description}
-                              </p>
-                            </div>
-                            <Button size="sm" className="mt-10" asChild>
-                              <Link to="/contato">Fale Conosco</Link>
-                            </Button>
-                          </div>
-                          <div className="flex flex-col text-sm h-full justify-end">
-                            {item.items?.map(subItem => 
-                              <Link key={subItem.title} to={subItem.href} className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded w-full">
-                                <span>{subItem.title}</span>
-                                <MoveRight className="w-4 h-4 text-muted-foreground" />
-                              </Link>
-                            )}
-                          </div>
+                      <NavigationMenuContent className="!w-[320px] p-4">
+                        <div className="flex flex-col text-sm gap-2">
+                          {item.items?.map(subItem => 
+                            <Link key={subItem.title} to={subItem.href} className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded w-full">
+                              <span>{subItem.title}</span>
+                              <MoveRight className="w-4 h-4 text-muted-foreground" />
+                            </Link>
+                          )}
+                          <Button size="sm" className="mt-4 w-full" asChild>
+                            <Link to="/contato">Fale Conosco</Link>
+                          </Button>
                         </div>
                       </NavigationMenuContent>
                     </>}
@@ -96,7 +86,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex lg:justify-center">
           <Link to="/" className="flex items-center">
-            <img src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" alt="Lanza Medical Logo" className="h-8 lg:h-8 md:h-10 object-contain" />
+            <img src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" alt="Lanza Medical Logo" className="h-10 lg:h-8 md:h-10 object-contain" />
           </Link>
         </div>
 

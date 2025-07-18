@@ -178,11 +178,11 @@ const Home = () => {
             </Card>
 
             {/* Center Image */}
-            <div className="flex items-center justify-center">
-              <div className="w-full max-w-sm h-80 rounded-lg overflow-hidden">
+            <Card className="bg-white p-0 rounded-2xl overflow-hidden h-full">
+              <CardContent className="p-0 h-full">
                 <img src="/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png" alt="Lanza Medical" className="w-full h-full object-cover" />
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
             {/* Right Card - Certificação */}
             <Card className="bg-slate-800 text-white p-8 rounded-2xl">
