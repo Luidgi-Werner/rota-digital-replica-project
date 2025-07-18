@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,10 +9,13 @@ import { FadeText } from '@/components/ui/fade-text';
 import { urlToProductMapping } from '@/utils/productRoutes';
 import MetaTags from '@/components/seo/MetaTags';
 const ProductDetail = () => {
-  const { id: slug } = useParams<{ id: string }>();
+  const location = useLocation();
+  
+  // Extract slug from pathname
+  const slug = location.pathname.replace('/produto/', '');
 
   // Find product by URL mapping or fallback to first product
-  const productId = urlToProductMapping[slug || ''] || '1';
+  const productId = urlToProductMapping[slug] || '1';
   const product = products.find(p => p.id === productId) || products[0];
 
   // Product-specific content and features
