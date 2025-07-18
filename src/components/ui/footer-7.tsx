@@ -139,8 +139,8 @@ export const Footer7 = ({
       y: 0
     }
   };
-  return <section className="py-16 bg-[#003250] text-white">
-      <div className="container mx-auto px-4">
+  return <section className="bg-[#003250] text-white py-[28px]">
+      <div className="container mx-auto px-4 py-0 my-[10px]">
         <motion.div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{
         once: true
       }}>
