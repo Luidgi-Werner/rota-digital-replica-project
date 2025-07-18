@@ -92,11 +92,11 @@ const Header = () => {
               alt="Lanza Medical Logo" 
               className="h-10 lg:h-8 hidden md:block object-contain" 
             />
-            {/* Mobile Logo - Larger */}
+            {/* Mobile Logo - Large */}
             <img 
-              src="/lovable-uploads/e0760645-0294-4e89-809b-24c69bfbcab3.png" 
+              src="/lovable-uploads/2306f352-c1d4-4ff7-ac19-523c563bfd91.png" 
               alt="Lanza Medical Logo" 
-              className="h-14 md:hidden object-contain" 
+              className="h-16 md:hidden object-contain" 
             />
           </Link>
         </div>

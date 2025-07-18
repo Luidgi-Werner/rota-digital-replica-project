@@ -9,6 +9,7 @@ import { products, productCategories, testimonials, statistics } from '@/data/pr
 import { useState } from 'react';
 import { AnimatedNumber } from '@/components/ui/number-flow';
 import { productIdToSlugMapping } from '@/utils/productRoutes';
+import { Testimonial } from '@/components/ui/testimonial-card';
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
@@ -335,41 +336,18 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center space-x-4">
-              <Button variant="ghost" size="icon" onClick={prevTestimonial} className="text-gray-400 hover:text-gray-600">
-                <ChevronLeft className="w-6 h-6" />
-              </Button>
-
-              <div className="flex space-x-8 overflow-hidden">
-                {testimonials.map((testimonial, index) => <Card key={testimonial.id} className={`w-80 flex-shrink-0 transition-all duration-300 ${index === currentTestimonial ? 'opacity-100 scale-100' : 'opacity-50 scale-95 hidden md:block'}`}>
-                    <CardContent className="p-6">
-                      <div className="flex items-center space-x-3 mb-4">
-                        <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full" />
-                        <div>
-                          <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                          <p className="text-sm text-gray-500">{testimonial.date}</p>
-                        </div>
-                        <div className="ml-auto">
-                          <Badge variant="secondary" className="bg-blue-500 text-white">
-                            G
-                          </Badge>
-                        </div>
-                      </div>
-                      <div className="flex space-x-1 mb-3">
-                        {[...Array(5)].map((_, i) => <Star key={i} className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />)}
-                        {testimonial.verified && <Badge variant="secondary" className="ml-2 text-xs bg-blue-500 text-white">
-                            ✓
-                          </Badge>}
-                      </div>
-                      <p className="text-gray-700">{testimonial.comment}</p>
-                    </CardContent>
-                  </Card>)}
-              </div>
-
-              <Button variant="ghost" size="icon" onClick={nextTestimonial} className="text-gray-400 hover:text-gray-600">
-                <ChevronRight className="w-6 h-6" />
-              </Button>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((testimonial) => (
+                <Testimonial
+                  key={testimonial.id}
+                  name={testimonial.name}
+                  role={testimonial.date}
+                  testimonial={testimonial.comment}
+                  rating={testimonial.rating}
+                  image={testimonial.name === 'Brenda Lança' ? '/lovable-uploads/brenda-lanca-avatar.jpg' : testimonial.avatar}
+                />
+              ))}
             </div>
           </div>
         </div>
