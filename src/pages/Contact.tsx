@@ -8,6 +8,7 @@ import { FadeText } from '@/components/ui/fade-text';
 import { useToast } from '@/hooks/use-toast';
 import { sanitizeInput, validateEmail, validatePhone, formRateLimiter } from '@/utils/security';
 import MetaTags from '@/components/seo/MetaTags';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -260,7 +261,7 @@ const Contact = () => {
           }} transition={{
             duration: 0.6
           }}>
-              <img src="/lovable-uploads/a5073c76-a239-4d98-b687-9b0c568dd488.png" alt="Atendente Lanza Medical" className="w-full rounded-lg shadow-lg object-fill" />
+              <img src="/lovable-uploads/c84848a0-f642-492d-8f1e-83c1c9da721d.png" alt="Atendente Lanza Medical" className="w-full rounded-lg shadow-lg object-fill" />
               
               {/* Contact notification overlay */}
               <div className="absolute bottom-6 left-6 right-6 bg-white rounded-lg p-4 shadow-lg flex items-center space-x-3">
@@ -356,4 +357,5 @@ const Contact = () => {
     </>
   );
 };
+
 export default Contact;

@@ -86,7 +86,18 @@ const Header = () => {
         {/* Logo */}
         <div className="flex lg:justify-center">
           <Link to="/" className="flex items-center">
-            <img src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" alt="Lanza Medical Logo" className="h-10 lg:h-8 md:h-10 object-contain" />
+            {/* Desktop Logo */}
+            <img 
+              src="/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png" 
+              alt="Lanza Medical Logo" 
+              className="h-10 lg:h-8 hidden md:block object-contain" 
+            />
+            {/* Mobile Logo - Larger */}
+            <img 
+              src="/lovable-uploads/e0760645-0294-4e89-809b-24c69bfbcab3.png" 
+              alt="Lanza Medical Logo" 
+              className="h-14 md:hidden object-contain" 
+            />
           </Link>
         </div>
 

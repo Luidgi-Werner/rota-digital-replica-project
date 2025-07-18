@@ -1,4 +1,3 @@
-
 import { Product, ProductCategory, Testimonial, Statistic } from '@/types/product';
 
 export const productCategories: ProductCategory[] = [
@@ -47,7 +46,7 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 25000,
     images: [
-      '/lovable-uploads/c73b8d52-b960-4afe-8525-b4196b9f87e3.png'
+      '/lovable-uploads/f5503545-5d14-4db9-be6d-11762892c609.png'
     ],
     description: 'A Mesa Ginecológica RT2000 foi desenvolvida para oferecer máxima eficiência em exames ginecológicos, obstétricos, procedimentos clínicos diversos e pequenas cirurgias. Seu design moderno e funcional proporciona conforto tanto ao paciente quanto ao profissional, sendo indicada também para exames de ultrassonografia, procedimentos estéticos, vasculares, entre outros. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto e perneira – por meio de pedal de controle ou controle manual multifuncional com até 8 comandos, incluindo função de volta à posição inicial (zero) e memorização de posição de trabalho.',
     specifications: {
@@ -90,7 +89,7 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 28000,
     images: [
-      '/lovable-uploads/8563aa6d-44e5-4412-b8ab-28b3f4cd3c23.png'
+      '/lovable-uploads/29f819b1-927a-4da8-82ca-2d4d0000bee6.png'
     ],
     description: 'A Mesa Ginecológica RT2500 foi projetada para atender com excelência a uma ampla gama de procedimentos clínicos e exames, como ginecológicos, obstétricos, coleta de materiais, exames de ultrassonografia, procedimentos vasculares e estéticos. Sua estrutura slim é ideal para consultórios com espaço reduzido, proporcionando otimização do ambiente sem abrir mão da funcionalidade e do conforto. Com design ergonômico e recursos de automação de última geração, este modelo oferece mobilidade e adaptação ideal às necessidades dos consultórios modernos.',
     specifications: {
@@ -133,7 +132,7 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 45000,
     images: [
-      '/lovable-uploads/da6a0b7b-3121-496f-81dc-01fd692ab4f3.png'
+      '/lovable-uploads/7e2e29ea-31eb-4f6e-886c-e170bc54aa73.png'
     ],
     description: 'A Mesa Ginecológica RT4000 foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, destacando-se como a opção ideal para histeroscopia, ultrassonografia, exames ginecológicos e obstétricos e outros procedimentos especializados. Sua estrutura robusta e motorização completa garantem segurança, durabilidade e conforto tanto para o paciente quanto para o profissional de saúde. Com diferenciais voltados para especialidades que exigem precisão, a RT4000 oferece soluções práticas e modernas para clínicas e consultórios de alto padrão.',
     specifications: {
@@ -179,7 +178,7 @@ export const products: Product[] = [
     category: 'clinica',
     price: 35000,
     images: [
-      '/lovable-uploads/13d4bfbc-8d09-4af6-a0f7-ba689f417f66.png'
+      '/lovable-uploads/73877fb7-81d8-4048-8c83-5f0f879d9d48.png'
     ],
     description: 'A Mesa Clínica Elétrica com Trendlemburg RT3000 foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, como exames de ultrassonografia, procedimentos plásticos, implantes capilares, procedimentos vasculares e outros pequenos procedimentos clínicos. Sua estrutura robusta e motorização completa garantem segurança, durabilidade e conforto tanto para o paciente quanto para o profissional de saúde. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto, perneira e inclinação do assento (posição Trendlemburg com ângulo de até 17°).',
     specifications: {
@@ -221,7 +220,7 @@ export const products: Product[] = [
     category: 'clinica',
     price: 32000,
     images: [
-      '/lovable-uploads/9d1ad79b-6ffc-4d9a-920a-3e9749f87652.png'
+      '/lovable-uploads/dd8d7fa0-4dbc-48e6-b549-918a4e4cba35.png'
     ],
     description: 'A Mesa Clínica RT5000 foi projetada para atender uma ampla gama de especialidades, oferecendo máxima funcionalidade e conforto em procedimentos de dermatologia, estética, ultrassonografia, acupuntura, massagens, tatuagens, piercings e demais aplicações clínicas. Seu design moderno, aliado à automação completa, proporciona agilidade para o profissional e bem-estar ao paciente. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto e perneira.',
     specifications: {
@@ -261,7 +260,7 @@ export const products: Product[] = [
     category: 'estetica',
     price: 34000,
     images: [
-      '/lovable-uploads/a529f6ab-6e17-46f5-bf2c-d4aa61e28ab4.png'
+      '/lovable-uploads/fb06bc76-a43e-4153-a79c-37cebf32a385.png'
     ],
     description: 'A Mesa Clínica RT5000 Estetic foi desenvolvida para proporcionar máxima eficiência em procedimentos estéticos, orofaciais, de pigmentação e diversas intervenções clínicas. Com design moderno e robusto, alia ergonomia, conforto e praticidade para o profissional e o paciente, adaptando-se com excelência às exigências de especialidades como dermatologia, estética, ultrassonografia, massagens, acupuntura, tatuagens e muito mais. Seu sistema motorizado completo, aliado a um estofamento duplo conforto e apoio de pés prolongado e retrátil, garante mobilidade ideal e adaptação anatômica para múltiplas posições de trabalho.',
     specifications: {
@@ -303,7 +302,7 @@ export const products: Product[] = [
     category: 'transplante',
     price: 36000,
     images: [
-      '/lovable-uploads/3eab1691-9376-41e0-a5c4-c84d4fc34a77.png'
+      '/lovable-uploads/f6739cfd-04ec-4d50-b838-56be7f65dafe.png'
     ],
     description: 'A Mesa Clínica RT5000 E-IC foi desenvolvida especialmente para atender às necessidades dos mais exigentes procedimentos de transplante capilar. A RT5000 E-IC une design ergonômico, motorização avançada e acabamento premium. Ideal para clínicas e centros médicos que buscam aliar tecnologia, conforto e segurança em um único equipamento. Seu sistema de motorização com três moto-redutores garante movimentos suaves e silenciosos, proporcionando ajustes precisos para o posicionamento ideal do paciente e conforto prolongado durante longos procedimentos.',
     specifications: {
@@ -345,7 +344,7 @@ export const products: Product[] = [
     category: 'dermatologia',
     price: 29000,
     images: [
-      '/lovable-uploads/a57c7023-3b1c-4c88-962a-057079895abe.png'
+      '/lovable-uploads/6743cecb-6a4a-4060-b0fb-e2e497aaaa61.png'
     ],
     description: 'A Mesa Clínica RT2500 ES foi projetada para atender com excelência as exigências dos profissionais da saúde e estética, especialmente em dermatologia, medicina estética e procedimentos clínicos diversos. Com design compacto, motorização de alto desempenho e acabamento ergonômico, proporciona conforto ao paciente e praticidade ao profissional. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto e perneira.',
     specifications: {
