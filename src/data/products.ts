@@ -377,6 +377,35 @@ export const products: Product[] = [
     featured: true,
     inStock: true,
     model: 'RT2500'
+  },
+  {
+    id: '9',
+    name: 'Mesa Clínica RT5500',
+    category: 'clinica',
+    price: 35000,
+    images: [
+      '/lovable-uploads/f200d119-9b30-4df2-8ce6-522ac2a42293.png'
+    ],
+    description: 'A Mesa Clínica RT5500 representa o estado da arte em equipamentos médicos, projetada para atender os mais altos padrões de qualidade e funcionalidade. Com design moderno e recursos avançados, é ideal para procedimentos clínicos diversos, dermatologia, estética e especialidades que exigem máxima precisão e conforto.',
+    specifications: {
+      'Modelo': 'RT5500',
+      'Categoria': 'Clínica - Premium',
+      'Automação Completa': 'Sistema totalmente motorizado com múltiplos ajustes',
+      'Voltagem Inteligente': '110V/220V automático',
+      'Sistema de comando': 'Controle remoto multifuncional',
+      'Altura Regulável': 'de 0,60 m a 1,10 m',
+      'Largura útil': '0,65 m',
+      'Comprimento Total': '1,85 m',
+      'Peso suportado': 'até 300 kg',
+      'Peso Líquido': '135 kg',
+      'Peso Bruto (embalada)': '145 kg',
+      'Dimensões da Embalagem (paletizada)': '1,50 m (C) x 0,85 m (L) x 0,95 m (A)',
+      'Código INMETRO': '19.06015',
+      'Registro ANVISA/MS': '81890340006'
+    },
+    featured: true,
+    inStock: true,
+    model: 'RT5500'
   }
 ];
 

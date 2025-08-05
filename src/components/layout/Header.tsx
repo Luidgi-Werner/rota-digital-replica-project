@@ -96,7 +96,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/2306f352-c1d4-4ff7-ac19-523c563bfd91.png" 
               alt="Lanza Medical Logo" 
-              className="h-16 md:hidden object-contain" 
+              className="h-12 md:hidden object-contain" 
             />
           </Link>
         </div>

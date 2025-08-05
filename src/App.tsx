@@ -41,6 +41,7 @@ const App = () => (
               <Route path="/produto/mesa-clinica-rt5000-estetic" element={<ProductDetail />} />
               <Route path="/produto/mesa-clinica-rt5000-e-ic" element={<ProductDetail />} />
               <Route path="/produto/mesa-clinica-rt2500-es" element={<ProductDetail />} />
+              <Route path="/produto/mesa-clinica-rt5500" element={<ProductDetail />} />
               
               {/* Generic fallback route for products */}
               <Route path="/produto/:id" element={<ProductDetail />} />

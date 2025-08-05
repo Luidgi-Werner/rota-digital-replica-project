@@ -264,7 +264,7 @@ const ProductDetail = () => {
             
           </div>
           
-          <div className="space-y-16">
+          <div className="space-y-12">
             {Object.entries(groupedSpecs).map(([category, keys], categoryIndex) => {
               const categorySpecs = keys.reduce((acc, key) => {
                 if (product.specifications[key]) {
@@ -284,20 +284,20 @@ const ProductDetail = () => {
               }} transition={{
                 duration: 0.4,
                 delay: categoryIndex * 0.1
-              }} className="bg-white rounded-2xl shadow-xl border-2 border-[#003250]/10 overflow-hidden">
-                  <div className="bg-[#003250] text-white p-8">
-                    <div className="flex items-center space-x-4">
+              }} className="bg-white rounded-xl shadow-lg border border-[#003250]/10 overflow-hidden">
+                  <div className="bg-[#003250] text-white p-6">
+                    <div className="flex items-center space-x-3">
                       <div className="text-white">
                         {getIconForCategory(category)}
                       </div>
-                      <h3 className="text-2xl font-semibold">
+                      <h3 className="text-xl font-semibold">
                         {category}
                       </h3>
                     </div>
                   </div>
                   
-                  <div className="p-8">
-                    <div className="grid md:grid-cols-2 gap-8">
+                  <div className="p-6">
+                    <div className="grid md:grid-cols-2 gap-6">
                       {Object.entries(categorySpecs).map(([key, value], index) => <motion.div key={key} initial={{
                       opacity: 0,
                       x: -10
@@ -309,11 +309,11 @@ const ProductDetail = () => {
                     }} transition={{
                       duration: 0.3,
                       delay: categoryIndex * 0.1 + index * 0.05
-                    }} className="border-l-4 border-[#003250] pl-6 py-3">
-                          <dt className="font-semibold text-[#003250] text-base uppercase tracking-wide mb-2">
+                    }} className="border-l-4 border-[#003250] pl-4 py-2">
+                          <dt className="font-semibold text-[#003250] text-sm uppercase tracking-wide mb-1">
                             {key}
                           </dt>
-                          <dd className="text-gray-700 text-base leading-relaxed">
+                          <dd className="text-gray-700 text-sm leading-relaxed">
                             {value}
                           </dd>
                         </motion.div>)}

@@ -12,7 +12,8 @@ export const productIdToSlugMapping: Record<string, string> = {
   '5': 'mesa-clinica-rt5000',
   '6': 'mesa-clinica-rt5000-estetic',
   '7': 'mesa-clinica-rt5000-e-ic',
-  '8': 'mesa-clinica-rt2500-es'
+  '8': 'mesa-clinica-rt2500-es',
+  '9': 'mesa-clinica-rt5500'
 };
 
 // Reverse mapping from URL slugs to product IDs
@@ -24,7 +25,8 @@ export const urlToProductMapping: Record<string, string> = {
   'mesa-clinica-rt5000': '5',
   'mesa-clinica-rt5000-estetic': '6',
   'mesa-clinica-rt5000-e-ic': '7',
-  'mesa-clinica-rt2500-es': '8'
+  'mesa-clinica-rt2500-es': '8',
+  'mesa-clinica-rt5500': '9'
 };
 
 /**

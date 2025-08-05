@@ -46,8 +46,8 @@ const About = () => {
               className="relative order-2 lg:order-1"
             >
               <img 
-                src="/lovable-uploads/6a0503d3-8eac-4752-bd9f-7b40558d7375.png" 
-                alt="Equipe Lanza Medical" 
+                src="/lovable-uploads/e616c2e1-cf16-45d2-b9c5-a3716fd6eaee.png" 
+                alt="Fábrica Lanza Medical"
                 className="w-full rounded-lg shadow-lg"
               />
             </motion.div>

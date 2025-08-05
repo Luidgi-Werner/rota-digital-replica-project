@@ -91,7 +91,13 @@ const Home = () => {
                   Mesas e cadeiras médicas personalizadas, certificadas pela ANVISA e Inmetro. 
                   Mais conforto, segurança e autoridade para você e seu paciente.
                 </p>
-                <Button className="bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-8 py-3 text-lg font-semibold">
+                <Button 
+                  className="bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-8 py-3 text-lg font-semibold"
+                  onClick={() => {
+                    const element = document.querySelector('#hero-form');
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
                   Saiba mais agora
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
@@ -99,7 +105,7 @@ const Home = () => {
             </div>
 
             {/* Right Content - Contact Form */}
-            <div className="bg-cyan-500 rounded-2xl p-8 shadow-2xl">
+            <div id="hero-form" className="bg-cyan-500 rounded-2xl p-8 shadow-2xl">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold text-white mb-2">
                   Ganhe o bordado da sua marca na sua mesa,
@@ -203,8 +209,10 @@ const Home = () => {
                   Todos os nossos produtos são desenvolvidos e 
                   fabricados seguindo rigorosos padrões técnicos.
                 </p>
-                <Button className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-6 py-3">
-                  Solicitar meu orçamento
+                <Button asChild className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-6 py-3">
+                  <Link to="/contato">
+                    Solicitar meu orçamento
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -269,8 +277,10 @@ const Home = () => {
                 </div>
                 
                 <div>
-                  <Button className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-8 py-3 font-semibold">
-                    Conheça nossa história
+                  <Button asChild className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-8 py-3 font-semibold">
+                    <Link to="/sobre">
+                      Conheça nossa história
+                    </Link>
                   </Button>
                 </div>
               </div>
