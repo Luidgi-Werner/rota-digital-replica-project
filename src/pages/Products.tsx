@@ -30,8 +30,7 @@ const Products = () => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || 
-                         product.category === selectedCategory ||
-                         selectedCategory === product.category;
+                         product.category === selectedCategory;
     
     return matchesSearch && matchesCategory;
   });
@@ -88,10 +87,10 @@ const Products = () => {
             {productCategories.map((category) => (
               <Button
                 key={category.id}
-                variant={selectedCategory === category.name ? 'default' : 'outline'}
-                onClick={() => setSelectedCategory(category.name)}
+                variant={selectedCategory === category.slug ? 'default' : 'outline'}
+                onClick={() => setSelectedCategory(category.slug)}
                 size="sm"
-                className={selectedCategory === category.name ? 'bg-[#003250] hover:bg-[#003250]/90' : ''}
+                className={selectedCategory === category.slug ? 'bg-[#003250] hover:bg-[#003250]/90' : ''}
               >
                 {category.name}
               </Button>

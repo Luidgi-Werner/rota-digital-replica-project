@@ -95,7 +95,7 @@ const ProductDetail = () => {
             <div>
               <FadeText className="text-3xl font-bold text-[#003250] mb-4" direction="up" text={`${product.name} ®`} />
               <div className="border-l-4 border-[#003250] pl-4 mb-6 my-[24px] py-0">
-                <p className="text-gray-700 text-lg leading-relaxed">
+                <p className="text-gray-700 text-lg leading-relaxed text-justify">
                   {product.description}
                 </p>
               </div>
@@ -157,7 +157,7 @@ const ProductDetail = () => {
                   {highlight.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-[#003250] mb-3">{highlight.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{highlight.description}</p>
+                <p className="text-gray-600 leading-relaxed text-justify">{highlight.description}</p>
               </motion.div>)}
           </div>
         </motion.div>
@@ -234,7 +234,7 @@ const ProductDetail = () => {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-[#003250] mb-2">{feature.title}</h3>
-                    <p className="text-gray-600 leading-relaxed mb-3">{feature.description}</p>
+                    <p className="text-gray-600 leading-relaxed mb-3 text-justify">{feature.description}</p>
                     {feature.benefits && <ul className="space-y-1">
                         {feature.benefits.map((benefit, benefitIndex) => <li key={benefitIndex} className="flex items-center text-sm text-gray-500">
                             <Check className="w-4 h-4 text-[#003250] mr-2 flex-shrink-0" />
@@ -356,7 +356,7 @@ const ProductDetail = () => {
                   Chave Geral Bipolar
                 </h3>
                 <div className="h-px bg-cyan-400 w-12 mb-3"></div>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed text-justify">
                   Permite o desligamento total do sistema, prevenindo riscos em caso de falhas elétricas.
                 </p>
               </div>
@@ -379,7 +379,7 @@ const ProductDetail = () => {
                   Fusível Externo de Proteção
                 </h3>
                 <div className="h-px bg-cyan-400 w-12 mb-3"></div>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm leading-relaxed text-justify">
                   Aumenta a segurança dos componentes eletrônicos.
                 </p>
               </div>

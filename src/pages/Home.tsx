@@ -135,7 +135,7 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 w-full max-w-sm lg:max-w-none">
               {productCategories.map(category => <Link 
                 key={category.id} 
-                to={`/produtos?category=${encodeURIComponent(category.name)}`} 
+                to={`/produtos?category=${encodeURIComponent(category.slug)}`} 
                 className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow"
               >
                   <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
@@ -264,7 +264,7 @@ const Home = () => {
               {/* Right Column - Content */}
               <div className="space-y-8">
                 <div className="text-lg leading-relaxed text-gray-300">
-                  <p className="mb-6">
+                  <p className="mb-6 text-justify">
                     Com mais de{' '}
                     <span className="font-bold">+7 anos</span>{' '}
                     no mercado e{' '}
@@ -273,7 +273,7 @@ const Home = () => {
                     <span className="text-white font-semibold">Lanza Medical</span>{' '}
                     desenvolve e fabrica mesas e cadeiras médicas que unem design, segurança, ergonomia e qualidade.
                   </p>
-                  <p>
+                  <p className="text-justify">
                     Nossos produtos são{' '}
                     <span className="font-bold">100%</span>{' '}
                     certificados pela{' '}
