@@ -314,7 +314,7 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            <motion.div className="flex items-center space-x-4" variants={{
+            <motion.div className="flex items-center space-x-4 cursor-pointer hover:opacity-80 transition-opacity" variants={{
             hidden: {
               opacity: 0,
               y: 20
@@ -323,7 +323,7 @@ const Contact = () => {
               opacity: 1,
               y: 0
             }
-          }}>
+          }} onClick={() => window.open('https://wa.me/5516994472195', '_blank')}>
               <div className="bg-[#003250] rounded-full p-3">
                 <Phone className="w-6 h-6 text-white" />
               </div>
@@ -333,7 +333,7 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            <motion.div className="flex items-center space-x-4" variants={{
+            <motion.div className="flex items-center space-x-4 cursor-pointer hover:opacity-80 transition-opacity" variants={{
             hidden: {
               opacity: 0,
               y: 20
@@ -342,7 +342,7 @@ const Contact = () => {
               opacity: 1,
               y: 0
             }
-          }}>
+          }} onClick={() => window.open('mailto:vendas@lanzamedical.com.br', '_blank')}>
               <div className="bg-[#003250] rounded-full p-3">
                 <Mail className="w-6 h-6 text-white" />
               </div>

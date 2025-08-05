@@ -46,8 +46,8 @@ const About = () => {
               className="relative order-2 lg:order-1"
             >
               <img 
-                src="/lovable-uploads/e616c2e1-cf16-45d2-b9c5-a3716fd6eaee.png" 
-                alt="Fábrica Lanza Medical"
+                src="/lovable-uploads/7fabe9c3-7361-441b-9b3a-7c95857425af.png" 
+                alt="Equipe Lanza Medical"
                 className="w-full rounded-lg shadow-lg"
               />
             </motion.div>
@@ -68,7 +68,7 @@ const About = () => {
               />
               <FadeText 
                 text="A LANZA MEDICAL está sediada em Ribeirão Preto, cidade reconhecida por abrigar o maior polo de empresas do setor de saúde no Brasil. Fundada com o propósito de oferecer ao mercado produtos médicos de alta qualidade a um preço justo, a empresa nasceu da visão e da ampla experiência de seu fundador, que dedicou mais de 45 anos à atuação em algumas das maiores e mais respeitadas empresas dos setores Médico e Odontológico, sempre com foco em projetos, engenharia e desenvolvimento de produtos."
-                className="text-base md:text-lg leading-relaxed"
+                className="text-base md:text-lg leading-relaxed text-justify"
               />
             </motion.div>
           </div>
@@ -183,8 +183,8 @@ const About = () => {
               className="relative order-1 lg:order-2"
             >
               <img 
-                src="/lovable-uploads/f200d119-9b30-4df2-8ce6-522ac2a42293.png" 
-                alt="Equipe completa Lanza Medical" 
+                src="/lovable-uploads/0c789429-586c-4a98-96c7-94fbd83dc8d0.png" 
+                alt="Produção Lanza Medical" 
                 className="w-full rounded-lg shadow-lg"
               />
             </motion.div>

@@ -113,8 +113,8 @@ const Products = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
-              <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#003250]/20">
-                <CardContent className="p-0">
+              <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#003250]/20 h-full flex flex-col">
+                <CardContent className="p-0 flex-1 flex flex-col">
                   <div className="aspect-video overflow-hidden rounded-t-lg relative">
                     <img
                       src={product.images[0]}
@@ -127,7 +127,7 @@ const Products = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 flex-1 flex flex-col">
                     <div className="mb-3 flex items-center justify-between">
                       <span className="inline-flex items-center px-3 py-1 bg-[#003250]/10 text-[#003250] text-xs rounded-full capitalize font-medium">
                         <Award className="w-3 h-3 mr-1" />
@@ -141,7 +141,7 @@ const Products = () => {
                       )}
                     </div>
                     
-                    <div className="border-l-4 border-[#003250]/20 pl-4 mb-4">
+                    <div className="border-l-4 border-[#003250]/20 pl-4 mb-4 flex-1">
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">
                         {product.name}
                       </h3>
@@ -150,7 +150,7 @@ const Products = () => {
                       </p>
                     </div>
                     
-                    <div className="pt-4 border-t border-gray-100">
+                    <div className="pt-4 border-t border-gray-100 mt-auto">
                       <Button asChild className="w-full bg-[#003250] hover:bg-[#003250]/90">
                         <Link to={getProductUrl(product.id)}>
                           <span>Ver Detalhes</span>
