@@ -66,12 +66,11 @@ const Header = () => {
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="!w-[320px] p-4">
                         <div className="flex flex-col text-sm gap-2">
-                          {item.items?.map(subItem => 
-                            <Link key={subItem.title} to={subItem.href} className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded w-full">
-                              <span>{subItem.title}</span>
-                              <MoveRight className="w-4 h-4 text-muted-foreground" />
-                            </Link>
-                          )}
+                           {item.items?.map(subItem => 
+                             <Link key={subItem.title} to={subItem.href} className="flex flex-row justify-start items-center hover:bg-muted py-2 px-4 rounded w-full">
+                               <span>{subItem.title}</span>
+                             </Link>
+                           )}
                           <Button size="sm" className="mt-4 w-full" asChild>
                             <Link to="/contato">Fale Conosco</Link>
                           </Button>
@@ -96,7 +95,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/2306f352-c1d4-4ff7-ac19-523c563bfd91.png" 
               alt="Lanza Medical Logo" 
-              className="h-12 md:hidden object-contain" 
+              className="h-14 md:hidden object-contain" 
             />
           </Link>
         </div>

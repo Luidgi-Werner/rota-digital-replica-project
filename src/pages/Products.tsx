@@ -1,6 +1,6 @@
 
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -13,11 +13,25 @@ import { getProductUrl } from '@/utils/productRoutes';
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    // Get category from URL params on page load
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+    
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, [searchParams]);
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+    const matchesCategory = selectedCategory === 'all' || 
+                         product.category === selectedCategory ||
+                         selectedCategory === product.category;
     
     return matchesSearch && matchesCategory;
   });
@@ -74,10 +88,10 @@ const Products = () => {
             {productCategories.map((category) => (
               <Button
                 key={category.id}
-                variant={selectedCategory === category.slug ? 'default' : 'outline'}
-                onClick={() => setSelectedCategory(category.slug)}
+                variant={selectedCategory === category.name ? 'default' : 'outline'}
+                onClick={() => setSelectedCategory(category.name)}
                 size="sm"
-                className={selectedCategory === category.slug ? 'bg-[#003250] hover:bg-[#003250]/90' : ''}
+                className={selectedCategory === category.name ? 'bg-[#003250] hover:bg-[#003250]/90' : ''}
               >
                 {category.name}
               </Button>

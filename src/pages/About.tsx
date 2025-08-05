@@ -166,11 +166,11 @@ const About = () => {
             >
               <FadeText 
                 text="Fundada em 2018, a Lanza Medical iniciou suas atividades desenvolvendo e fabricando produtos médicos, introduzindo no mercado equipamentos de alta qualidade, design inovador e segurança. Após anos de dedicação e estudos, em 2024 a empresa reformulou seus conceitos, modernizou processos e iniciou o registro de sua linha de produtos odontológicos."
-                className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base"
+                className="text-gray-700 mb-6 leading-relaxed text-sm md:text-base text-justify"
               />
               <FadeText 
                 text="Produtos diferenciados, testados e aprovados por profissionais de alta competência, refletem a busca incessante da Lanza Medical pela excelência em todas as suas ações. Desde a sua fundação, a empresa opera de acordo com os mais altos padrões de qualidade e segurança, mantendo certificações essenciais, como o registro na ANVISA e o selo do INMETRO, que garantem aos nossos clientes confiança, segurança e conformidade com as normas nacionais."
-                className="text-gray-700 leading-relaxed text-sm md:text-base"
+                className="text-gray-700 leading-relaxed text-sm md:text-base text-justify"
               />
             </motion.div>
             
@@ -183,7 +183,7 @@ const About = () => {
               className="relative order-1 lg:order-2"
             >
               <img 
-                src="/lovable-uploads/4d08fe92-445d-4559-b206-2dada47f7c5e.png" 
+                src="/lovable-uploads/f200d119-9b30-4df2-8ce6-522ac2a42293.png" 
                 alt="Equipe completa Lanza Medical" 
                 className="w-full rounded-lg shadow-lg"
               />
@@ -221,7 +221,7 @@ const About = () => {
               </div>
               <FadeText 
                 text="Desenvolver e oferecer produtos médicos e odontológicos de alta qualidade e segurança, promovendo a saúde e o bem-estar. Priorizamos a melhoria contínua e a inovação dos produtos e processos, sempre com o compromisso com a excelência e a satisfação de nossos clientes e parceiros."
-                className="text-gray-700 leading-relaxed text-sm md:text-base"
+                className="text-gray-700 leading-relaxed text-sm md:text-base text-justify"
               />
             </motion.div>
 
@@ -244,7 +244,7 @@ const About = () => {
               </div>
               <FadeText 
                 text="Ser referência na fabricação de produtos médicos e odontológicos de alta qualidade, inovadores e acessíveis, dentro das melhores práticas de fabricação e construindo um futuro sólido com base na ética, na segurança e na valorização das pessoas."
-                className="text-gray-700 leading-relaxed text-sm md:text-base"
+                className="text-gray-700 leading-relaxed text-sm md:text-base text-justify"
               />
             </motion.div>
           </div>

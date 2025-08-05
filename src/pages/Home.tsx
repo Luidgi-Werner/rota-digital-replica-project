@@ -93,13 +93,12 @@ const Home = () => {
                 </p>
                 <Button 
                   className="bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-8 py-3 text-lg font-semibold"
-                  onClick={() => {
-                    const element = document.querySelector('#hero-form');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                  asChild
                 >
-                  Saiba mais agora
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <Link to="/contato">
+                    Saiba mais agora
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -134,7 +133,11 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 w-full max-w-sm lg:max-w-none">
-              {productCategories.map(category => <Link key={category.id} to={`/produtos/${category.slug}`} className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow">
+              {productCategories.map(category => <Link 
+                key={category.id} 
+                to={`/produtos?category=${encodeURIComponent(category.name)}`} 
+                className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow"
+              >
                   <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
                     <Check className="w-3 h-3 text-white" />
                   </div>
@@ -177,9 +180,11 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <Button className="mt-6 bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-3">
-                  Fale agora com a Lanza
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                <Button className="mt-6 bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-3" asChild>
+                  <Link to="/contato">
+                    Fale agora com a Lanza
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
