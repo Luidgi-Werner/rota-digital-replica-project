@@ -91,11 +91,14 @@ const ProductDetail = () => {
               <div className="absolute -top-4 -right-4 bg-[#003250] text-white p-3 rounded-full z-10">
                 <Star className="w-6 h-6" />
               </div>
-              <ImageEditor 
-                currentImage={currentImage || product.images[0]} 
-                onImageChange={handleImageChange}
-                productName={product.name}
-              />
+              {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
+              {import.meta.env.DEV && (
+                <ImageEditor 
+                  currentImage={currentImage || product.images[0]} 
+                  onImageChange={handleImageChange}
+                  productName={product.name}
+                />
+              )}
               <img 
                 src={currentImage || product.images[0]} 
                 alt={product.name} 
