@@ -42,13 +42,13 @@ const cleanupImageStorage = () => {
 let debounceTimer: NodeJS.Timeout;
 
 export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImageProps) => {
-  // Memoize initial image calculation
-  const getInitialImage = useMemo(() => {
+  // Simple initial image calculation - no memoization here to avoid React issues
+  const getInitialImage = () => {
     const stored = getStoredImage(imageKey);
     if (stored) return stored;
     if (sessionImageStorage[imageKey]) return sessionImageStorage[imageKey];
     return defaultImage;
-  }, [imageKey, defaultImage]);
+  };
 
   const [currentImage, setCurrentImage] = useState(getInitialImage);
 
@@ -97,9 +97,9 @@ export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImagePro
     }, 300);
   }, [imageKey]);
 
-  // Memoize return object to prevent unnecessary re-renders
-  return useMemo(() => ({
+  // Simple return object - no memoization to avoid React issues
+  return {
     currentImage,
     handleImageChange,
-  }), [currentImage, handleImageChange]);
+  };
 };
