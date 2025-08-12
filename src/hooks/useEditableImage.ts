@@ -45,12 +45,10 @@ export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImagePro
   // Simple initial image calculation - no memoization here to avoid React issues
   const getInitialImage = () => {
     const stored = getStoredImage(imageKey);
-    if (stored) return stored;
-    if (sessionImageStorage[imageKey]) return sessionImageStorage[imageKey];
-    return defaultImage;
+    return stored || defaultImage;
   };
 
-  const [currentImage, setCurrentImage] = useState(getInitialImage);
+  const [currentImage, setCurrentImage] = useState(() => getInitialImage());
 
   // Update image when key or default changes
   useEffect(() => {
