@@ -109,7 +109,7 @@ const Gallery6 = ({
               // Hook para cada imagem do gallery
               const { currentImage, handleImageChange } = useEditableImage({
                 defaultImage: item.image,
-                imageKey: `gallery-${item.id}`
+                imageKey: `product-${item.id}-carousel`
               });
               
               return (

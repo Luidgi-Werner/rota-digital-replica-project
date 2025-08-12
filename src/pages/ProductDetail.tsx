@@ -9,10 +9,9 @@ import { FadeText } from '@/components/ui/fade-text';
 import { urlToProductMapping } from '@/utils/productRoutes';
 import MetaTags from '@/components/seo/MetaTags';
 import ImageEditor from '@/components/admin/ImageEditor';
-import { useState, useEffect } from 'react';
+import { useEditableImage } from '@/hooks/useEditableImage';
 const ProductDetail = () => {
   const location = useLocation();
-  const [currentImage, setCurrentImage] = useState('');
 
   // Extract slug from pathname
   const slug = location.pathname.replace('/produto/', '');
@@ -21,21 +20,16 @@ const ProductDetail = () => {
   const productId = urlToProductMapping[slug] || '1';
   const product = products.find(p => p.id === productId) || products[0];
 
-  // Initialize current image from product data
-  useEffect(() => {
-    if (product.images && product.images.length > 0) {
-      setCurrentImage(product.images[1] || product.images[0]); // Use second image for product page
-    }
-  }, [product]);
+  // Use synchronized image editing hook
+  const { currentImage, handleImageChange } = useEditableImage({
+    defaultImage: product.images[1] || product.images[0], // Use second image for product page
+    imageKey: `product-${productId}-detail`
+  });
 
   // Product-specific content and features
   const productFeatures = getProductSpecificFeatures(productId);
   const productHighlights = getProductHighlights(productId);
   const productApplications = getProductApplications(productId);
-
-  const handleImageChange = (newImageUrl: string) => {
-    setCurrentImage(newImageUrl);
-  };
 
   // Group specifications by category for better organization
   const groupedSpecs = {
@@ -94,15 +88,15 @@ const ProductDetail = () => {
               {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
               {import.meta.env.DEV && (
                 <ImageEditor 
-                  currentImage={currentImage || product.images[0]} 
+                  currentImage={currentImage} 
                   onImageChange={handleImageChange}
                   productName={product.name}
                 />
               )}
               <img 
-                src={currentImage || product.images[0]} 
+                src={currentImage} 
                 alt={product.name} 
-                className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white" 
+                className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white"
               />
             </div>
           </motion.div>
