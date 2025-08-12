@@ -47,13 +47,14 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 25000,
     images: [
-      '/lovable-uploads/6a4c2d3d-6267-4ff8-b4f0-16f77cba4443.png'
+      '/lovable-uploads/f449291c-88f1-4501-bc08-6a9f30f98c36.png',
+      '/lovable-uploads/040a0aad-2fb9-46d7-bc48-de8adaa2d212.png'
     ],
-    description: 'A Mesa Ginecológica RT2000 foi desenvolvida para oferecer máxima eficiência em exames ginecológicos, obstétricos, procedimentos clínicos diversos e pequenas cirurgias. Seu design moderno e funcional proporciona conforto tanto ao paciente quanto ao profissional, sendo indicada também para exames de ultrassonografia, procedimentos estéticos, vasculares, entre outros. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto e perneira – por meio de pedal de controle ou controle manual multifuncional com até 8 comandos, incluindo função de volta à posição inicial (zero) e memorização de posição de trabalho.',
+    description: 'A Mesa Ginecológica RT2000 foi desenvolvida para oferecer máxima eficiência em exames ginecológicos, obstétricos, procedimentos clínicos diversos e pequenas cirurgias. Seu design moderno e funcional proporciona conforto tanto ao paciente quanto ao profissional, sendo indicada também para exames de ultrassonografia, procedimentos estéticos, vasculares, entre outros. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação do encosto, assento e perneira – por meio de pedal de controle ou controle manual multifuncional com até 8 comandos, incluindo função de volta à posição inicial (zero) e memorização de posição de trabalho.',
     specifications: {
       'Modelo': 'RT2000',
       'Categoria': 'Ginecológica - Versatilidade, Conforto e Alta Performance',
-      'Automação Completa': 'Elevação, inclinação do encosto e movimentação da perneira com acionamento elétrico',
+      'Automação Completa': 'Elevação do encosto, assento e perneira totalmente motorizados',
       'Voltagem Inteligente': 'Placa eletrônica com comutação automática entre 127V e 220V',
       'Sistema de comando': 'Opcional entre controle por pedal com 8 funções (posição memorizável de trabalho, retorno automático à posição zero e acionadores removíveis para assepsia) ou comando manual',
       'Sistema de Retorno à Posição Inicial': 'Praticidade no reposicionamento com um único comando',
