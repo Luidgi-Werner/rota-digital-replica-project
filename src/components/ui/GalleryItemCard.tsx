@@ -31,6 +31,11 @@ const GalleryItemCard = React.memo(({ item }: GalleryItemCardProps) => {
           <div className="flex aspect-[3/2] overflow-clip relative">
             <div className="flex-1">
               <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
+                <img
+                  src={currentImage}
+                  alt={item.title}
+                  className="h-full w-full object-cover object-center"
+                />
                 {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
                 {import.meta.env.DEV && (
                   <ImageEditor 
@@ -39,11 +44,6 @@ const GalleryItemCard = React.memo(({ item }: GalleryItemCardProps) => {
                     productName={`${item.title} - Gallery`}
                   />
                 )}
-                <img
-                  src={currentImage}
-                  alt={item.title}
-                  className="h-full w-full object-cover object-center"
-                />
               </div>
             </div>
           </div>
