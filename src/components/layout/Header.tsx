@@ -39,6 +39,9 @@ const Header = () => {
     }, {
       title: "Mesa Clínica RT2500 ES",
       href: "/produto/mesa-clinica-rt2500-es"
+    }, {
+      title: "Mesa Clínica RT5500",
+      href: "/produto/mesa-clinica-rt5500"
     }]
   }, {
     title: "Sobre nós",

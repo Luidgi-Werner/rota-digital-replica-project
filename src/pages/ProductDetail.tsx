@@ -73,11 +73,11 @@ const ProductDetail = () => {
             duration: 0.6,
             delay: 0.2
           }}>
-            <div className="max-w-md w-full relative">
+            <div className="max-w-lg w-full relative">
               <div className="absolute -top-4 -right-4 bg-[#003250] text-white p-3 rounded-full z-10">
                 <Star className="w-6 h-6" />
               </div>
-              <img src={product.images[0]} alt={product.name} className="w-full h-auto rounded-lg shadow-lg" />
+              <img src={product.images[0]} alt={product.name} className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white" />
             </div>
           </motion.div>
 
