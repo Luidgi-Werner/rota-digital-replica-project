@@ -386,7 +386,7 @@ export const products: Product[] = [
     images: [
       '/lovable-uploads/6d50fbf1-07fc-471a-b7e1-68da52f4583c.png'
     ],
-    description: 'A Mesa Clínica RT5500 foi especialmente desenvolvida para proporcionar acessibilidade e conforto, sendo ideal para diversas especialidades como dermatologia, estética, ultrassonografia, massagens, acupuntura, tatuagens, piercings e procedimentos clínicos em geral. Seu grande diferencial está na altura mínima ultrabaixa de apenas 58 cm, permitindo fácil acesso para idosos, gestantes, cadeirantes e crianças, sem a necessidade de escadas ou esforço físico.',
+    description: 'Mesa Clínica RT5500 – Versatilidade, Conforto e Acessibilidade para Atendimentos Humanizados. A Mesa Clínica RT5500 foi especialmente desenvolvida para proporcionar acessibilidade e conforto, sendo ideal para diversas especialidades como dermatologia, estética, ultrassonografia, massagens, acupuntura, tatuagens, piercings e procedimentos clínicos em geral. Seu grande diferencial está na altura mínima ultrabaixa de apenas 58 cm, permitindo fácil acesso para idosos, gestantes, cadeirantes e crianças, sem a necessidade de escadas ou esforço físico. Conta com automação inteligente dos movimentos, estrutura robusta e comandos intuitivos, proporcionando segurança ao paciente e agilidade ao profissional.',
     specifications: {
       'Modelo': 'RT5500',
       'Categoria': 'Versatilidade, Conforto e Acessibilidade para Atendimentos Humanizados',
@@ -401,6 +401,7 @@ export const products: Product[] = [
       'Encosto e Assento': 'Estruturados em alma de aço com carenagem em PSAI na cor gelo padrão',
       'Estofamento Anatômico': 'PU injetado com revestimento em PVC cristal para maior durabilidade e facilidade de higienização',
       'Apoio de Cabeça Estofado': 'Anatômico, revestido em PVC cristal, proporcionando conforto adicional',
+      'Suporte para Lençol de Papel (Detalhes)': 'Tubular em aço com sistema de mola para facilitar a substituição do rolo',
       'Chave Geral Bipolar': 'Permite o desligamento total do sistema, prevenindo riscos em caso de falhas elétricas',
       'Fusível Externo de Proteção': 'Aumenta a segurança dos componentes eletrônicos',
       'Altura Regulável': 'de 0,58 m a 0,95 m',
@@ -411,8 +412,8 @@ export const products: Product[] = [
       'Peso Bruto (embalada)': '120 kg',
       'Dimensões da Embalagem (paletizada)': '1,45 m (C) x 0,80 m (L) x 0,90 m (A)',
       'Acessórios Opcionais': 'Mocho com ajuste a gás',
-      'Código INMETRO': '19.06015',
-      'Registro ANVISA/MS': '81890340006'
+      'Código INMETRO': '19.06010',
+      'Registro ANVISA/MS': '8189034000'
     },
     featured: true,
     inStock: true,
