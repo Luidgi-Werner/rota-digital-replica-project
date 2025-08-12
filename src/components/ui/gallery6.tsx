@@ -3,6 +3,8 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ImageEditor from "@/components/admin/ImageEditor";
+import { useEditableImage } from "@/hooks/useEditableImage";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -103,15 +105,30 @@ const Gallery6 = ({
           className="relative left-[-1rem]"
         >
           <CarouselContent className="-mr-4 ml-8 2xl:ml-[max(8rem,calc(50vw-700px+1rem))] 2xl:mr-[max(0rem,calc(50vw-700px-1rem))]">
-            {items.map((item) => (
+            {items.map((item) => {
+              // Hook para cada imagem do gallery
+              const { currentImage, handleImageChange } = useEditableImage({
+                defaultImage: item.image,
+                imageKey: `gallery-${item.id}`
+              });
+              
+              return (
               <CarouselItem key={item.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
                 <div className="group flex flex-col justify-between bg-white rounded-2xl overflow-hidden h-full shadow-sm hover:shadow-lg transition-all duration-300">
                   <div>
-                    <div className="flex aspect-[3/2] overflow-clip">
+                    <div className="flex aspect-[3/2] overflow-clip relative">
                       <div className="flex-1">
                         <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
+                          {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
+                          {import.meta.env.DEV && (
+                            <ImageEditor 
+                              currentImage={currentImage} 
+                              onImageChange={handleImageChange}
+                              productName={`${item.title} - Gallery`}
+                            />
+                          )}
                           <img
-                            src={item.image}
+                            src={currentImage}
                             alt={item.title}
                             className="h-full w-full object-cover object-center"
                           />
@@ -140,7 +157,8 @@ const Gallery6 = ({
                   </div>
                 </div>
               </CarouselItem>
-            ))}
+            );
+            })}
           </CarouselContent>
         </Carousel>
       </div>

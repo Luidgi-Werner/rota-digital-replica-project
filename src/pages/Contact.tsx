@@ -9,8 +9,15 @@ import { FadeText } from '@/components/ui/fade-text';
 import { useToast } from '@/hooks/use-toast';
 import { sanitizeInput, validateEmail, validatePhone, formRateLimiter } from '@/utils/security';
 import MetaTags from '@/components/seo/MetaTags';
+import ImageEditor from '@/components/admin/ImageEditor';
+import { useEditableImage } from '@/hooks/useEditableImage';
 
 const Contact = () => {
+  // Hook para gerenciar a imagem editável da seção de contato
+  const { currentImage: contactImage, handleImageChange: handleContactImageChange } = useEditableImage({
+    defaultImage: '/lovable-uploads/7224090e-9f26-4035-b16b-0d3382359b52.png',
+    imageKey: 'contact-hero-image'
+  });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -262,17 +269,27 @@ const Contact = () => {
           }} transition={{
             duration: 0.6
           }}>
-              <img src="/lovable-uploads/7224090e-9f26-4035-b16b-0d3382359b52.png" alt="Atendente Lanza Medical" className="w-full rounded-lg shadow-lg object-fill" />
+              <div className="relative">
+                {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
+                {import.meta.env.DEV && (
+                  <ImageEditor 
+                    currentImage={contactImage} 
+                    onImageChange={handleContactImageChange}
+                    productName="Imagem Atendente Contato"
+                  />
+                )}
+                <img src={contactImage} alt="Atendente Lanza Medical" className="w-full rounded-lg shadow-lg object-fill" />
               
-              {/* Contact notification overlay */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white rounded-lg p-4 shadow-lg flex items-center space-x-3">
-                <div className="bg-cyan-500 rounded-full p-2">
-                  <Phone className="w-4 h-4 text-white" />
-                </div>
-                <div className="text-sm">
-                  <p className="font-medium text-gray-800">
-                    Ligue para (16) 99447-2195 ou preencha nosso formulário e entraremos em contato com você em breve.
-                  </p>
+                {/* Contact notification overlay */}
+                <div className="absolute bottom-6 left-6 right-6 bg-white rounded-lg p-4 shadow-lg flex items-center space-x-3">
+                  <div className="bg-cyan-500 rounded-full p-2">
+                    <Phone className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="text-sm">
+                    <p className="font-medium text-gray-800">
+                      Ligue para (16) 99447-2195 ou preencha nosso formulário e entraremos em contato com você em breve.
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -10,9 +10,18 @@ import { useState } from 'react';
 import { AnimatedNumber } from '@/components/ui/number-flow';
 import { productIdToSlugMapping } from '@/utils/productRoutes';
 import { Testimonial } from '@/components/ui/testimonial-card';
+import ImageEditor from '@/components/admin/ImageEditor';
+import { useEditableImage } from '@/hooks/useEditableImage';
+
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
+
+  // Hook para gerenciar a imagem editável da seção principal
+  const { currentImage: heroImage, handleImageChange: handleHeroImageChange } = useEditableImage({
+    defaultImage: '/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png',
+    imageKey: 'home-hero-image'
+  });
 
   const nextTestimonial = () => {
     setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
@@ -190,9 +199,17 @@ const Home = () => {
             </Card>
 
             {/* Center Image */}
-            <Card className="bg-white p-0 rounded-2xl overflow-hidden h-full">
+            <Card className="bg-white p-0 rounded-2xl overflow-hidden h-full relative">
               <CardContent className="p-0 h-full">
-                <img src="/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png" alt="Lanza Medical" className="w-full h-full object-cover" />
+                {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
+                {import.meta.env.DEV && (
+                  <ImageEditor 
+                    currentImage={heroImage} 
+                    onImageChange={handleHeroImageChange}
+                    productName="Imagem Principal Home"
+                  />
+                )}
+                <img src={heroImage} alt="Lanza Medical" className="w-full h-full object-cover" />
               </CardContent>
             </Card>
 

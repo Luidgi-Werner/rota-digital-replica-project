@@ -9,6 +9,8 @@ import { Search, Star, Award, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FadeText } from '@/components/ui/fade-text';
 import { getProductUrl } from '@/utils/productRoutes';
+import ImageEditor from '@/components/admin/ImageEditor';
+import { useEditableImage } from '@/hooks/useEditableImage';
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -112,20 +114,31 @@ const Products = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 * index }}
             >
-              <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#003250]/20 h-full flex flex-col">
-                <CardContent className="p-0 flex-1 flex flex-col">
-                  <div className="aspect-video overflow-hidden rounded-t-lg relative">
-                    <img
-                      src={product.images[0]}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-[#003250] text-white p-2 rounded-full">
-                        <Star className="w-4 h-4" />
-                      </div>
-                    </div>
-                  </div>
+               <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#003250]/20 h-full flex flex-col">
+                 <CardContent className="p-0 flex-1 flex flex-col">
+                   <div className="aspect-video overflow-hidden rounded-t-lg relative">
+                     {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
+                     {import.meta.env.DEV && (
+                       <ImageEditor 
+                         currentImage={product.images[0]} 
+                         onImageChange={(newUrl) => {
+                           // Update product image in local state if needed
+                           // For now, just show the editor without persistent changes
+                         }}
+                         productName={`${product.name} - Listagem`}
+                       />
+                     )}
+                     <img
+                       src={product.images[0]}
+                       alt={product.name}
+                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                     />
+                     <div className="absolute top-4 right-4">
+                       <div className="bg-[#003250] text-white p-2 rounded-full">
+                         <Star className="w-4 h-4" />
+                       </div>
+                     </div>
+                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="mb-3 flex items-center justify-between">
                       <span className="inline-flex items-center px-3 py-1 bg-[#003250]/10 text-[#003250] text-xs rounded-full capitalize font-medium">
