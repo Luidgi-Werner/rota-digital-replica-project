@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface UseEditableImageProps {
   defaultImage: string;
@@ -25,17 +25,30 @@ const setStoredImage = (key: string, value: string): void => {
   }
 };
 
-// Fallback memory storage
+// Fallback memory storage with cleanup
 const sessionImageStorage: { [key: string]: string } = {};
 
+// Cleanup function to prevent memory leaks
+const cleanupImageStorage = () => {
+  if (typeof window !== 'undefined') {
+    const keys = Object.keys(sessionImageStorage);
+    if (keys.length > 100) { // Keep only last 50 entries
+      keys.slice(0, -50).forEach(key => delete sessionImageStorage[key]);
+    }
+  }
+};
+
+// Debounce utility
+let debounceTimer: NodeJS.Timeout;
+
 export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImageProps) => {
-  // Get initial image from storage or use default
-  const getInitialImage = () => {
+  // Memoize initial image calculation
+  const getInitialImage = useMemo(() => {
     const stored = getStoredImage(imageKey);
     if (stored) return stored;
     if (sessionImageStorage[imageKey]) return sessionImageStorage[imageKey];
     return defaultImage;
-  };
+  }, [imageKey, defaultImage]);
 
   const [currentImage, setCurrentImage] = useState(getInitialImage);
 
@@ -47,32 +60,46 @@ export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImagePro
     } else if (!storedImage && defaultImage !== currentImage) {
       setCurrentImage(defaultImage);
     }
-  }, [imageKey, defaultImage, currentImage]);
+  }, [imageKey, defaultImage]);
 
-  const handleImageChange = (newImageUrl: string) => {
+  // Optimized image change handler with debouncing
+  const handleImageChange = useCallback((newImageUrl: string) => {
     setCurrentImage(newImageUrl);
-    // Store persistently
-    setStoredImage(imageKey, newImageUrl);
-    sessionImageStorage[imageKey] = newImageUrl;
     
-    // If this is a product image from carousel, also update the list view (but not detail view)
-    if (imageKey.includes('product-') && imageKey.includes('-carousel')) {
-      const productId = imageKey.replace('product-', '').replace('-carousel', '');
-      const listKey = `product-${productId}-list`;
-      // Update only the list key, keeping detail view independent
-      setStoredImage(listKey, newImageUrl);
-      sessionImageStorage[listKey] = newImageUrl;
-    } else if (imageKey.includes('product-') && imageKey.includes('-list')) {
-      const productId = imageKey.replace('product-', '').replace('-list', '');
-      const carouselKey = `product-${productId}-carousel`;
-      // Update only the carousel key, keeping detail view independent
-      setStoredImage(carouselKey, newImageUrl);
-      sessionImageStorage[carouselKey] = newImageUrl;
-    }
-  };
+    // Debounce storage operations
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      // Store persistently
+      setStoredImage(imageKey, newImageUrl);
+      sessionImageStorage[imageKey] = newImageUrl;
+      
+      // Sync between carousel and list views (but not detail view)
+      if (imageKey.includes('product-') && imageKey.includes('-carousel')) {
+        const productId = imageKey.replace('product-', '').replace('-carousel', '');
+        const listKey = `product-${productId}-list`;
+        // Prevent loops by checking if target already has this value
+        if (getStoredImage(listKey) !== newImageUrl) {
+          setStoredImage(listKey, newImageUrl);
+          sessionImageStorage[listKey] = newImageUrl;
+        }
+      } else if (imageKey.includes('product-') && imageKey.includes('-list')) {
+        const productId = imageKey.replace('product-', '').replace('-list', '');
+        const carouselKey = `product-${productId}-carousel`;
+        // Prevent loops by checking if target already has this value
+        if (getStoredImage(carouselKey) !== newImageUrl) {
+          setStoredImage(carouselKey, newImageUrl);
+          sessionImageStorage[carouselKey] = newImageUrl;
+        }
+      }
+      
+      // Cleanup to prevent memory leaks
+      cleanupImageStorage();
+    }, 300);
+  }, [imageKey]);
 
-  return {
+  // Memoize return object to prevent unnecessary re-renders
+  return useMemo(() => ({
     currentImage,
     handleImageChange,
-  };
+  }), [currentImage, handleImageChange]);
 };

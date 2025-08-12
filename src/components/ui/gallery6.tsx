@@ -1,10 +1,8 @@
 "use client";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import ImageEditor from "@/components/admin/ImageEditor";
-import { useEditableImage } from "@/hooks/useEditableImage";
+import { useEffect, useState, useMemo } from "react";
+import GalleryItemCard from "@/components/ui/GalleryItemCard";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -36,6 +34,9 @@ const Gallery6 = ({
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+
+  // Memoize items to prevent unnecessary re-renders
+  const memoizedItems = useMemo(() => items, [items]);
   
   useEffect(() => {
     if (!carouselApi) {
@@ -105,60 +106,9 @@ const Gallery6 = ({
           className="relative left-[-1rem]"
         >
           <CarouselContent className="-mr-4 ml-8 2xl:ml-[max(8rem,calc(50vw-700px+1rem))] 2xl:mr-[max(0rem,calc(50vw-700px-1rem))]">
-            {items.map((item) => {
-              // Hook para cada imagem do gallery
-              const { currentImage, handleImageChange } = useEditableImage({
-                defaultImage: item.image,
-                imageKey: `product-${item.id}-carousel`
-              });
-              
-              return (
-              <CarouselItem key={item.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
-                <div className="group flex flex-col justify-between bg-white rounded-2xl overflow-hidden h-full shadow-sm hover:shadow-lg transition-all duration-300">
-                  <div>
-                    <div className="flex aspect-[3/2] overflow-clip relative">
-                      <div className="flex-1">
-                        <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
-                          {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
-                          {import.meta.env.DEV && (
-                            <ImageEditor 
-                              currentImage={currentImage} 
-                              onImageChange={handleImageChange}
-                              productName={`${item.title} - Gallery`}
-                            />
-                          )}
-                          <img
-                            src={currentImage}
-                            alt={item.title}
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="mb-2 line-clamp-3 break-words text-lg font-bold text-gray-900 md:mb-3 md:text-xl">
-                      {item.title}
-                    </div>
-                    <div className="mb-6 line-clamp-2 text-sm text-gray-600 leading-relaxed flex-grow">
-                      {item.summary}
-                    </div>
-                    <div className="flex justify-start mt-auto">
-                      <Button 
-                        className="bg-[#003250] text-white hover:bg-[#003250]/90 rounded-md px-6 py-2 text-sm flex items-center gap-2"
-                        asChild
-                      >
-                        <Link to={item.url}>
-                          <ArrowRight className="size-4" />
-                          Saiba mais
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </CarouselItem>
-            );
-            })}
+            {memoizedItems.map((item) => (
+              <GalleryItemCard key={item.id} item={item} />
+            ))}
           </CarouselContent>
         </Carousel>
       </div>
