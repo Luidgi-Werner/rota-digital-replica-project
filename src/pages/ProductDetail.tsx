@@ -589,9 +589,9 @@ function getProductSpecificFeatures(productId: string) {
     // RT4000 Histeroscopia
     {
       icon: <Target className="w-6 h-6" />,
-      title: 'Inclinação Especial para Histeroscopia',
-      description: 'Inclinação motorizada do assento em até 25° específica para procedimentos de histeroscopia.',
-      benefits: ['Posicionamento ideal para histeroscopia', 'Melhor visualização do campo cirúrgico', 'Maior precisão nos procedimentos']
+      title: 'Inclinação Especial do assento para Histeroscopia',
+      description: 'Inclinação motorizada do assento em até 17° especifica para procedimentos de histeroscopia.',
+      benefits: ['Posicionamento ideal para histeroscopia', 'Melhor visualização para procedimentos', 'Maior precisão nos procedimentos']
     }, {
       icon: <Star className="w-6 h-6" />,
       title: 'Estrutura Robusta Premium',
