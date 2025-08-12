@@ -26,13 +26,15 @@ export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImagePro
     // Store in session storage
     sessionImageStorage[imageKey] = newImageUrl;
     
-    // If this is a product image from carousel, also update the product data
-    if (imageKey.includes('product-')) {
-      const productId = imageKey.replace('product-', '').replace('-carousel', '').replace('-list', '');
-      // Update all related keys for this product
-      sessionImageStorage[`product-${productId}-carousel`] = newImageUrl;
+    // If this is a product image from carousel, also update the list view (but not detail view)
+    if (imageKey.includes('product-') && imageKey.includes('-carousel')) {
+      const productId = imageKey.replace('product-', '').replace('-carousel', '');
+      // Update only the list key, keeping detail view independent
       sessionImageStorage[`product-${productId}-list`] = newImageUrl;
-      sessionImageStorage[`product-${productId}-detail`] = newImageUrl;
+    } else if (imageKey.includes('product-') && imageKey.includes('-list')) {
+      const productId = imageKey.replace('product-', '').replace('-list', '');
+      // Update only the carousel key, keeping detail view independent
+      sessionImageStorage[`product-${productId}-carousel`] = newImageUrl;
     }
   };
 
