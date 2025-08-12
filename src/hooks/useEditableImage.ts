@@ -7,6 +7,7 @@ interface UseEditableImageProps {
 
 // Persistent storage for edited images
 const getStoredImage = (key: string): string | null => {
+  if (typeof window === 'undefined') return null;
   try {
     return localStorage.getItem(`edited-image-${key}`);
   } catch {
@@ -15,6 +16,7 @@ const getStoredImage = (key: string): string | null => {
 };
 
 const setStoredImage = (key: string, value: string): void => {
+  if (typeof window === 'undefined') return;
   try {
     localStorage.setItem(`edited-image-${key}`, value);
   } catch {
@@ -27,17 +29,25 @@ const setStoredImage = (key: string, value: string): void => {
 const sessionImageStorage: { [key: string]: string } = {};
 
 export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImageProps) => {
-  // Use stored image if available, otherwise use default
-  const initialImage = getStoredImage(imageKey) || sessionImageStorage[imageKey] || defaultImage;
-  const [currentImage, setCurrentImage] = useState(initialImage);
+  // Get initial image from storage or use default
+  const getInitialImage = () => {
+    const stored = getStoredImage(imageKey);
+    if (stored) return stored;
+    if (sessionImageStorage[imageKey]) return sessionImageStorage[imageKey];
+    return defaultImage;
+  };
 
-  // Initialize with stored or default image
+  const [currentImage, setCurrentImage] = useState(getInitialImage);
+
+  // Update image when key or default changes
   useEffect(() => {
-    const storedImage = getStoredImage(imageKey) || sessionImageStorage[imageKey];
+    const storedImage = getStoredImage(imageKey);
     if (storedImage && storedImage !== currentImage) {
       setCurrentImage(storedImage);
+    } else if (!storedImage && defaultImage !== currentImage) {
+      setCurrentImage(defaultImage);
     }
-  }, [imageKey, defaultImage]);
+  }, [imageKey, defaultImage, currentImage]);
 
   const handleImageChange = (newImageUrl: string) => {
     setCurrentImage(newImageUrl);
