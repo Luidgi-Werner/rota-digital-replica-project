@@ -12,6 +12,80 @@ import { getProductUrl } from '@/utils/productRoutes';
 import ImageEditor from '@/components/admin/ImageEditor';
 import { useEditableImage } from '@/hooks/useEditableImage';
 
+// Component for individual product card to avoid hooks inside map
+const ProductCard = ({ product, index }: { product: any; index: number }) => {
+  // Hook para gerenciar imagem editável sincronizada com o carrossel
+  const { currentImage, handleImageChange } = useEditableImage({
+    defaultImage: product.images[0],
+    imageKey: `product-${product.id}-list`
+  });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.1 * index }}
+    >
+      <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#003250]/20 h-full flex flex-col">
+        <CardContent className="p-0 flex-1 flex flex-col">
+          <div className="aspect-video overflow-hidden rounded-t-lg relative">
+            {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
+            {import.meta.env.DEV && (
+              <ImageEditor 
+                currentImage={currentImage} 
+                onImageChange={handleImageChange}
+                productName={`${product.name} - Listagem`}
+              />
+            )}
+            <img
+              src={currentImage}
+              alt={product.name}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="absolute top-4 right-4">
+              <div className="bg-[#003250] text-white p-2 rounded-full">
+                <Star className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+          <div className="p-6 flex-1 flex flex-col">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="inline-flex items-center px-3 py-1 bg-[#003250]/10 text-[#003250] text-xs rounded-full capitalize font-medium">
+                <Award className="w-3 h-3 mr-1" />
+                {product.category}
+              </span>
+              {product.inStock && (
+                <span className="inline-flex items-center px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                  <Zap className="w-3 h-3 mr-1" />
+                  Disponível
+                </span>
+              )}
+            </div>
+            
+            <div className="border-l-4 border-[#003250]/20 pl-4 mb-4 flex-1">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {product.name}
+              </h3>
+              <p className="text-gray-600 line-clamp-2 text-sm leading-relaxed">
+                {product.description}
+              </p>
+            </div>
+            
+            <div className="pt-4 border-t border-gray-100 mt-auto">
+              <Button asChild className="w-full bg-[#003250] hover:bg-[#003250]/90">
+                <Link to={getProductUrl(product.id)}>
+                  <span>Ver Detalhes</span>
+                  <Star className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+};
+
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -107,81 +181,14 @@ const Products = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          {filteredProducts.map((product, index) => {
-            // Hook para gerenciar imagem editável sincronizada com o carrossel
-            const { currentImage, handleImageChange } = useEditableImage({
-              defaultImage: product.images[0],
-              imageKey: `product-${product.id}-list`
-            });
-
-            return (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
-              >
-                <Card className="group hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-[#003250]/20 h-full flex flex-col">
-                  <CardContent className="p-0 flex-1 flex flex-col">
-                    <div className="aspect-video overflow-hidden rounded-t-lg relative">
-                      {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
-                      {import.meta.env.DEV && (
-                        <ImageEditor 
-                          currentImage={currentImage} 
-                          onImageChange={handleImageChange}
-                          productName={`${product.name} - Listagem`}
-                        />
-                      )}
-                      <img
-                        src={currentImage}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-4 right-4">
-                        <div className="bg-[#003250] text-white p-2 rounded-full">
-                          <Star className="w-4 h-4" />
-                        </div>
-                      </div>
-                    </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div className="mb-3 flex items-center justify-between">
-                      <span className="inline-flex items-center px-3 py-1 bg-[#003250]/10 text-[#003250] text-xs rounded-full capitalize font-medium">
-                        <Award className="w-3 h-3 mr-1" />
-                        {product.category}
-                      </span>
-                      {product.inStock && (
-                        <span className="inline-flex items-center px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
-                          <Zap className="w-3 h-3 mr-1" />
-                          Disponível
-                        </span>
-                      )}
-                    </div>
-                    
-                    <div className="border-l-4 border-[#003250]/20 pl-4 mb-4 flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-600 line-clamp-2 text-sm leading-relaxed">
-                        {product.description}
-                      </p>
-                    </div>
-                    
-                    <div className="pt-4 border-t border-gray-100 mt-auto">
-                      <Button asChild className="w-full bg-[#003250] hover:bg-[#003250]/90">
-                        <Link to={getProductUrl(product.id)}>
-                          <span>Ver Detalhes</span>
-                          <Star className="w-4 h-4 ml-2" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-            );
-          })}
+          {filteredProducts.map((product, index) => (
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              index={index} 
+            />
+          ))}
         </motion.div>
-
         {filteredProducts.length === 0 && (
           <div className="text-center py-12">
             <p className="text-xl text-gray-600">
