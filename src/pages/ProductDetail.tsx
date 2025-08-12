@@ -8,8 +8,11 @@ import { motion } from 'framer-motion';
 import { FadeText } from '@/components/ui/fade-text';
 import { urlToProductMapping } from '@/utils/productRoutes';
 import MetaTags from '@/components/seo/MetaTags';
+import ImageEditor from '@/components/admin/ImageEditor';
+import { useState, useEffect } from 'react';
 const ProductDetail = () => {
   const location = useLocation();
+  const [currentImage, setCurrentImage] = useState('');
 
   // Extract slug from pathname
   const slug = location.pathname.replace('/produto/', '');
@@ -18,10 +21,21 @@ const ProductDetail = () => {
   const productId = urlToProductMapping[slug] || '1';
   const product = products.find(p => p.id === productId) || products[0];
 
+  // Initialize current image from product data
+  useEffect(() => {
+    if (product.images && product.images.length > 0) {
+      setCurrentImage(product.images[1] || product.images[0]); // Use second image for product page
+    }
+  }, [product]);
+
   // Product-specific content and features
   const productFeatures = getProductSpecificFeatures(productId);
   const productHighlights = getProductHighlights(productId);
   const productApplications = getProductApplications(productId);
+
+  const handleImageChange = (newImageUrl: string) => {
+    setCurrentImage(newImageUrl);
+  };
 
   // Group specifications by category for better organization
   const groupedSpecs = {
@@ -77,7 +91,16 @@ const ProductDetail = () => {
               <div className="absolute -top-4 -right-4 bg-[#003250] text-white p-3 rounded-full z-10">
                 <Star className="w-6 h-6" />
               </div>
-              <img src={product.images[0]} alt={product.name} className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white" />
+              <ImageEditor 
+                currentImage={currentImage || product.images[0]} 
+                onImageChange={handleImageChange}
+                productName={product.name}
+              />
+              <img 
+                src={currentImage || product.images[0]} 
+                alt={product.name} 
+                className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white" 
+              />
             </div>
           </motion.div>
 
