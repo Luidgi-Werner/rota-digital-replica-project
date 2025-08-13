@@ -47,8 +47,7 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 25000,
     images: [
-      '/lovable-uploads/040a0aad-2fb9-46d7-bc48-de8adaa2d212.png',
-      '/lovable-uploads/098f7cbc-6f3e-4478-a4b4-18cd8176da14.png'
+      '/lovable-uploads/6a4c2d3d-6267-4ff8-b4f0-16f77cba4443.png'
     ],
     description: 'A Mesa Ginecológica RT2000 foi desenvolvida para oferecer máxima eficiência em exames ginecológicos, obstétricos, procedimentos clínicos diversos e pequenas cirurgias. Seu design moderno e funcional proporciona conforto tanto ao paciente quanto ao profissional, sendo indicada também para exames de ultrassonografia, procedimentos estéticos, vasculares, entre outros. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação do encosto, assento e perneira – por meio de pedal de controle ou controle manual multifuncional com até 8 comandos, incluindo função de volta à posição inicial (zero) e memorização de posição de trabalho.',
     specifications: {
