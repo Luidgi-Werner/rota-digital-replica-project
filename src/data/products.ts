@@ -261,7 +261,7 @@ export const products: Product[] = [
     category: 'estetica',
     price: 34000,
     images: [
-      '/lovable-uploads/a57c7023-3b1c-4c88-962a-057079895abe.png'
+      '/lovable-uploads/7e4203d6-6146-4fce-96ae-064af23694ef.png'
     ],
     description: 'A Mesa Clínica RT5000 Estetic foi desenvolvida para proporcionar máxima eficiência em procedimentos estéticos, orofaciais, de pigmentação e diversas intervenções clínicas. Com design moderno e robusto, alia ergonomia, conforto e praticidade para o profissional e o paciente, adaptando-se com excelência às exigências de especialidades como dermatologia, estética, ultrassonografia, massagens, acupuntura, tatuagens e muito mais. Seu sistema motorizado completo, aliado a um estofamento duplo conforto e apoio de pés prolongado e retrátil, garante mobilidade ideal e adaptação anatômica para múltiplas posições de trabalho.',
     specifications: {
