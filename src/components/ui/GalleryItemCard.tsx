@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CarouselItem } from "@/components/ui/carousel";
-import ImageEditor from "@/components/admin/ImageEditor";
 import { useEditableImage } from "@/hooks/useEditableImage";
 
 interface GalleryItem {
@@ -36,14 +35,6 @@ const GalleryItemCard = React.memo(({ item }: GalleryItemCardProps) => {
                   alt={item.title}
                   className="h-full w-full object-cover object-center"
                 />
-                {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
-                {import.meta.env.DEV && (
-                  <ImageEditor 
-                    currentImage={currentImage} 
-                    onImageChange={handleImageChange}
-                    productName={`${item.title} - Gallery`}
-                  />
-                )}
               </div>
             </div>
           </div>

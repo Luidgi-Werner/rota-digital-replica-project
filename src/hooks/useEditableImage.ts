@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface UseEditableImageProps {
   defaultImage: string;
   imageKey: string; // Unique identifier for this image
 }
 
-// Persistent storage for edited images
+// Development-only storage for image editing
 const getStoredImage = (key: string): string | null => {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined' || !import.meta.env.DEV) return null;
   try {
     return localStorage.getItem(`edited-image-${key}`);
   } catch {
@@ -16,34 +16,18 @@ const getStoredImage = (key: string): string | null => {
 };
 
 const setStoredImage = (key: string, value: string): void => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !import.meta.env.DEV) return;
   try {
     localStorage.setItem(`edited-image-${key}`, value);
   } catch {
-    // Fallback to memory storage if localStorage fails
-    sessionImageStorage[key] = value;
+    // Silently fail in production or if localStorage is unavailable
   }
 };
-
-// Fallback memory storage with cleanup
-const sessionImageStorage: { [key: string]: string } = {};
-
-// Cleanup function to prevent memory leaks
-const cleanupImageStorage = () => {
-  if (typeof window !== 'undefined') {
-    const keys = Object.keys(sessionImageStorage);
-    if (keys.length > 100) { // Keep only last 50 entries
-      keys.slice(0, -50).forEach(key => delete sessionImageStorage[key]);
-    }
-  }
-};
-
-// Debounce utility
-let debounceTimer: NodeJS.Timeout;
 
 export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImageProps) => {
-  // Simple initial image calculation - no memoization here to avoid React issues
+  // In production, always use the default image
   const getInitialImage = () => {
+    if (!import.meta.env.DEV) return defaultImage;
     const stored = getStoredImage(imageKey);
     return stored || defaultImage;
   };
@@ -52,50 +36,28 @@ export const useEditableImage = ({ defaultImage, imageKey }: UseEditableImagePro
 
   // Update image when key or default changes
   useEffect(() => {
+    if (!import.meta.env.DEV) {
+      setCurrentImage(defaultImage);
+      return;
+    }
+
     const storedImage = getStoredImage(imageKey);
     if (storedImage && storedImage !== currentImage) {
       setCurrentImage(storedImage);
     } else if (!storedImage && defaultImage !== currentImage) {
       setCurrentImage(defaultImage);
     }
-  }, [imageKey, defaultImage]);
+  }, [imageKey, defaultImage, currentImage]);
 
-  // Optimized image change handler with debouncing
+  // Image change handler - only works in development
   const handleImageChange = useCallback((newImageUrl: string) => {
     setCurrentImage(newImageUrl);
     
-    // Debounce storage operations
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      // Store persistently
+    if (import.meta.env.DEV) {
       setStoredImage(imageKey, newImageUrl);
-      sessionImageStorage[imageKey] = newImageUrl;
-      
-      // Sync between carousel and list views (but not detail view)
-      if (imageKey.includes('product-') && imageKey.includes('-carousel')) {
-        const productId = imageKey.replace('product-', '').replace('-carousel', '');
-        const listKey = `product-${productId}-list`;
-        // Prevent loops by checking if target already has this value
-        if (getStoredImage(listKey) !== newImageUrl) {
-          setStoredImage(listKey, newImageUrl);
-          sessionImageStorage[listKey] = newImageUrl;
-        }
-      } else if (imageKey.includes('product-') && imageKey.includes('-list')) {
-        const productId = imageKey.replace('product-', '').replace('-list', '');
-        const carouselKey = `product-${productId}-carousel`;
-        // Prevent loops by checking if target already has this value
-        if (getStoredImage(carouselKey) !== newImageUrl) {
-          setStoredImage(carouselKey, newImageUrl);
-          sessionImageStorage[carouselKey] = newImageUrl;
-        }
-      }
-      
-      // Cleanup to prevent memory leaks
-      cleanupImageStorage();
-    }, 300);
+    }
   }, [imageKey]);
 
-  // Simple return object - no memoization to avoid React issues
   return {
     currentImage,
     handleImageChange,
