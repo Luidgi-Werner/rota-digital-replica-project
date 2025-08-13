@@ -54,7 +54,7 @@ export const products: Product[] = [
     specifications: {
       'Modelo': 'RT2000',
       'Categoria': 'Ginecológica - Versatilidade, Conforto e Alta Performance',
-      'Automação Completa': 'Elevação do encosto, assento e perneira totalmente motorizados',
+      'Automação Completa': 'Elevação do assento, encosto e movimentação da perneira com acionamento elétrico.',
       'Voltagem Inteligente': 'Placa eletrônica com comutação automática entre 127V e 220V',
       'Sistema de comando': 'Opcional entre controle por pedal com 8 funções (posição memorizável de trabalho, retorno automático à posição zero e acionadores removíveis para assepsia) ou comando manual',
       'Sistema de Retorno à Posição Inicial': 'Praticidade no reposicionamento com um único comando',

@@ -667,7 +667,7 @@ function getProductHighlights(productId: string) {
     '1': [{
       icon: <Zap className="w-8 h-8 text-white" />,
       title: 'Automação Completa',
-      description: 'Elevação, inclinação e perneira totalmente motorizadas'
+      description: 'Elevação do encosto, assento e perneira totalmente motorizados'
     }, {
       icon: <Shield className="w-8 h-8 text-white" />,
       title: 'Certificação Total',
