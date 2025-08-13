@@ -221,7 +221,7 @@ export const products: Product[] = [
     category: 'clinica',
     price: 32000,
     images: [
-      '/lovable-uploads/4cdd858d-2c31-416b-90ea-413b62b8cc03.png'
+      '/lovable-uploads/b82ec86f-80d0-4a4a-b6fa-d415c623bbe3.png'
     ],
     description: 'A Mesa Clínica RT5000 foi projetada para atender uma ampla gama de especialidades, oferecendo máxima funcionalidade e conforto em procedimentos de dermatologia, estética, ultrassonografia, acupuntura, massagens, tatuagens, piercings e demais aplicações clínicas. Seu design moderno, aliado à automação completa, proporciona agilidade para o profissional e bem-estar ao paciente. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto e perneira.',
     specifications: {
