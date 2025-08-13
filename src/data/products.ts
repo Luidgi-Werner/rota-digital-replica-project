@@ -133,8 +133,7 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 45000,
     images: [
-      '/lovable-uploads/2c149fee-e0b7-4b2d-8618-e0f52e59297b.png',
-      '/lovable-uploads/3a2f45ba-f563-4bd0-9e60-6e660e472b15.png'
+      '/lovable-uploads/5a5c347c-1e9a-46a1-8c3c-070ee88f25e7.png'
     ],
     description: 'A Mesa Ginecológica RT4000 foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, destacando-se como a opção ideal para histeroscopia, ultrassonografia, exames ginecológicos e obstétricos e outros procedimentos especializados. Sua estrutura robusta e motorização completa garantem segurança, durabilidade e conforto tanto para o paciente quanto para o profissional de saúde. Com diferenciais voltados para especialidades que exigem precisão, a RT4000 oferece soluções práticas e modernas para clínicas e consultórios de alto padrão.',
     specifications: {
@@ -180,8 +179,7 @@ export const products: Product[] = [
     category: 'clinica',
     price: 35000,
     images: [
-      '/lovable-uploads/3eab1691-9376-41e0-a5c4-c84d4fc34a77.png',
-      '/lovable-uploads/40920a3b-86b8-47bd-91a9-b2156975f1e2.png'
+      '/lovable-uploads/194abd76-e92b-4b29-8a56-6d6dbcbc311f.png'
     ],
     description: 'A Mesa Clínica Elétrica com Trendlemburg RT3000 foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, como exames de ultrassonografia, procedimentos plásticos, implantes capilares, procedimentos vasculares e outros pequenos procedimentos clínicos. Sua estrutura robusta e motorização completa garantem segurança, durabilidade e conforto tanto para o paciente quanto para o profissional de saúde. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto, perneira e inclinação do assento (posição Trendlemburg com ângulo de até 17°).',
     specifications: {
@@ -263,8 +261,7 @@ export const products: Product[] = [
     category: 'estetica',
     price: 34000,
     images: [
-      '/lovable-uploads/5a5c347c-1e9a-46a1-8c3c-070ee88f25e7.png',
-      '/lovable-uploads/66e2cbb6-1e36-4cb1-ba1a-f86b4d3f1894.png'
+      '/lovable-uploads/a57c7023-3b1c-4c88-962a-057079895abe.png'
     ],
     description: 'A Mesa Clínica RT5000 Estetic foi desenvolvida para proporcionar máxima eficiência em procedimentos estéticos, orofaciais, de pigmentação e diversas intervenções clínicas. Com design moderno e robusto, alia ergonomia, conforto e praticidade para o profissional e o paciente, adaptando-se com excelência às exigências de especialidades como dermatologia, estética, ultrassonografia, massagens, acupuntura, tatuagens e muito mais. Seu sistema motorizado completo, aliado a um estofamento duplo conforto e apoio de pés prolongado e retrátil, garante mobilidade ideal e adaptação anatômica para múltiplas posições de trabalho.',
     specifications: {
@@ -306,7 +303,7 @@ export const products: Product[] = [
     category: 'transplante',
     price: 36000,
     images: [
-      '/lovable-uploads/6a0503d3-8eac-4752-bd9f-7b40558d7375.png'
+      '/lovable-uploads/0f430539-ab4b-4fe4-b41b-15b9fe0b17a0.png'
     ],
     description: 'A Mesa Clínica RT5000 E-IC foi desenvolvida especialmente para atender às necessidades dos mais exigentes procedimentos de transplante capilar. A RT5000 E-IC une design ergonômico, motorização avançada e acabamento premium. Ideal para clínicas e centros médicos que buscam aliar tecnologia, conforto e segurança em um único equipamento. Seu sistema de motorização com três moto-redutores garante movimentos suaves e silenciosos, proporcionando ajustes precisos para o posicionamento ideal do paciente e conforto prolongado durante longos procedimentos.',
     specifications: {
@@ -348,7 +345,7 @@ export const products: Product[] = [
     category: 'dermatologia',
     price: 29000,
     images: [
-      '/lovable-uploads/6a4c2d3d-6267-4ff8-b4f0-16f77cba4443.png'
+      '/lovable-uploads/3eab1691-9376-41e0-a5c4-c84d4fc34a77.png'
     ],
     description: 'A Mesa Clínica RT2500 ES foi projetada para atender com excelência as exigências dos profissionais da saúde e estética, especialmente em dermatologia, medicina estética e procedimentos clínicos diversos. Com design compacto, motorização de alto desempenho e acabamento ergonômico, proporciona conforto ao paciente e praticidade ao profissional. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto e perneira.',
     specifications: {
