@@ -179,7 +179,7 @@ export const products: Product[] = [
     category: 'clinica',
     price: 35000,
     images: [
-      '/lovable-uploads/194abd76-e92b-4b29-8a56-6d6dbcbc311f.png'
+      '/lovable-uploads/b6e02e60-54cc-4b85-a932-bf7df1158c26.png'
     ],
     description: 'A Mesa Clínica Elétrica com Trendlemburg RT3000 foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, como exames de ultrassonografia, procedimentos plásticos, implantes capilares, procedimentos vasculares e outros pequenos procedimentos clínicos. Sua estrutura robusta e motorização completa garantem segurança, durabilidade e conforto tanto para o paciente quanto para o profissional de saúde. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto, perneira e inclinação do assento (posição Trendlemburg com ângulo de até 17°).',
     specifications: {
@@ -345,7 +345,7 @@ export const products: Product[] = [
     category: 'dermatologia',
     price: 29000,
     images: [
-      '/lovable-uploads/3eab1691-9376-41e0-a5c4-c84d4fc34a77.png'
+      '/lovable-uploads/b4d448bc-a5b2-46f0-82e3-162870a64890.png'
     ],
     description: 'A Mesa Clínica RT2500 ES foi projetada para atender com excelência as exigências dos profissionais da saúde e estética, especialmente em dermatologia, medicina estética e procedimentos clínicos diversos. Com design compacto, motorização de alto desempenho e acabamento ergonômico, proporciona conforto ao paciente e praticidade ao profissional. Com estrutura totalmente motorizada, permite ajuste automático dos principais movimentos – elevação, descida, encosto e perneira.',
     specifications: {
