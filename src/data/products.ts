@@ -90,7 +90,7 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 28000,
     images: [
-      '/lovable-uploads/19966cb9-b1e1-4c8a-8218-1babc7f6401b.png'
+      '/lovable-uploads/3eab1691-9376-41e0-a5c4-c84d4fc34a77.png'
     ],
     description: 'A Mesa Ginecológica RT2500 foi projetada para atender com excelência a uma ampla gama de procedimentos clínicos e exames, como ginecológicos, obstétricos, coleta de materiais, exames de ultrassonografia, procedimentos vasculares e estéticos. Sua estrutura slim é ideal para consultórios com espaço reduzido, proporcionando otimização do ambiente sem abrir mão da funcionalidade e do conforto. Com design ergonômico e recursos de automação de última geração, este modelo oferece mobilidade e adaptação ideal às necessidades dos consultórios modernos.',
     specifications: {
