@@ -706,15 +706,15 @@ function getProductHighlights(productId: string) {
     '4': [{
       icon: <ArrowRight className="w-8 h-8 text-white" />,
       title: 'Trendlemburg 17°',
-      description: 'Inclinação motorizada para procedimentos vasculares'
+      description: 'Inclinação motorizada para procedimentos específicos'
     }, {
       icon: <Wrench className="w-8 h-8 text-white" />,
       title: '4 Motores',
       description: 'Sistema motorizado independente'
     }, {
       icon: <Heart className="w-8 h-8 text-white" />,
-      title: 'Braços Alumínio',
-      description: 'Estrutura leve e resistente'
+      title: 'Encosto Recortado',
+      description: 'Facilidade de acesso aos membros superiores'
     }],
     '5': [{
       icon: <Heart className="w-8 h-8 text-white" />,
