@@ -309,7 +309,7 @@ export const products: Product[] = [
     specifications: {
       'Modelo': 'RT5000 E-IC',
       'Categoria': 'Transplante Capilar - Conforto, Tecnologia e Precisão para Procedimentos de Alta Performance',
-      'Automação Completa': 'Elevação, inclinação do encosto e movimentação da perneira com acionamento elétrico',
+      'Automação Completa': 'Elevação do assento, encosto e movimentação da perneira com acionamento elétrico',
       'Apoio Facial Exclusivo': 'Apoio anatômico com descanso para braços, ideal para procedimentos em decúbito ventral, proporcionando conforto ao paciente e flexibilidade ao profissional',
       'Voltagem Inteligente': 'Placa eletrônica com comutação automática entre 127V e 220V',
       'Sistema de comando': 'Opcional entre controle por pedal com 8 funções (posição memorizável de trabalho, retorno automático à posição zero e acionadores removíveis para assepsia) ou comando manual',
@@ -351,7 +351,7 @@ export const products: Product[] = [
     specifications: {
       'Modelo': 'RT2500 ES',
       'Categoria': 'Dermatologia - Precisão para Procedimentos Dermatológicos e Clínicos',
-      'Automação Completa': 'Elevação, inclinação do encosto e movimentação da perneira com acionamento elétrico',
+      'Automação Completa': 'Elevação do assento, encosto e movimentação da perneira com acionamento elétrico',
       'Voltagem Inteligente': 'Placa eletrônica com comutação automática entre 127V e 220V',
       'Sistema de comando': 'Opcional entre controle por pedal com 8 funções (posição memorizável de trabalho, retorno automático à posição zero e acionadores removíveis para assepsia) ou comando manual',
       'Sistema de Retorno à Posição Inicial': 'Praticidade no reposicionamento com um único comando',
