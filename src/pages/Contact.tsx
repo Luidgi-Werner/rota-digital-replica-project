@@ -112,7 +112,7 @@ const Contact = () => {
     <>
       <MetaTags 
         title="Contato | Lanza Medical - Equipamentos Médicos"
-        description="Entre em contato com a Lanza Medical. Atendimento técnico especializado em equipamentos médicos. Telefone: (16) 99447-2195"
+        description="Entre em contato com a Lanza Medical. Atendimento técnico especializado em equipamentos médicos. Telefone: (16) 99392-4529"
         keywords="contato lanza medical, suporte técnico, equipamentos médicos contato"
       />
       <div className="min-h-screen bg-white">
@@ -287,7 +287,7 @@ const Contact = () => {
                   </div>
                   <div className="text-sm">
                     <p className="font-medium text-gray-800">
-                      Ligue para (16) 99447-2195 ou preencha nosso formulário e entraremos em contato com você em breve.
+                      Ligue para (16) 99392-4529 ou preencha nosso formulário e entraremos em contato com você em breve.
                     </p>
                   </div>
                 </div>
@@ -326,7 +326,7 @@ const Contact = () => {
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="font-medium text-gray-800">Rua Barreiros, 2524,</p>
+                <p className="font-medium text-gray-800">Rua Barreto, 2524,</p>
                 <p className="text-gray-600">Ribeirão Preto - SP, 14075-000.</p>
               </div>
             </motion.div>
@@ -340,13 +340,13 @@ const Contact = () => {
               opacity: 1,
               y: 0
             }
-          }} onClick={() => window.open('https://wa.me/5516994472195', '_blank')}>
+          }} onClick={() => window.open('https://wa.me/5516993924529', '_blank')}>
               <div className="bg-[#003250] rounded-full p-3">
                 <Phone className="w-6 h-6 text-white" />
               </div>
               <div>
                 <p className="font-medium text-gray-800">Nosso WhatsApp</p>
-                <p className="text-gray-600">(16) 99447-2195</p>
+                <p className="text-gray-600">(16) 99392-4529</p>
               </div>
             </motion.div>
 
