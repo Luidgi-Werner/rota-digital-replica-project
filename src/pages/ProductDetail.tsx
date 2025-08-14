@@ -628,8 +628,8 @@ function getProductSpecificFeatures(productId: string) {
     }, {
       icon: <Star className="w-6 h-6" />,
       title: 'Estofamento Duplo Conforto',
-      description: 'Revestimento em PVC cristal com dupla densidade para máximo conforto.',
-      benefits: ['Conforto superior para o paciente', 'Fácil higienização', 'Durabilidade aumentada']
+      description: 'Revestimento em PVC cristal com PU injetado de dupla densidade, para máximo conforto.',
+      benefits: ['Conforto superior para o paciente', 'Fácil higienização', 'Alta durabilidade e resistência']
     }],
     '7': [
     // RT5000 E-IC
@@ -736,11 +736,11 @@ function getProductHighlights(productId: string) {
     }, {
       icon: <Star className="w-8 h-8 text-white" />,
       title: 'Duplo Conforto',
-      description: 'Estofamento premium em PVC cristal'
+      description: 'Conforto superior em procedimentos prolongados'
     }, {
       icon: <Heart className="w-8 h-8 text-white" />,
-      title: 'Estética Total',
-      description: 'Especializada em procedimentos estéticos'
+      title: 'Design Inovador',
+      description: 'Referência em procedimentos estéticos'
     }],
     '7': [{
       icon: <Target className="w-8 h-8 text-white" />,
