@@ -177,7 +177,7 @@ const ProductDetail = () => {
                   {highlight.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-[#003250] mb-3">{highlight.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-justify">{highlight.description}</p>
+                <p className="text-gray-600 leading-relaxed text-center">{highlight.description}</p>
               </motion.div>)}
           </div>
         </motion.div>
