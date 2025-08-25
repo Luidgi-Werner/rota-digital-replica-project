@@ -8,6 +8,7 @@ type FadeTextProps = {
   direction?: "up" | "down" | "left" | "right";
   framerProps?: Variants;
   text: string;
+  as?: "div" | "p" | "span";
 };
 
 function FadeText({
@@ -18,6 +19,7 @@ function FadeText({
     show: { opacity: 1, transition: { type: "spring" } },
   },
   text,
+  as = "div",
 }: FadeTextProps) {
   const directionOffset = useMemo(() => {
     const map = { up: 10, down: -10, left: -10, right: 10 };
@@ -46,6 +48,8 @@ function FadeText({
     };
   }, [directionOffset, axis, framerProps]);
 
+  const MotionComponent = motion[as];
+
   return (
     <motion.div
       initial="hidden"
@@ -53,7 +57,7 @@ function FadeText({
       viewport={{ once: true }}
       variants={FADE_ANIMATION_VARIANTS}
     >
-      <motion.span className={className}>{text}</motion.span>
+      <MotionComponent className={className}>{text}</MotionComponent>
     </motion.div>
   );
 }
