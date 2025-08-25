@@ -29,10 +29,19 @@ const Contact = () => {
   const { toast } = useToast();
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: sanitizeInput(value)
-    }));
+    // For phone field, only allow numbers
+    if (field === 'phone') {
+      const numericValue = value.replace(/\D/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [field]: sanitizeInput(numericValue)
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [field]: sanitizeInput(value)
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -326,7 +335,7 @@ const Contact = () => {
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="font-medium text-gray-800">Rua Barreto, 2524,</p>
+                <p className="font-medium text-gray-800">Rua Barretos, 2524,</p>
                 <p className="text-gray-600">Ribeirão Preto - SP, 14075-000.</p>
               </div>
             </motion.div>
