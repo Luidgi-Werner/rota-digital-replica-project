@@ -26,15 +26,43 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [whatsappError, setWhatsappError] = useState('');
   const { toast } = useToast();
 
+  // Função para formatar o número de telefone
+  const formatPhoneNumber = (value: string) => {
+    // Remove tudo que não é número
+    const numbers = value.replace(/\D/g, '');
+    
+    // Formata o número
+    if (numbers.length >= 11) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+    } else if (numbers.length >= 7) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+    } else if (numbers.length >= 2) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+    } else if (numbers.length > 0) {
+      return `(${numbers}`;
+    }
+    return numbers;
+  };
+
   const handleInputChange = (field: string, value: string) => {
-    // For phone field, only allow numbers
+    // For phone field, only allow numbers and format
     if (field === 'phone') {
-      const numericValue = value.replace(/\D/g, '');
+      // Verifica se contém apenas números, parênteses, espaços e hífen
+      const hasInvalidChars = /[^0-9()\s-]/.test(value);
+      
+      if (hasInvalidChars) {
+        setWhatsappError('Por favor, digite apenas números');
+        return;
+      }
+      
+      setWhatsappError('');
+      const formattedValue = formatPhoneNumber(value);
       setFormData(prev => ({
         ...prev,
-        [field]: sanitizeInput(numericValue)
+        [field]: sanitizeInput(formattedValue)
       }));
     } else {
       setFormData(prev => ({
@@ -213,11 +241,21 @@ const Contact = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Seu WhatsApp
                     </label>
-                    <Input 
-                      placeholder="Ex: (16) 99999-9999" 
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                    />
+                    <div className="space-y-1">
+                      <Input 
+                        placeholder="Ex: (16) 99999-9999" 
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        maxLength={15}
+                        className={whatsappError ? 'border-2 border-red-500' : ''}
+                      />
+                      {whatsappError && (
+                        <div className="flex items-center gap-1 text-red-600 text-sm bg-red-50 px-3 py-2 rounded-lg">
+                          <AlertCircle className="w-4 h-4" />
+                          <span>{whatsappError}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
