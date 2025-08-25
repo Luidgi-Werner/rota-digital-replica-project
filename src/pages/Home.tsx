@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Star, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Star, ArrowRight, ChevronLeft, ChevronRight, Check, AlertCircle } from 'lucide-react';
 import { Gallery6 } from '@/components/ui/gallery6';
 import { products, productCategories, testimonials, statistics } from '@/data/products';
 import { useState } from 'react';
@@ -16,12 +16,49 @@ import { useEditableImage } from '@/hooks/useEditableImage';
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
+  const [whatsappValue, setWhatsappValue] = useState('');
+  const [whatsappError, setWhatsappError] = useState('');
 
   // Hook para gerenciar a imagem editável da seção principal
   const { currentImage: heroImage, handleImageChange: handleHeroImageChange } = useEditableImage({
     defaultImage: '/lovable-uploads/804e528c-e805-4a8d-af03-35d5c627d580.png',
     imageKey: 'home-hero-image'
   });
+
+  // Função para formatar o número de telefone
+  const formatPhoneNumber = (value: string) => {
+    // Remove tudo que não é número
+    const numbers = value.replace(/\D/g, '');
+    
+    // Formata o número
+    if (numbers.length >= 11) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+    } else if (numbers.length >= 7) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7)}`;
+    } else if (numbers.length >= 2) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+    } else if (numbers.length > 0) {
+      return `(${numbers}`;
+    }
+    return numbers;
+  };
+
+  // Handler para o campo WhatsApp
+  const handleWhatsAppChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    
+    // Verifica se contém apenas números, parênteses, espaços e hífen
+    const hasInvalidChars = /[^0-9()\s-]/.test(value);
+    
+    if (hasInvalidChars) {
+      setWhatsappError('Por favor, digite apenas números');
+      return;
+    }
+    
+    setWhatsappError('');
+    const formattedValue = formatPhoneNumber(value);
+    setWhatsappValue(formattedValue);
+  };
 
   const nextTestimonial = () => {
     setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
@@ -126,7 +163,21 @@ const Home = () => {
               <form className="space-y-4">
                 <Input placeholder="Nome" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
                 <Input type="email" placeholder="E-mail" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
-                <Input placeholder="WhatsApp" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
+                <div className="space-y-1">
+                  <Input 
+                    placeholder="WhatsApp" 
+                    className={`bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg ${whatsappError ? 'border-2 border-red-500' : ''}`}
+                    value={whatsappValue}
+                    onChange={handleWhatsAppChange}
+                    maxLength={15}
+                  />
+                  {whatsappError && (
+                    <div className="flex items-center gap-1 text-red-600 text-sm bg-red-50 px-3 py-2 rounded-lg">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{whatsappError}</span>
+                    </div>
+                  )}
+                </div>
                 <Input placeholder="Especialidade" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
                 <Button className="w-full bg-slate-800 hover:bg-slate-900 text-white h-12 rounded-lg font-semibold text-lg">
                   Quero meu presente exclusivo
