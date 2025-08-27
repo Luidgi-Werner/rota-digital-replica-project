@@ -2,24 +2,44 @@ import CryptoJS from 'crypto-js';
 
 // Security utilities for data protection and LGPD compliance
 
-const SECRET_KEY = 'lanza-medical-2024-security-key'; // In production, use environment variable
+// SECURITY NOTE: Client-side encryption provides no real security since the key would be visible
+// in the source code. For sensitive data, use server-side encryption via Supabase or other backend services.
 
-export const encryptData = (data: string): string => {
+// Session-based key generation for temporary data obfuscation (not for security)
+const generateSessionKey = (): string => {
+  return CryptoJS.lib.WordArray.random(32).toString();
+};
+
+// Store session key in memory (not localStorage for security)
+let sessionKey: string | null = null;
+
+const getSessionKey = (): string => {
+  if (!sessionKey) {
+    sessionKey = generateSessionKey();
+  }
+  return sessionKey;
+};
+
+// Light obfuscation for temporary data (NOT for security-sensitive information)
+export const obfuscateData = (data: string): string => {
   try {
-    return CryptoJS.AES.encrypt(data, SECRET_KEY).toString();
+    // For security-sensitive data, use Supabase's server-side encryption instead
+    console.warn('obfuscateData: This is light obfuscation only. Use server-side encryption for sensitive data.');
+    return CryptoJS.AES.encrypt(data, getSessionKey()).toString();
   } catch (error) {
-    console.error('Encryption error:', error);
+    console.error('Obfuscation error:', error);
     return data;
   }
 };
 
-export const decryptData = (encryptedData: string): string => {
+export const deobfuscateData = (obfuscatedData: string): string => {
   try {
-    const bytes = CryptoJS.AES.decrypt(encryptedData, SECRET_KEY);
+    if (!sessionKey) return obfuscatedData;
+    const bytes = CryptoJS.AES.decrypt(obfuscatedData, sessionKey);
     return bytes.toString(CryptoJS.enc.Utf8);
   } catch (error) {
-    console.error('Decryption error:', error);
-    return encryptedData;
+    console.error('Deobfuscation error:', error);
+    return obfuscatedData;
   }
 };
 
