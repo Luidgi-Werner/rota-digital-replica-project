@@ -384,7 +384,7 @@ export const products: Product[] = [
     category: 'clinica',
     price: 35000,
     images: [
-      '/lovable-uploads/6d50fbf1-07fc-471a-b7e1-68da52f4583c.png'
+      '/lovable-uploads/7bba6670-4849-4274-af57-78e1432faf91.png'
     ],
     description: 'Mesa Clínica RT5500 – Versatilidade, Conforto e Acessibilidade para Atendimentos Humanizados. A Mesa Clínica RT5500 foi especialmente desenvolvida para proporcionar acessibilidade e conforto, sendo ideal para diversas especialidades como dermatologia, estética, ultrassonografia, massagens, acupuntura, tatuagens, piercings e procedimentos clínicos em geral. Seu grande diferencial está na altura mínima ultrabaixa de apenas 58 cm, permitindo fácil acesso para idosos, gestantes, cadeirantes e crianças, sem a necessidade de escadas ou esforço físico. Conta com automação inteligente dos movimentos, estrutura robusta e comandos intuitivos, proporcionando segurança ao paciente e agilidade ao profissional.',
     specifications: {
