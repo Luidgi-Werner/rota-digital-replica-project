@@ -693,7 +693,7 @@ function getProductHighlights(productId: string) {
     '3': [{
       icon: <Target className="w-8 h-8 text-white" />,
       title: 'Histeroscopia',
-      description: 'Inclinação especial até 25° para procedimentos'
+      description: 'Inclinação especial até 17° para procedimentos'
     }, {
       icon: <Shield className="w-8 h-8 text-white" />,
       title: 'Estrutura Robusta',
