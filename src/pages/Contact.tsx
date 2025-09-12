@@ -347,7 +347,7 @@ const Contact = () => {
       {/* Contact Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div className="grid grid-cols-1 md:grid-cols-4 gap-8" initial={{
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6" initial={{
           opacity: 0,
           y: 30
         }} whileInView={{
