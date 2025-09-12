@@ -347,7 +347,7 @@ const Contact = () => {
       {/* Contact Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" initial={{
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" initial={{
           opacity: 0,
           y: 30
         }} whileInView={{
@@ -417,24 +417,6 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            <motion.div className="flex items-center space-x-4 cursor-pointer hover:opacity-80 transition-opacity" variants={{
-            hidden: {
-              opacity: 0,
-              y: 20
-            },
-            visible: {
-              opacity: 1,
-              y: 0
-            }
-          }} onClick={() => window.open('tel:+5516993924529', '_blank')}>
-              <div className="bg-[#003250] rounded-full p-3">
-                <Phone className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-800">Assistência Técnica</p>
-                <p className="text-gray-600">(16) 99392-4529</p>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>

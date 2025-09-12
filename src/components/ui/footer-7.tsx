@@ -89,6 +89,9 @@ const defaultSections = [{
   }, {
     name: "E-mail",
     href: "mailto:vendas@lanzamedical.com.br"
+  }, {
+    name: "Assistência Técnica: (16) 99392-4529",
+    href: "tel:+5516993924529"
   }]
 }];
 
@@ -196,7 +199,7 @@ export const Footer7 = ({
                 <ul className="space-y-3 text-sm text-gray-300">
                   {section.links.map((link, linkIdx) => (
                     <li key={linkIdx} className="font-medium hover:text-cyan-400 transition-colors">
-                      {link.href.startsWith('http') || link.href.startsWith('mailto:') || link.href.startsWith('https://wa.me') ? (
+                      {link.href.startsWith('http') || link.href.startsWith('mailto:') || link.href.startsWith('https://wa.me') || link.href.startsWith('tel:') ? (
                         <a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a>
                       ) : (
                         <Link to={link.href} onClick={() => handleLinkClick(link.href)}>{link.name}</Link>
