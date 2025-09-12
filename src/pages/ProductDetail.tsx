@@ -969,6 +969,31 @@ function getProductApplications(productId: string) {
     }, {
       icon: <Camera className="w-6 h-6" />,
       name: 'Diagnóstico Dermatológico'
+    }],
+    '9': [{
+      icon: <Heart className="w-6 h-6" />,
+      name: 'Dermatologia'
+    }, {
+      icon: <Star className="w-6 h-6" />,
+      name: 'Estética'
+    }, {
+      icon: <Camera className="w-6 h-6" />,
+      name: 'Ultrassonografia'
+    }, {
+      icon: <Target className="w-6 h-6" />,
+      name: 'Acupuntura'
+    }, {
+      icon: <Wrench className="w-6 h-6" />,
+      name: 'Massagens'
+    }, {
+      icon: <Shield className="w-6 h-6" />,
+      name: 'Tatuagens'
+    }, {
+      icon: <Star className="w-6 h-6" />,
+      name: 'Piercings'
+    }, {
+      icon: <Heart className="w-6 h-6" />,
+      name: 'Clínica Geral'
     }]
   };
   return applications[productId] || applications['1'];
