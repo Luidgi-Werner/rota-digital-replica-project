@@ -560,11 +560,6 @@ function getProductSpecificFeatures(productId: string) {
       title: 'Comando Duplo Opcional',
       description: 'Flexibilidade de controle através de pedal com 8 funções ou comando manual.',
       benefits: ['Controle preciso dos movimentos', 'Facilita procedimentos complexos', 'Ergonomia para o profissional']
-    }, {
-      icon: <Target className="w-6 h-6" />,
-      title: 'Apoios Reguláveis de Precisão',
-      description: 'Apoios de coxas e pés com ajustes milimétricos para perfeito posicionamento.',
-      benefits: ['Ajuste horizontal até 320mm', 'Ajuste vertical até 420mm', 'Conforto personalizado para cada paciente']
     }],
     '2': [
     // RT2500
