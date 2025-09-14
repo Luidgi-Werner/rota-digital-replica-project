@@ -133,7 +133,7 @@ export const products: Product[] = [
     category: 'ginecologia',
     price: 45000,
     images: [
-      '/lovable-uploads/5a5c347c-1e9a-46a1-8c3c-070ee88f25e7.png'
+      '/rt4000-ginecologica-new.png'
     ],
     description: 'A Mesa Ginecológica RT4000 foi desenvolvida para atender com excelência a uma ampla gama de procedimentos clínicos, destacando-se como a opção ideal para histeroscopia, ultrassonografia, exames ginecológicos e obstétricos e outros procedimentos especializados. Sua estrutura robusta e motorização completa garantem segurança, durabilidade e conforto tanto para o paciente quanto para o profissional de saúde. Com diferenciais voltados para especialidades que exigem precisão, a RT4000 oferece soluções práticas e modernas para clínicas e consultórios de alto padrão.',
     specifications: {
