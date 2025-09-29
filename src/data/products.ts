@@ -129,7 +129,7 @@ export const products: Product[] = [
   },
   {
     id: '3',
-    name: 'Mesa Ginecológica RT4000 Histereoscopia',
+    name: 'Mesa Ginecológica RT4000 Histeroscopia',
     category: 'ginecologia',
     price: 45000,
     images: [

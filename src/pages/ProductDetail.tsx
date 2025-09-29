@@ -10,6 +10,7 @@ import { urlToProductMapping } from '@/utils/productRoutes';
 import MetaTags from '@/components/seo/MetaTags';
 import ImageEditor from '@/components/admin/ImageEditor';
 import { useEditableImage } from '@/hooks/useEditableImage';
+import { ImageZoomDialog } from '@/components/ui/image-zoom-dialog';
 const ProductDetail = () => {
   const location = useLocation();
 
@@ -93,11 +94,13 @@ const ProductDetail = () => {
                   productName={product.name}
                 />
               )}
-              <img 
-                src={currentImage} 
-                alt={product.name} 
-                className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white"
-              />
+              <ImageZoomDialog src={currentImage} alt={product.name}>
+                <img 
+                  src={currentImage} 
+                  alt={product.name} 
+                  className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white cursor-pointer hover:opacity-90 transition-opacity"
+                />
+              </ImageZoomDialog>
             </div>
           </motion.div>
 
