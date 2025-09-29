@@ -118,7 +118,7 @@ const Home = () => {
   };
   return <div className="font-jost">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-slate-800 to-slate-900 text-white py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-slate-800 to-slate-900 text-white py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/35" style={{
         backgroundImage: `url('/lovable-uploads/2c149fee-e0b7-4b2d-8618-e0f52e59297b.png')`,
         backgroundSize: 'cover',
@@ -126,60 +126,60 @@ const Home = () => {
         opacity: 0.5
       }}></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
-            <div className="space-y-8">
-              <div className="text-left">
-                <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            <div className="space-y-6 md:space-y-8 text-center lg:text-left">
+              <div>
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
                   Sua clínica merece uma estrutura que reflita seu nível profissional.
                 </h1>
-                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 leading-relaxed">
                   Mesas e cadeiras médicas personalizadas, certificadas pela ANVISA e Inmetro. 
                   Mais conforto, segurança e autoridade para você e seu paciente.
                 </p>
                 <Button 
-                  className="bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-8 py-3 text-lg font-semibold"
+                  className="bg-cyan-500 hover:bg-cyan-600 text-white rounded-full px-6 md:px-8 py-3 text-base md:text-lg font-semibold w-full sm:w-auto"
                   asChild
                 >
                   <Link to="/contato">
                     Saiba mais agora
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
                   </Link>
                 </Button>
               </div>
             </div>
 
             {/* Right Content - Contact Form */}
-            <div id="hero-form" className="bg-cyan-500 rounded-2xl p-8 shadow-2xl">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-white mb-2">
+            <div id="hero-form" className="bg-cyan-500 rounded-2xl p-6 md:p-8 shadow-2xl mx-auto w-full max-w-md lg:max-w-none">
+              <div className="mb-4 md:mb-6">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                   Ganhe o bordado da sua marca na sua mesa,
                 </h3>
-                <p className="text-cyan-100 text-lg font-medium">
+                <p className="text-cyan-100 text-base md:text-lg font-medium">
                   exclusivo para quem se cadastra pelo site.
                 </p>
               </div>
               
-              <form className="space-y-4">
-                <Input placeholder="Nome" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
-                <Input type="email" placeholder="E-mail" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
+              <form className="space-y-3 md:space-y-4">
+                <Input placeholder="Nome" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base" />
+                <Input type="email" placeholder="E-mail" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base" />
                 <div className="space-y-1">
                   <Input 
                     placeholder="WhatsApp" 
-                    className={`bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg ${whatsappError ? 'border-2 border-red-500' : ''}`}
+                    className={`bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base ${whatsappError ? 'border-2 border-red-500' : ''}`}
                     value={whatsappValue}
                     onChange={handleWhatsAppChange}
                     maxLength={15}
                   />
                   {whatsappError && (
-                    <div className="flex items-center gap-1 text-red-600 text-sm bg-red-50 px-3 py-2 rounded-lg">
-                      <AlertCircle className="w-4 h-4" />
+                    <div className="flex items-center gap-1 text-red-600 text-xs md:text-sm bg-red-50 px-3 py-2 rounded-lg">
+                      <AlertCircle className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
                       <span>{whatsappError}</span>
                     </div>
                   )}
                 </div>
-                <Input placeholder="Especialidade" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-12 rounded-lg" />
-                <Button className="w-full bg-slate-800 hover:bg-slate-900 text-white h-12 rounded-lg font-semibold text-lg">
+                <Input placeholder="Especialidade" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base" />
+                <Button className="w-full bg-slate-800 hover:bg-slate-900 text-white h-10 md:h-12 rounded-lg font-semibold text-sm md:text-lg">
                   Quero meu presente exclusivo
                 </Button>
               </form>
@@ -189,19 +189,19 @@ const Home = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-8 bg-gray-50">
+      <section className="py-6 md:py-8 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 w-full max-w-sm lg:max-w-none">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-6 w-full max-w-sm sm:max-w-lg lg:max-w-none">
               {productCategories.map(category => <Link 
                 key={category.id} 
                 to={`/produtos?category=${encodeURIComponent(category.slug)}`} 
-                className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow"
+                className="flex items-center space-x-2 md:space-x-3 bg-white rounded-full px-4 md:px-6 py-2 md:py-3 shadow-sm hover:shadow-md transition-shadow text-center justify-center"
               >
-                  <div className="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
-                    <Check className="w-3 h-3 text-white" />
+                  <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2 h-2 md:w-3 md:h-3 text-white" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
+                  <span className="text-xs md:text-sm font-medium text-gray-700 whitespace-nowrap">
                     {category.name}
                   </span>
                 </Link>)}
@@ -211,46 +211,46 @@ const Home = () => {
       </section>
 
       {/* New Second Section - Three Column Layout */}
-      <section className="py-16">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Left Card - Diferencial */}
-            <Card className="bg-cyan-500 text-white p-8 rounded-2xl">
+            <Card className="bg-cyan-500 text-white p-6 md:p-8 rounded-2xl">
               <CardContent className="p-0">
-                <div className="mb-6">
-                  <Badge variant="secondary" className="bg-cyan-400 text-white mb-4 text-xs px-3 py-1">
+                <div className="mb-4 md:mb-6">
+                  <Badge variant="secondary" className="bg-cyan-400 text-white mb-3 md:mb-4 text-xs px-2 md:px-3 py-1">
                     DIFERENCIAIS
                   </Badge>
-                  <h3 className="text-2xl font-bold mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 leading-tight">
                     Alta performance,<br />
                     segurança e personalização.
                   </h3>
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   <div>
-                    <h4 className="text-xl font-bold mb-2">600+</h4>
-                    <p className="text-cyan-100">
+                    <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2">600+</h4>
+                    <p className="text-cyan-100 text-sm md:text-base">
                       Consultórios equipados com mesas e cadeiras personalizadas.
                     </p>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold mb-2">+45 Anos</h4>
-                    <p className="text-cyan-100">
+                    <h4 className="text-lg md:text-xl font-bold mb-1 md:mb-2">+45 Anos</h4>
+                    <p className="text-cyan-100 text-sm md:text-base">
                       De experiência na fabricação de equipamentos médicos certificados.
                     </p>
                   </div>
                 </div>
-                <Button className="mt-6 bg-slate-800 hover:bg-slate-900 text-white rounded-full px-6 py-3" asChild>
+                <Button className="mt-4 md:mt-6 bg-slate-800 hover:bg-slate-900 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-sm md:text-base w-full sm:w-auto" asChild>
                   <Link to="/contato">
                     Fale agora com a Lanza
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="ml-2 w-3 h-3 md:w-4 md:h-4" />
                   </Link>
                 </Button>
               </CardContent>
             </Card>
 
             {/* Center Image */}
-            <Card className="bg-white p-0 rounded-2xl overflow-hidden h-full relative">
+            <Card className="bg-white p-0 rounded-2xl overflow-hidden h-full relative order-first lg:order-none">
               <CardContent className="p-0 h-full">
                 {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
                 {import.meta.env.DEV && (
@@ -260,29 +260,29 @@ const Home = () => {
                     productName="Imagem Principal Home"
                   />
                 )}
-                <img src={heroImage} alt="Lanza Medical" className="w-full h-full object-cover" />
+                <img src={heroImage} alt="Lanza Medical" className="w-full h-64 md:h-full object-cover" />
               </CardContent>
             </Card>
 
             {/* Right Card - Certificação */}
-            <Card className="bg-slate-800 text-white p-8 rounded-2xl">
+            <Card className="bg-slate-800 text-white p-6 md:p-8 rounded-2xl">
               <CardContent className="p-0">
-                <div className="mb-6">
-                  <Badge variant="secondary" className="bg-slate-700 text-white mb-4 text-xs px-3 py-1">
+                <div className="mb-4 md:mb-6">
+                  <Badge variant="secondary" className="bg-slate-700 text-white mb-3 md:mb-4 text-xs px-2 md:px-3 py-1">
                     CERTIFICAÇÃO
                   </Badge>
-                  <h3 className="text-2xl font-bold mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 leading-tight">
                     Todos os produtos certificados pela{' '}
                     <span className="text-cyan-400">ANVISA</span> e{' '}
                     <span className="text-cyan-400">INMETRO</span>.
                   </h3>
                 </div>
-                <p className="text-gray-300 mb-6">
+                <p className="text-gray-300 mb-4 md:mb-6 text-sm md:text-base">
                   Garantia de segurança, qualidade e conformidade. 
                   Todos os nossos produtos são desenvolvidos e 
                   fabricados seguindo rigorosos padrões técnicos.
                 </p>
-                <Button asChild className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-6 py-3">
+                <Button asChild className="bg-white text-slate-800 hover:bg-gray-100 rounded-full px-4 md:px-6 py-2 md:py-3 text-sm md:text-base w-full sm:w-auto">
                   <Link to="/contato">
                     Solicitar meu orçamento
                   </Link>
@@ -363,45 +363,45 @@ const Home = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             <div className="text-center">
-              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
+              <div className="inline-block bg-white rounded-lg p-4 md:p-6 shadow-sm mb-3 md:mb-4 w-full">
+                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-800 mb-1 md:mb-2 whitespace-nowrap">
                   <AnimatedNumber value={600} className="inline" />+
                 </div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                <div className="text-xs md:text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   CONSULTÓRIOS EQUIPADOS EM TODO O BRASIL.
                 </div>
               </div>
             </div>
             <div className="text-center">
-              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
+              <div className="inline-block bg-white rounded-lg p-4 md:p-6 shadow-sm mb-3 md:mb-4 w-full">
+                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-800 mb-1 md:mb-2 whitespace-nowrap">
                   +<AnimatedNumber value={7} className="inline" />&nbsp;anos
                 </div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                <div className="text-xs md:text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   DE MERCADO.
                 </div>
               </div>
             </div>
             <div className="text-center">
-              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
+              <div className="inline-block bg-white rounded-lg p-4 md:p-6 shadow-sm mb-3 md:mb-4 w-full">
+                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-800 mb-1 md:mb-2 whitespace-nowrap">
                   +<AnimatedNumber value={3000} className="inline" />
                 </div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                <div className="text-xs md:text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   UNIDADES ENTREGUES.
                 </div>
               </div>
             </div>
             <div className="text-center">
-              <div className="inline-block bg-white rounded-lg p-6 shadow-sm mb-4">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-2 whitespace-nowrap">
+              <div className="inline-block bg-white rounded-lg p-4 md:p-6 shadow-sm mb-3 md:mb-4 w-full">
+                <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-800 mb-1 md:mb-2 whitespace-nowrap">
                   <AnimatedNumber value={100} className="inline" />%
                 </div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide leading-tight">
+                <div className="text-xs md:text-xs text-gray-600 uppercase tracking-wide leading-tight">
                   DOS PRODUTOS CERTIFICADOS.
                 </div>
               </div>

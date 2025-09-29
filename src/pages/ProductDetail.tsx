@@ -60,9 +60,9 @@ const ProductDetail = () => {
   };
   return <>
     <MetaTags title={`${product.name} - Lanza Medical`} description={product.description} keywords={`${product.name}, mesa médica, equipamentos médicos, ${product.category}`} />
-    <div className="py-24">
+    <div className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16" initial={{
+        <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16" initial={{
           opacity: 0,
           y: 30
         }} animate={{
@@ -72,7 +72,7 @@ const ProductDetail = () => {
           duration: 0.6
         }}>
           {/* Product Image */}
-          <motion.div className="flex justify-center" initial={{
+          <motion.div className="flex justify-center order-1 lg:order-1" initial={{
             opacity: 0,
             x: -30
           }} animate={{
@@ -83,8 +83,8 @@ const ProductDetail = () => {
             delay: 0.2
           }}>
             <div className="max-w-lg w-full relative">
-              <div className="absolute -top-4 -right-4 bg-[#003250] text-white p-3 rounded-full z-10">
-                <Star className="w-6 h-6" />
+              <div className="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-[#003250] text-white p-2 md:p-3 rounded-full z-10">
+                <Star className="w-4 h-4 md:w-6 md:h-6" />
               </div>
               {/* Mostrar ImageEditor apenas no ambiente de desenvolvimento/edição */}
               {import.meta.env.DEV && (
@@ -98,14 +98,14 @@ const ProductDetail = () => {
                 <img 
                   src={currentImage} 
                   alt={product.name} 
-                  className="w-full h-[500px] object-contain rounded-lg shadow-lg bg-white cursor-pointer hover:opacity-90 transition-opacity"
+                  className="w-full h-[350px] md:h-[450px] lg:h-[500px] object-contain rounded-lg shadow-lg bg-white cursor-pointer hover:opacity-90 transition-opacity"
                 />
               </ImageZoomDialog>
             </div>
           </motion.div>
 
           {/* Product Info */}
-          <motion.div className="space-y-6" initial={{
+          <motion.div className="space-y-4 md:space-y-6 order-2 lg:order-2" initial={{
             opacity: 0,
             x: 30
           }} animate={{
@@ -116,27 +116,27 @@ const ProductDetail = () => {
             delay: 0.3
           }}>
             <div>
-              <FadeText className="text-3xl font-bold text-[#003250] mb-4" direction="up" text={`${product.name} ®`} />
-              <div className="border-l-4 border-[#003250] pl-4 mb-6 my-[24px] py-0">
-                <p className="text-gray-700 text-lg leading-relaxed text-justify">
+              <FadeText className="text-2xl md:text-3xl font-bold text-[#003250] mb-3 md:mb-4 leading-tight" direction="up" text={`${product.name} ®`} />
+              <div className="border-l-4 border-[#003250] pl-4 mb-4 md:mb-6 my-4 md:my-[24px] py-0">
+                <p className="text-gray-700 text-base md:text-lg leading-relaxed text-justify">
                   {product.description}
                 </p>
               </div>
               
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3 mb-6">
-                <div className="flex items-center space-x-2">
-                  <Shield className="w-5 h-5 text-[#003250]" />
+              <div className="bg-gray-50 rounded-lg p-3 md:p-4 space-y-2 md:space-y-3 mb-4 md:mb-6">
+                <div className="flex items-center space-x-2 text-sm md:text-base">
+                  <Shield className="w-4 h-4 md:w-5 md:h-5 text-[#003250] flex-shrink-0" />
                   <span className="font-semibold text-[#003250]">Código INMETRO:</span>
-                  <span className="text-gray-700">{product.specifications['Código INMETRO'] || '19.06010'}</span>
+                  <span className="text-gray-700 break-all">{product.specifications['Código INMETRO'] || '19.06010'}</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Award className="w-5 h-5 text-[#003250]" />
+                <div className="flex items-center space-x-2 text-sm md:text-base">
+                  <Award className="w-4 h-4 md:w-5 md:h-5 text-[#003250] flex-shrink-0" />
                   <span className="font-semibold text-[#003250]">Registro ANVISA/MS:</span>
-                  <span className="text-gray-700">{product.specifications['Registro ANVISA/MS'] || '81890340001'}</span>
+                  <span className="text-gray-700 break-all">{product.specifications['Registro ANVISA/MS'] || '81890340001'}</span>
                 </div>
               </div>
               
-              <Button asChild className="bg-[#003250] hover:bg-[#003250]/90 text-white rounded-full px-8 py-3">
+              <Button asChild className="w-full md:w-auto bg-[#003250] hover:bg-[#003250]/90 text-white rounded-full px-6 md:px-8 py-3 text-sm md:text-base">
                 <Link to="/contato">
                   <Phone className="w-4 h-4 mr-2" />
                   Fale agora com a Lanza
@@ -147,7 +147,7 @@ const ProductDetail = () => {
         </motion.div>
 
         {/* Product Highlights */}
-        <motion.div className="mb-20" initial={{
+        <motion.div className="mb-16 md:mb-20" initial={{
           opacity: 0,
           y: 30
         }} whileInView={{
@@ -158,12 +158,11 @@ const ProductDetail = () => {
         }} transition={{
           duration: 0.6
         }}>
-          <div className="text-center mb-12">
-            <FadeText className="text-3xl font-bold text-[#003250] mb-6" direction="up" text="Principais Diferenciais" />
-            
+          <div className="text-center mb-8 md:mb-12">
+            <FadeText className="text-2xl md:text-3xl font-bold text-[#003250] mb-4 md:mb-6" direction="up" text="Principais Diferenciais" />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {productHighlights.map((highlight, index) => <motion.div key={index} initial={{
               opacity: 0,
               y: 20
@@ -175,18 +174,18 @@ const ProductDetail = () => {
             }} transition={{
               duration: 0.6,
               delay: index * 0.1
-            }} className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 text-center hover:shadow-xl transition-shadow">
-                <div className="bg-[#003250] rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            }} className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 md:p-6 text-center hover:shadow-xl transition-shadow">
+                <div className="bg-[#003250] rounded-full p-3 md:p-4 w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 flex items-center justify-center">
                   {highlight.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-[#003250] mb-3">{highlight.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-center">{highlight.description}</p>
+                <h3 className="text-lg md:text-xl font-semibold text-[#003250] mb-2 md:mb-3">{highlight.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-center text-sm md:text-base">{highlight.description}</p>
               </motion.div>)}
           </div>
         </motion.div>
 
         {/* Applications */}
-        <motion.div className="mb-20" initial={{
+        <motion.div className="mb-16 md:mb-20" initial={{
           opacity: 0,
           y: 30
         }} whileInView={{
@@ -197,12 +196,11 @@ const ProductDetail = () => {
         }} transition={{
           duration: 0.6
         }}>
-          <div className="text-center mb-12">
-            <FadeText className="text-3xl font-bold text-[#003250] mb-6" direction="up" text="Aplicações Recomendadas" />
-            
+          <div className="text-center mb-8 md:mb-12">
+            <FadeText className="text-2xl md:text-3xl font-bold text-[#003250] mb-4 md:mb-6" direction="up" text="Aplicações Recomendadas" />
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
             {productApplications.map((application, index) => <motion.div key={index} initial={{
               opacity: 0,
               scale: 0.9
@@ -214,9 +212,9 @@ const ProductDetail = () => {
             }} transition={{
               duration: 0.4,
               delay: index * 0.1
-            }} className="bg-gradient-to-br from-[#003250] to-[#004a75] text-white rounded-lg p-4 text-center">
-                <div className="text-cyan-400 mb-2">{application.icon}</div>
-                <p className="text-sm font-medium">{application.name}</p>
+            }} className="bg-gradient-to-br from-[#003250] to-[#004a75] text-white rounded-lg p-3 md:p-4 text-center">
+                <div className="text-cyan-400 mb-2 flex justify-center">{application.icon}</div>
+                <p className="text-xs md:text-sm font-medium leading-tight">{application.name}</p>
               </motion.div>)}
           </div>
         </motion.div>
