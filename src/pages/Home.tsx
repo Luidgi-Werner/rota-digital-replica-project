@@ -12,12 +12,22 @@ import { productIdToSlugMapping } from '@/utils/productRoutes';
 import { Testimonial } from '@/components/ui/testimonial-card';
 import ImageEditor from '@/components/admin/ImageEditor';
 import { useEditableImage } from '@/hooks/useEditableImage';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
   const [whatsappValue, setWhatsappValue] = useState('');
   const [whatsappError, setWhatsappError] = useState('');
+  const [leadFormData, setLeadFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    specialty: ''
+  });
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false);
+  const { toast } = useToast();
 
   // Hook para gerenciar a imagem editável da seção principal
   const { currentImage: heroImage, handleImageChange: handleHeroImageChange } = useEditableImage({
@@ -58,6 +68,59 @@ const Home = () => {
     setWhatsappError('');
     const formattedValue = formatPhoneNumber(value);
     setWhatsappValue(formattedValue);
+    setLeadFormData(prev => ({ ...prev, phone: formattedValue }));
+  };
+
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!leadFormData.name || !leadFormData.email || !leadFormData.phone) {
+      toast({
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha todos os campos.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmittingLead(true);
+
+    try {
+      const { error } = await supabase
+        .from('lead_submissions')
+        .insert([
+          {
+            name: leadFormData.name,
+            email: leadFormData.email,
+            phone: leadFormData.phone
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Cadastro realizado!",
+        description: "Em breve entraremos em contato!"
+      });
+
+      // Reset form
+      setLeadFormData({
+        name: '',
+        email: '',
+        phone: '',
+        specialty: ''
+      });
+      setWhatsappValue('');
+    } catch (error) {
+      console.error('Error submitting lead:', error);
+      toast({
+        title: "Erro ao enviar",
+        description: "Tente novamente mais tarde.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmittingLead(false);
+    }
   };
 
   const nextTestimonial = () => {
@@ -160,9 +223,22 @@ const Home = () => {
                 </p>
               </div>
               
-              <form className="space-y-3 md:space-y-4">
-                <Input placeholder="Nome" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base" />
-                <Input type="email" placeholder="E-mail" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base" />
+              <form onSubmit={handleLeadSubmit} className="space-y-3 md:space-y-4">
+                <Input 
+                  placeholder="Nome" 
+                  className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base"
+                  value={leadFormData.name}
+                  onChange={(e) => setLeadFormData(prev => ({ ...prev, name: e.target.value }))}
+                  required
+                />
+                <Input 
+                  type="email" 
+                  placeholder="E-mail" 
+                  className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base"
+                  value={leadFormData.email}
+                  onChange={(e) => setLeadFormData(prev => ({ ...prev, email: e.target.value }))}
+                  required
+                />
                 <div className="space-y-1">
                   <Input 
                     placeholder="WhatsApp" 
@@ -170,6 +246,7 @@ const Home = () => {
                     value={whatsappValue}
                     onChange={handleWhatsAppChange}
                     maxLength={15}
+                    required
                   />
                   {whatsappError && (
                     <div className="flex items-center gap-1 text-red-600 text-xs md:text-sm bg-red-50 px-3 py-2 rounded-lg">
@@ -178,9 +255,18 @@ const Home = () => {
                     </div>
                   )}
                 </div>
-                <Input placeholder="Especialidade" className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base" />
-                <Button className="w-full bg-slate-800 hover:bg-slate-900 text-white h-10 md:h-12 rounded-lg font-semibold text-sm md:text-lg">
-                  Quero meu presente exclusivo
+                <Input 
+                  placeholder="Especialidade" 
+                  className="bg-white border-0 text-gray-900 placeholder:text-gray-500 h-10 md:h-12 rounded-lg text-sm md:text-base"
+                  value={leadFormData.specialty}
+                  onChange={(e) => setLeadFormData(prev => ({ ...prev, specialty: e.target.value }))}
+                />
+                <Button 
+                  type="submit"
+                  disabled={isSubmittingLead}
+                  className="w-full bg-slate-800 hover:bg-slate-900 text-white h-10 md:h-12 rounded-lg font-semibold text-sm md:text-lg disabled:opacity-50"
+                >
+                  {isSubmittingLead ? "Enviando..." : "Quero meu presente exclusivo"}
                 </Button>
               </form>
             </div>

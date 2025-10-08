@@ -11,6 +11,7 @@ import { sanitizeInput, validateEmail, validatePhone, formRateLimiter } from '@/
 import MetaTags from '@/components/seo/MetaTags';
 import ImageEditor from '@/components/admin/ImageEditor';
 import { useEditableImage } from '@/hooks/useEditableImage';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   // Hook para gerenciar a imagem editável da seção de contato
@@ -118,8 +119,20 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Save to database
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || '',
+            company: formData.company || null,
+            message: formData.message
+          }
+        ]);
+
+      if (error) throw error;
       
       toast({
         title: "Mensagem enviada!",
@@ -135,6 +148,7 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Error submitting form:', error);
       toast({
         title: "Erro ao enviar",
         description: "Tente novamente ou entre em contato por telefone.",
