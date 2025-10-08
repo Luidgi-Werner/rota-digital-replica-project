@@ -75,7 +75,7 @@ const Header = () => {
                              </Link>
                            )}
                           <Button size="sm" className="mt-4 w-full" asChild>
-                            <Link to="/contato">Fale Conosco</Link>
+                            <a href="https://wa.me/5516994472195" target="_blank" rel="noopener noreferrer">Fale Conosco</a>
                           </Button>
                         </div>
                       </NavigationMenuContent>
@@ -106,7 +106,7 @@ const Header = () => {
         {/* CTA Button */}
         <div className="flex justify-end w-full gap-4">
           <Button className="hidden md:inline bg-cyan-500 hover:bg-cyan-600 text-white" asChild>
-            <Link to="/contato">Fale Conosco</Link>
+            <a href="https://wa.me/5516994472195" target="_blank" rel="noopener noreferrer">Fale Conosco</a>
           </Button>
         </div>
 
