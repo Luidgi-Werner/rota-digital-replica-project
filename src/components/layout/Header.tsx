@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
-import { Menu, MoveRight, X, Shield, LogOut } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
+import { Menu, MoveRight, X } from 'lucide-react';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, isAdmin, isViewer, signOut } = useAuth();
   const navigationItems = [{
     title: "Início",
     href: "/"
@@ -105,28 +103,8 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* CTA and Auth Buttons */}
+        {/* CTA Buttons */}
         <div className="flex justify-end w-full gap-2">
-          {user ? (
-            <>
-              {(isAdmin || isViewer) && (
-                <Button variant="ghost" size="sm" className="hidden lg:inline-flex text-white hover:bg-white/10" asChild>
-                  <Link to="/admin">
-                    <Shield className="h-4 w-4 mr-2" />
-                    Admin
-                  </Link>
-                </Button>
-              )}
-              <Button onClick={signOut} variant="ghost" size="sm" className="hidden lg:inline-flex text-white hover:bg-white/10">
-                <LogOut className="h-4 w-4 mr-2" />
-                Sair
-              </Button>
-            </>
-          ) : (
-            <Button variant="ghost" size="sm" className="hidden lg:inline-flex text-white hover:bg-white/10" asChild>
-              <Link to="/auth">Login</Link>
-            </Button>
-          )}
           <Button className="hidden md:inline bg-cyan-500 hover:bg-cyan-600 text-white" asChild>
             <a href="https://wa.me/5516994472195" target="_blank" rel="noopener noreferrer">Fale Conosco</a>
           </Button>
@@ -156,26 +134,6 @@ const Header = () => {
                 </div>)}
               
               <div className="mt-6 pt-6 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
-                {user ? (
-                  <>
-                    {(isAdmin || isViewer) && (
-                      <Button variant="ghost" className="w-full text-white hover:bg-white/10 mb-2" asChild>
-                        <Link to="/admin" onClick={() => setIsOpen(false)}>
-                          <Shield className="h-4 w-4 mr-2" />
-                          Admin
-                        </Link>
-                      </Button>
-                    )}
-                    <Button onClick={() => { signOut(); setIsOpen(false); }} variant="ghost" className="w-full text-white hover:bg-white/10 mb-2">
-                      <LogOut className="h-4 w-4 mr-2" />
-                      Sair
-                    </Button>
-                  </>
-                ) : (
-                  <Button variant="ghost" className="w-full text-white hover:bg-white/10 mb-2" asChild>
-                    <Link to="/auth" onClick={() => setIsOpen(false)}>Login</Link>
-                  </Button>
-                )}
                 <Button className="w-full bg-cyan-500 hover:bg-cyan-600 text-white" asChild>
                   <a href="https://wa.me/5516994472195" target="_blank" rel="noopener noreferrer">Fale Conosco</a>
                 </Button>

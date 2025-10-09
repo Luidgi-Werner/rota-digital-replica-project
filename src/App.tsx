@@ -13,7 +13,6 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsOfService from "./pages/legal/TermsOfService";
@@ -65,7 +64,6 @@ const App = () => (
                 <Route path="/contato" element={<Contact />} />
                 
                 {/* Auth Routes */}
-                <Route path="/auth" element={<Auth />} />
                 <Route path="/admin" element={<Admin />} />
                 
                 {/* Legal Pages */}
