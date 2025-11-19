@@ -98,6 +98,22 @@ const Home = () => {
 
       if (error) throw error;
 
+      // Enviar dados para Google Sheets (não bloqueia o fluxo se falhar)
+      try {
+        await supabase.functions.invoke('send-to-sheets', {
+          body: {
+            name: leadFormData.name,
+            email: leadFormData.email,
+            phone: leadFormData.phone,
+            specialty: leadFormData.specialty
+          }
+        });
+        console.log('Lead enviado para Google Sheets com sucesso');
+      } catch (sheetsError) {
+        console.error('Erro ao enviar para Google Sheets:', sheetsError);
+        // Não exibe erro ao usuário pois o lead foi salvo no banco
+      }
+
       toast({
         title: "Cadastro realizado!",
         description: "Em breve entraremos em contato!"
