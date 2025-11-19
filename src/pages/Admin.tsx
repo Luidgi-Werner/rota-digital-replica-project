@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { Mail, Phone, Building, MessageSquare, Calendar, LogOut, Shield } from 'lucide-react';
+import { Mail, Phone, Building, MessageSquare, Calendar, LogOut, Shield, RefreshCw } from 'lucide-react';
 
 interface ContactSubmission {
   id: string;
@@ -83,6 +83,30 @@ export default function Admin() {
 
   const formatDate = (date: string) => {
     return new Date(date).toLocaleString('pt-BR');
+  };
+
+  const handleSyncLeadsToSheets = async () => {
+    try {
+      toast.loading('Sincronizando leads com Google Sheets...');
+      
+      const { data, error } = await supabase.functions.invoke('sync-existing-leads', {
+        method: 'POST'
+      });
+
+      if (error) throw error;
+
+      if (data?.success) {
+        toast.success(`✅ ${data.successCount} leads sincronizados com sucesso!`);
+        if (data.errorCount > 0) {
+          toast.warning(`⚠️ ${data.errorCount} leads com erro`);
+        }
+      } else {
+        throw new Error(data?.error || 'Erro desconhecido');
+      }
+    } catch (error: any) {
+      console.error('Erro ao sincronizar leads:', error);
+      toast.error('Erro ao sincronizar leads: ' + error.message);
+    }
   };
 
   if (authLoading) {
@@ -226,10 +250,24 @@ export default function Admin() {
           <TabsContent value="leads" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Leads Capturados</CardTitle>
-                <CardDescription>
-                  Dados de potenciais clientes interessados
-                </CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Leads Capturados</CardTitle>
+                    <CardDescription>
+                      Dados de potenciais clientes interessados
+                    </CardDescription>
+                  </div>
+                  {isAdmin && (
+                    <Button 
+                      onClick={handleSyncLeadsToSheets} 
+                      variant="outline"
+                      size="sm"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      Sincronizar com Google Sheets
+                    </Button>
+                  )}
+                </div>
               </CardHeader>
               <CardContent>
                 {loading ? (
