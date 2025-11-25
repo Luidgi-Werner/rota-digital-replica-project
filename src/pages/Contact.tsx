@@ -150,6 +150,24 @@ const Contact = () => {
         console.error('Erro ao enviar para Google Sheets:', sheetsError);
         // Não falha a submissão se o Google Sheets falhar
       }
+
+      // Enviar notificação por email
+      try {
+        await supabase.functions.invoke('send-lead-notification', {
+          body: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || '',
+            company: formData.company || '',
+            message: formData.message,
+            type: 'contact'
+          }
+        });
+        console.log('Notificação de contato enviada por email');
+      } catch (emailError) {
+        console.error('Erro ao enviar notificação por email:', emailError);
+        // Não falha a submissão se o email falhar
+      }
       
       toast({
         title: "Mensagem enviada!",
