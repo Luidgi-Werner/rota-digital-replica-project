@@ -57,7 +57,7 @@ serve(async (req) => {
     // Enviar email
     const emailResponse = await resend.emails.send({
       from: 'RT Equipment <onboarding@resend.dev>',
-      to: ['contato@rtequipment.com.br'], // Email de destino - ajustar conforme necessário
+      to: ['vendas@lanzamedical.com.br'],
       subject: subject,
       html: htmlContent,
     });
