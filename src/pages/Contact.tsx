@@ -133,6 +133,23 @@ const Contact = () => {
         ]);
 
       if (error) throw error;
+
+      // Enviar para Google Sheets
+      try {
+        await supabase.functions.invoke('send-to-sheets', {
+          body: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || '',
+            company: formData.company || '',
+            message: formData.message,
+            type: 'contact'
+          }
+        });
+      } catch (sheetsError) {
+        console.error('Erro ao enviar para Google Sheets:', sheetsError);
+        // Não falha a submissão se o Google Sheets falhar
+      }
       
       toast({
         title: "Mensagem enviada!",
