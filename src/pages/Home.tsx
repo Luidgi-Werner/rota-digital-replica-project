@@ -115,6 +115,23 @@ const Home = () => {
         // Não exibe erro ao usuário pois o lead foi salvo no banco
       }
 
+      // Enviar notificação por email
+      try {
+        await supabase.functions.invoke('send-lead-notification', {
+          body: {
+            name: leadFormData.name,
+            email: leadFormData.email,
+            phone: leadFormData.phone,
+            specialty: leadFormData.specialty,
+            type: 'lead'
+          }
+        });
+        console.log('Notificação de lead enviada por email');
+      } catch (emailError) {
+        console.error('Erro ao enviar notificação por email:', emailError);
+        // Não exibe erro ao usuário
+      }
+
       toast({
         title: "Cadastro realizado!",
         description: "Em breve entraremos em contato!"
