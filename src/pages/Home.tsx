@@ -105,7 +105,8 @@ const Home = () => {
             name: leadFormData.name,
             email: leadFormData.email,
             phone: leadFormData.phone,
-            specialty: leadFormData.specialty
+            specialty: leadFormData.specialty,
+            type: 'lead'
           }
         });
         console.log('Lead enviado para Google Sheets com sucesso');

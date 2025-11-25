@@ -12,6 +12,9 @@ interface LeadData {
   email: string;
   phone: string;
   specialty?: string;
+  type?: 'lead' | 'contact';
+  company?: string;
+  message?: string;
 }
 
 serve(async (req) => {
